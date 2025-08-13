@@ -1,0 +1,28 @@
+.custom-navbar {
+  background: linear-gradient(
+    to right,
+    #ffffff,
+    #fff5f5,
+    #f6ede4
+  );
+  border-bottom: 1px solid #e9dcd1;
+}
+
+.navbar-brand {
+  color: #a67044 !important; /* warm brown */
+  font-weight: 700;
+}
+
+.nav-link {
+  color: #5c4b3b !important; /* dark brownish text */
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #d48b6e !important; /* pink-brown hover */
+}
+
+.navbar-toggler {
+  border-color: #d3b8a1;
+}
