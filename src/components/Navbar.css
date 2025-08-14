@@ -1,28 +1,52 @@
 .custom-navbar {
-  background: linear-gradient(
-    to right,
-    #ffffff,
-    #fff5f5,
-    #f6ede4
-  );
+  position: fixed; /* makes it fixed at top */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* ensure it stays above content */
+  background: linear-gradient(to right, #ffffff, #fff5f5, #f6ede4);
   border-bottom: 1px solid #e9dcd1;
 }
 
+
 .navbar-brand {
-  color: #a67044 !important; /* warm brown */
+  color: #a67044 !important;
   font-weight: 700;
 }
 
 .nav-link {
-  color: #5c4b3b !important; /* dark brownish text */
+  color: #5c4b3b !important;
   font-weight: 500;
   transition: all 0.3s ease;
 }
 
 .nav-link:hover {
-  color: #d48b6e !important; /* pink-brown hover */
+  color: #d48b6e !important;
 }
 
 .navbar-toggler {
   border-color: #d3b8a1;
+}
+
+/* Search bar style */
+.search-bar {
+  position: relative;
+  width: 300px;
+}
+
+.search-bar input {
+  border: 1px solid #d3b8a1;
+  border-radius: 25px;
+  padding-left: 15px;
+  padding-right: 35px;
+  font-size: 0.9rem;
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a67044;
+  cursor: pointer;
 }

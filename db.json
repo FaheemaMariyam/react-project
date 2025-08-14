@@ -80,38 +80,26 @@
       "pin": "676528",
       "email": "faheemamariyam2102004@gmail.com",
       "password": "mariyam"
+    },
+    {
+      "id": "5221",
+      "username": "_faheemaaa_",
+      "phone": "4536123456",
+      "address": "asdf",
+      "pin": "676528",
+      "email": "faheemamariyam2102004@gmail.com",
+      "password": "5678"
     }
   ],
-  "categories": [
-    {
-      "id": "1",
-      "name": "Cookware & Bakeware",
-      "image": "/images/products/cookcg.jpg"
-    },
-    {
-      "id": "2",
-      "name": "Kitchen Appliances",
-      "image": "/images/kitchencg.jpg"
-    },
-    {
-      "id": "3",
-      "name": "Storage & Organization",
-      "image": "/images/cookware.jpg"
-    },
-    {
-      "id": "4",
-      "name": "Home Decor",
-      "image": "/images/shelves.jpg"
-    },
-    {
-      "id": "5",
-      "name": "Cleaning & Utility",
-      "image": "/images/cleaningcg.jpg"
-    }
-  ],
-  "products": [
- 
-  { "id": 1, "name": "Non-stick Fry Pan", "price": 1200, "image": "/products/pan.jpg", "categoryId": 1 },
+  "categories" :[
+  { "id": 1, "name": "Cookware & Bakeware", "image": "/products/cookcg.jpg" },
+  { "id": 2, "name": "Kitchen Appliances", "image": "/products/kitchencg.jpg" },
+  { "id": 3, "name": "Storage & Organization", "image": "/products/cookware.jpg" },
+  {"id": 4, "name": "Home Decor", "image": "/products/shelves.jpg" },
+  {"id": 5,"name": "Cleaning & Utility", "image": "/products/cleaningcg.jpg" }
+],
+ "products" :[
+    { "id": 1, "name": "Non-stick Fry Pan", "price": 1200, "image": "/products/pan.jpg", "categoryId": 1 },
   { "id": 2, "name": "Stainless Steel Pot", "price": 1800, "image": "/products/steelpot.jpg", "categoryId": 1 },
   { "id": 3, "name": "Ceramic Baking Dish", "price": 900, "image": "/products/bakingdish.jpg", "categoryId": 1 },
   { "id": 4, "name": "Cast Iron Skillet", "price": 2500, "image": "/products/skillet.jpg", "categoryId": 1 },
@@ -122,7 +110,6 @@
   { "id": 9, "name": "Wooden Chopping Board", "price": 500, "image": "/products/choppingboard.jpg", "categoryId": 1 },
   { "id": 10, "name": "Pizza Stone", "price": 1100, "image": "/products/pizzastone.jpg", "categoryId": 1 },
 
- 
   { "id": 11, "name": "Microwave Oven", "price": 8000, "image": "/products/microwave.jpg", "categoryId": 2 },
   { "id": 12, "name": "Blender", "price": 2500, "image": "/products/blender.jpg", "categoryId": 2 },
   { "id": 13, "name": "Electric Kettle", "price": 1500, "image": "/products/kettle.jpg", "categoryId": 2 },
@@ -134,7 +121,7 @@
   { "id": 19, "name": "Air Fryer", "price": 4500, "image": "/products/airfryer.jpg", "categoryId": 2 },
   { "id": 20, "name": "Induction Cooktop", "price": 4000, "image": "/products/induction.jpg", "categoryId": 2 },
 
-  { "id": 21, "name": "Glass Storage Jar", "price": 300, "image": "/products/jar.jpg", "categoryId": 3 },
+   { "id": 21, "name": "Glass Storage Jar", "price": 300, "image": "/products/jar.jpg", "categoryId": 3 },
   { "id": 22, "name": "Plastic Container Set", "price": 600, "image": "/products/container.jpg", "categoryId": 3 },
   { "id": 23, "name": "Metal Shelf Rack", "price": 2500, "image": "/products/shelfrack.jpg", "categoryId": 3 },
   { "id": 24, "name": "Hanging Basket", "price": 450, "image": "/products/hangingbasket.jpg", "categoryId": 3 },
@@ -145,8 +132,7 @@
   { "id": 29, "name": "Closet Organizer", "price": 2000, "image": "/products/closetorganizer.jpg", "categoryId": 3 },
   { "id": 30, "name": "Kitchen Spice Rack", "price": 750, "image": "/products/spicerack.jpg", "categoryId": 3 },
 
- 
-  { "id": 31, "name": "Wall Painting", "price": 1500, "image": "/products/painting.jpg", "categoryId": 4 },
+    { "id": 31, "name": "Wall Painting", "price": 1500, "image": "/products/painting.jpg", "categoryId": 4 },
   { "id": 32, "name": "Decorative Vase", "price": 1200, "image": "/products/vase.jpg", "categoryId": 4 },
   { "id": 33, "name": "Table Lamp", "price": 1800, "image": "/products/lamp.jpg", "categoryId": 4 },
   { "id": 34, "name": "Photo Frame Set", "price": 800, "image": "/products/photoframe.jpg", "categoryId": 4 },
@@ -156,9 +142,8 @@
   { "id": 38, "name": "Cushion Cover Set", "price": 600, "image": "/products/cushioncover.jpg", "categoryId": 4 },
   { "id": 39, "name": "Rug Carpet", "price": 2500, "image": "/products/rug.jpg", "categoryId": 4 },
   { "id": 40, "name": "Wall Shelves", "price": 2000, "image": "/products/wallshelves.jpg", "categoryId": 4 },
-
   
-  { "id": 41, "name": "Broom", "price": 200, "image": "/products/broom.jpg", "categoryId": 5 },
+    { "id": 41, "name": "Broom", "price": 200, "image": "/products/broom.jpg", "categoryId": 5 },
   { "id": 42, "name": "Mop Set", "price": 700, "image": "/products/mop.jpg", "categoryId": 5 },
   { "id": 43, "name": "Vacuum Cleaner", "price": 6000, "image": "/products/vacuum.jpg", "categoryId": 5 },
   { "id": 44, "name": "Scrub Brush Set", "price": 250, "image": "/products/scrubbrush.jpg", "categoryId": 5 },
@@ -169,6 +154,4 @@
   { "id": 49, "name": "Dish Rack", "price": 900, "image": "/products/dishrack.jpg", "categoryId": 5 },
   { "id": 50, "name": "Toilet Brush Set", "price": 400, "image": "/products/toiletbrush.jpg", "categoryId": 5 }
 ]
-
-
-}
+  }
