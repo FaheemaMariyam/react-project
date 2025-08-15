@@ -79,7 +79,11 @@ function Navbar() {
     <li className="nav-item">
       <NavLink className="nav-link" to="/products">Products</NavLink>
     </li>
+     <li className="nav-item">
+      <NavLink className="nav-link" to="/orders">Orders</NavLink>
+    </li>
   </ul>
+ 
 
   {/* Right side icons and auth links */}
   <ul className="navbar-nav align-items-center">

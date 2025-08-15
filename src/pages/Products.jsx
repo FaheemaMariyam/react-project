@@ -1,9 +1,11 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaHeart, FaSearch } from "react-icons/fa"; 
 import "./Products.css";
 import Navbar from "../components/Navbar";
+import { WishlistContext } from "../context/wishlistContext";
+import { CartContext } from "../context/CartContext";
 
 const categories = [
   { id: 1, name: "Cookware & Bakeware" },
@@ -14,6 +16,9 @@ const categories = [
 ];
 
 const Products = () => {
+  const{wishlist,addWishlist}=useContext(WishlistContext)
+  const{addCart}=useContext(CartContext)
+  
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const location = useLocation();
@@ -120,19 +125,22 @@ const Products = () => {
       </div>
 
       <div className="products-grid">
-        {filteredProducts.map((p) => (
+        {filteredProducts.map((p) => {
+          const isInWishlist=wishlist.some((item=>item.id===p.id))
+          return (
+
           <div key={p.id} className="product-card">
-            <button className="wishlist-btn">
-              <FaHeart />
+            <button className="wishlist-btn" onClick={()=>addWishlist(p)}>
+              <FaHeart color={isInWishlist? "#d48b6e" : "#dcc4bbff"} />
             </button>
             <div className="product-img-wrap">
               <img src={p.image} alt={p.name} />
             </div>
             <h3>{p.name}</h3>
             <p>₹{p.price}</p>
-            <button className="add-to-cart-btn">Add to Cart</button>
+            <button className="add-to-cart-btn" onClick={()=>addCart(p)}>Add to Cart</button>
           </div>
-        ))}
+        )})}
         {filteredProducts.length === 0 && <p>No products found.</p>}
       </div>
     </div>
