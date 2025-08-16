@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import "./cart.css";
 import { OrderContext } from "../context/OrderContext";
-
+import Navbar from '../components/Navbar';
 function Cart() {
   const { cart, removeCart,increaseQuantity,decreaseQuantity } = useContext(CartContext);
   const totalPrice=cart.reduce((total,item)=>total+(Number(item.price) || 0) * (item.quantity || 0),0)
@@ -15,6 +15,7 @@ function Cart() {
   }
     return (
     <div className="cart-page">
+      <Navbar/>
       <h2 className="cart-heading">My Cart</h2>
 
       {cart.length === 0 ? (
@@ -24,13 +25,13 @@ function Cart() {
           {cart.map((p) => (
             <div className="cart-card" key={p.id}>
               <img src={p.image} alt={p.name} />
-              <h3>{p.name}</h3>
-              <p>₹{p.price}</p>
+              <h3 className="cart-card-details" >{p.name}</h3>
+              <p className="cart-card-details">₹{p.price}</p>
 
-              <div>
-                <button onClick={()=>increaseQuantity(p.id)}>+</button>
+              <div className="quantity-container">
+                <button className="quantity-btn"   onClick={()=>increaseQuantity(p.id)}>+</button>
                 <h3>{p.quantity}</h3>
-                <button onClick={()=>decreaseQuantity(p.id)}>-</button>
+                <button className="quantity-btn" onClick={()=>decreaseQuantity(p.id)}>-</button>
               </div>
               <button
                 className="remove-btn"
@@ -44,7 +45,9 @@ function Cart() {
           ))}
         </div>
       )}
-      <div>
+      <div className="total-price-box">
+
+        <h3>Total Price</h3>
         <h3>₹{totalPrice}</h3>
       </div>
     </div>

@@ -80,14 +80,16 @@
 // }
 
 // export default Login;
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Login.css"; // custom styles
+import { AuthContext } from "../context/AuthContext";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const {login}=useContext(AuthContext)
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -105,10 +107,7 @@ function Login() {
       if (user) {
         console.log("Login success:", user);
 
-        // Save logged-in user to localStorage
-        localStorage.setItem("user", JSON.stringify(user));
-
-        // Optional: load user cart & wishlist
+        login(user)
         const storedCart = JSON.parse(localStorage.getItem(`cart_${user.id}`)) || [];
         const storedWishlist = JSON.parse(localStorage.getItem(`wishlist_${user.id}`)) || [];
         localStorage.setItem(`cart_${user.id}`, JSON.stringify(storedCart));
@@ -124,10 +123,10 @@ function Login() {
       alert("Something went wrong. Please try again.");
     }
   };
-  const handlelogout=()=>{
-    localStorage.removeItem("user");
+  // const handlelogout=()=>{
+  //   localStorage.removeItem("user");
     
-  }
+  // }
   return (
     <div className="login-wrapper">
       <div className="login-card">

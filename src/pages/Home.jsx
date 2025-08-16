@@ -3,7 +3,7 @@ import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
 import Categories from "../components/CategorySec";
 import ProductCard from "../components/ProductCard";
-
+import Footer from "../components/Footer";
 
 
 function Home() {
@@ -13,7 +13,7 @@ function Home() {
       <Hero/>
       <Categories/>
       <ProductCard/>
-     
+     <Footer/>
       </>
   );
 }

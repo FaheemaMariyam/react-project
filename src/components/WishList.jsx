@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
 import { WishlistContext } from '../context/wishlistContext'
 import './wishlist.css'
+import Navbar from '../components/Navbar';
 function WishList() {
     const{wishlist,removeWishlist}=useContext(WishlistContext)
   return (
     <div className="wishlist-page">
+      <Navbar/>
       <h2 className="wishlist-heading">My Wishlist</h2>
 
       <div className="wishlist-grid">

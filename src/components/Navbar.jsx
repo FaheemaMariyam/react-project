@@ -56,7 +56,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-light custom-navbar shadow-sm">
       <div className="container">
         {/* Brand */}
-        <NavLink className="navbar-brand fw-bold" to="/">
+        <NavLink className="navbar-brand fw-bold" to="/" onClick={window.location.reload}>
           ShopEase
         </NavLink>
 

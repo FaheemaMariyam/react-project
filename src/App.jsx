@@ -11,6 +11,8 @@ import Products from "./pages/Products";
 import WishList from "./components/WishList";
 import Cart from "./components/Cart";
 import Order from "./pages/Order";
+import Logout from "./pages/Logout";
+import { AuthContext, AuthProvider } from "./context/AuthContext";
 import { WishlistProvider } from "./context/wishlistContext";
 import { CartProvider } from "./context/CartContext";
 
@@ -18,8 +20,10 @@ import './App.css'
 import Hero from "./components/Hero";
 import { OrderProvider } from "./context/OrderContext";
 
+
 function App() {
   return (
+    <AuthProvider>
     <WishlistProvider>
       <CartProvider>
         <OrderProvider>
@@ -33,11 +37,13 @@ function App() {
         <Route path="/orders" element={<Order/>}/>
         <Route path="/wishlist" element={<WishList />} />
          <Route path="/cart" element={<Cart />} />
+         <Route path="/logout" element={<Logout/>}/>
       </Routes>
     </BrowserRouter>
     </OrderProvider>
     </CartProvider>
     </WishlistProvider>
+    </AuthProvider>
   );
 }
 

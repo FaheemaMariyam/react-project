@@ -22,7 +22,13 @@ import React, { createContext, useState, useEffect } from "react";
 export const OrderContext = createContext();
 
 export const OrderProvider = ({ children }) => {
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState(() => {
+    const savedUser = JSON.parse(localStorage.getItem("user"));
+    if (savedUser) {
+      return JSON.parse(localStorage.getItem(`orders_${savedUser.id}`)) || [];
+    }
+    return [];
+  });
 
   // Load orders from localStorage for the current user
   useEffect(() => {
@@ -30,6 +36,8 @@ export const OrderProvider = ({ children }) => {
     if (user) {
       const savedOrders = JSON.parse(localStorage.getItem(`orders_${user.id}`)) || [];
       setOrders(savedOrders);
+    } else {
+      setOrders([]); // clear if no user
     }
   }, []);
 
@@ -47,7 +55,7 @@ export const OrderProvider = ({ children }) => {
     const newOrder = {
       ...product,
       quantity: product.quantity || 1,
-      date: new Date().toISOString()
+      date: new Date().toISOString(),
     };
 
     const updatedOrders = [...existingOrders, newOrder];

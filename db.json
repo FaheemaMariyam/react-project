@@ -98,6 +98,33 @@
       "pin": "676528",
       "email": "faheemamariyam2102004@gmail.com",
       "password": "12345"
+    },
+    {
+      "id": "fcf0",
+      "username": "fah",
+      "phone": "1234567891",
+      "address": "asdgh",
+      "pin": "1234567",
+      "email": "fah@gmail.com",
+      "password": "1234"
+    },
+    {
+      "id": "45d8",
+      "username": "mariyam",
+      "phone": "6282422838",
+      "address": "kuruniyam",
+      "pin": "1234567",
+      "email": "abc@gmail.com",
+      "password": "55555"
+    },
+    {
+      "id": "9e9d",
+      "username": "fayiza",
+      "phone": "1243567981",
+      "address": "kuryniyam",
+      "pin": "1234893",
+      "email": "faz@gmail.com",
+      "password": "333"
     }
   ],
   "categories": [
@@ -134,7 +161,7 @@
       "price": 1200,
       "image": "/products/pan.jpg",
       "categoryId": 1,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "2",
@@ -142,7 +169,7 @@
       "price": 1800,
       "image": "/products/steelpot.jpg",
       "categoryId": 1,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "3",
@@ -150,7 +177,7 @@
       "price": 900,
       "image": "/products/bakingdish.jpg",
       "categoryId": 1,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "4",
@@ -158,7 +185,7 @@
       "price": 2500,
       "image": "/products/skillet.jpg",
       "categoryId": 1,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "5",
@@ -166,7 +193,7 @@
       "price": 700,
       "image": "/products/mixingbowl.jpg",
       "categoryId": 1,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "6",
@@ -174,7 +201,7 @@
       "price": 300,
       "image": "/products/rollingpin.jpg",
       "categoryId": 1,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "7",
@@ -182,7 +209,7 @@
       "price": 650,
       "image": "/products/cakepan.jpg",
       "categoryId": 1,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "8",
@@ -190,7 +217,7 @@
       "price": 450,
       "image": "/products/muffintray.jpg",
       "categoryId": 1,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "9",
@@ -198,7 +225,7 @@
       "price": 500,
       "image": "/products/choppingboard.jpg",
       "categoryId": 1,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "10",
@@ -206,7 +233,7 @@
       "price": 1100,
       "image": "/products/pizzastone.jpg",
       "categoryId": 1,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "11",
@@ -214,7 +241,7 @@
       "price": 8000,
       "image": "/products/microwave.jpg",
       "categoryId": 2,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "12",
@@ -222,7 +249,7 @@
       "price": 2500,
       "image": "/products/blender.jpg",
       "categoryId": 2,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "13",
@@ -230,7 +257,7 @@
       "price": 1500,
       "image": "/products/kettle.jpg",
       "categoryId": 2,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "14",
@@ -238,7 +265,7 @@
       "price": 3000,
       "image": "/products/ricecooker.jpg",
       "categoryId": 2,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "15",
@@ -246,7 +273,7 @@
       "price": 1300,
       "image": "/products/toaster.jpg",
       "categoryId": 2,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "16",
@@ -254,7 +281,7 @@
       "price": 2800,
       "image": "/products/juicer.jpg",
       "categoryId": 2,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "17",
@@ -262,7 +289,7 @@
       "price": 3500,
       "image": "/products/coffeemaker.jpg",
       "categoryId": 2,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "18",
@@ -270,7 +297,7 @@
       "price": 1200,
       "image": "/products/handmixer.jpg",
       "categoryId": 2,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "19",
@@ -278,7 +305,7 @@
       "price": 4500,
       "image": "/products/airfryer.jpg",
       "categoryId": 2,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "20",
@@ -286,7 +313,7 @@
       "price": 4000,
       "image": "/products/induction.jpg",
       "categoryId": 2,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "21",
@@ -294,7 +321,7 @@
       "price": 300,
       "image": "/products/jar.jpg",
       "categoryId": 3,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "22",
@@ -302,7 +329,7 @@
       "price": 600,
       "image": "/products/container.jpg",
       "categoryId": 3,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "23",
@@ -310,7 +337,7 @@
       "price": 2500,
       "image": "/products/shelfrack.jpg",
       "categoryId": 3,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "24",
@@ -318,7 +345,7 @@
       "price": 450,
       "image": "/products/hangingbasket.jpg",
       "categoryId": 3,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "25",
@@ -326,7 +353,7 @@
       "price": 900,
       "image": "/products/sinkorganizer.jpg",
       "categoryId": 3,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "26",
@@ -334,7 +361,7 @@
       "price": 1500,
       "image": "/products/shoerack.jpg",
       "categoryId": 3,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "27",
@@ -342,7 +369,7 @@
       "price": 400,
       "image": "/products/drawerdivider.jpg",
       "categoryId": 3,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "28",
@@ -350,7 +377,7 @@
       "price": 350,
       "image": "/products/doorhanger.jpg",
       "categoryId": 3,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "29",
@@ -358,7 +385,7 @@
       "price": 2000,
       "image": "/products/closetorganizer.jpg",
       "categoryId": 3,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "30",
@@ -366,7 +393,7 @@
       "price": 750,
       "image": "/products/spicerack.jpg",
       "categoryId": 3,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "31",
@@ -374,7 +401,7 @@
       "price": 1500,
       "image": "/products/painting.jpg",
       "categoryId": 4,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "32",
@@ -382,7 +409,7 @@
       "price": 1200,
       "image": "/products/vase.jpg",
       "categoryId": 4,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "33",
@@ -390,7 +417,7 @@
       "price": 1800,
       "image": "/products/lamp.jpg",
       "categoryId": 4,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "34",
@@ -398,7 +425,7 @@
       "price": 800,
       "image": "/products/photoframe.jpg",
       "categoryId": 4,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "35",
@@ -406,7 +433,7 @@
       "price": 1700,
       "image": "/products/curtains.jpg",
       "categoryId": 4,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "36",
@@ -414,7 +441,7 @@
       "price": 1100,
       "image": "/products/clock.jpg",
       "categoryId": 4,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "37",
@@ -422,7 +449,7 @@
       "price": 500,
       "image": "/products/plantpot.jpg",
       "categoryId": 4,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "38",
@@ -430,7 +457,7 @@
       "price": 600,
       "image": "/products/cushioncover.jpg",
       "categoryId": 4,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "39",
@@ -438,7 +465,7 @@
       "price": 2500,
       "image": "/products/rug.jpg",
       "categoryId": 4,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "40",
@@ -446,7 +473,7 @@
       "price": 2000,
       "image": "/products/wallshelves.jpg",
       "categoryId": 4,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "41",
@@ -454,7 +481,7 @@
       "price": 200,
       "image": "/products/broom.jpg",
       "categoryId": 5,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "42",
@@ -462,7 +489,7 @@
       "price": 700,
       "image": "/products/mop.jpg",
       "categoryId": 5,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "43",
@@ -470,7 +497,7 @@
       "price": 6000,
       "image": "/products/vacuum.jpg",
       "categoryId": 5,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "44",
@@ -478,7 +505,7 @@
       "price": 250,
       "image": "/products/scrubbrush.jpg",
       "categoryId": 5,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "45",
@@ -486,7 +513,7 @@
       "price": 300,
       "image": "/products/dustpan.jpg",
       "categoryId": 5,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "46",
@@ -494,7 +521,7 @@
       "price": 800,
       "image": "/products/laundrybasket.jpg",
       "categoryId": 5,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "47",
@@ -502,7 +529,7 @@
       "price": 150,
       "image": "/products/gloves.jpg",
       "categoryId": 5,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "48",
@@ -510,7 +537,7 @@
       "price": 350,
       "image": "/products/squeegee.jpg",
       "categoryId": 5,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "49",
@@ -518,7 +545,7 @@
       "price": 900,
       "image": "/products/dishrack.jpg",
       "categoryId": 5,
-  "quantity": 1
+      "quantity": 1
     },
     {
       "id": "50",
@@ -526,7 +553,7 @@
       "price": 400,
       "image": "/products/toiletbrush.jpg",
       "categoryId": 5,
-  "quantity": 1
+      "quantity": 1
     }
   ]
 }
