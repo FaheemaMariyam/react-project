@@ -2,7 +2,7 @@
 .hero-section {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 600px;
   overflow: hidden;
   background-color: #f8f4ee; /* light beige */
   display: flex;
@@ -15,7 +15,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 500px;
+  height: 600px;
   object-fit: cover;
   opacity: 0;
   transition: opacity 1s ease-in-out;
@@ -41,18 +41,4 @@
   line-height: 1.2;
 }
 
-.shop-btn {
-  background-color: #a67044; /* brown */
-  color: white;
-  padding: 12px 25px;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: background 0.3s ease;
-}
 
-.shop-btn:hover {
-  background-color: #905d3a;
-}

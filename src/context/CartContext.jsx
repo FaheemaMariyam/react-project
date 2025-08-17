@@ -90,6 +90,7 @@
 // };
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export const CartContext = createContext();
 
@@ -104,6 +105,7 @@ export const CartProvider = ({ children }) => {
     }
     return [];
   });
+  const navigate=useNavigate();
 
   // Reload cart if user changes
   useEffect(() => {
@@ -124,6 +126,12 @@ export const CartProvider = ({ children }) => {
 
   // Cart functions
   const addCart = (product) => {
+    if(!user){
+      alert ("please login first to add items to cart");
+      navigate("/login")
+      return;
+      
+    }
     if (!cart.some((item) => item.id === product.id)) {
       setCart([...cart, { ...product, quantity: 1 }]);
     }

@@ -16,7 +16,7 @@ const categories = [
 ];
 
 const Products = () => {
-  const{wishlist,addWishlist}=useContext(WishlistContext)
+  const{wishlist,toggleWishlist}=useContext(WishlistContext)
   const{addCart}=useContext(CartContext)
   
   const [products, setProducts] = useState([]);
@@ -130,7 +130,7 @@ const Products = () => {
           return (
 
           <div key={p.id} className="product-card">
-            <button className="wishlist-btn" onClick={()=>addWishlist(p)}>
+            <button className="wishlist-btn" onClick={()=>toggleWishlist(p)}>
               <FaHeart color={isInWishlist? "#d48b6e" : "#dcc4bbff"} />
             </button>
             <div className="product-img-wrap">

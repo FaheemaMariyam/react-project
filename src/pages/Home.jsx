@@ -8,13 +8,13 @@ import Footer from "../components/Footer";
 
 function Home() {
   return (
-    <>
-    <Navbar />
-      <Hero/>
-      <Categories/>
-      <ProductCard/>
-     <Footer/>
-      </>
+    <div>
+      <Navbar />
+      <Hero />
+      <Categories />
+      <ProductCard />
+      <Footer />
+    </div>
   );
 }
 

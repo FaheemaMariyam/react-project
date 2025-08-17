@@ -7,7 +7,7 @@ function Logout() {
     const{logout}=useContext(AuthContext)
     useEffect(()=>{
         logout();
-        navigate("/login")
+        navigate("/")
     },[logout,navigate])
   return (
     <p>Logging out...</p>

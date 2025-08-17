@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import "./Hero.css";
 
 const images = [
-  "/products/coffee2.jpg",
-  "/products/cookcg.jpg",
-  "/products/shelves.jpg"
+  "/products/hero1.jpg",
+  "/products/hero2.jpg",
+  "/products/hero3.jpg"
 ];
 
 const Hero = () => {
@@ -32,7 +32,7 @@ const Hero = () => {
       </div>
       <div className="hero-content">
         <h1>Make Your Home Beautiful & Functional</h1>
-        <button className="shop-btn">Shop Now</button>
+        {/* <button className="shop-btn">Shop Now</button> */}
       </div>
     </section>
   );

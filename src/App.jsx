@@ -23,11 +23,12 @@ import { OrderProvider } from "./context/OrderContext";
 
 function App() {
   return (
+    <BrowserRouter>
     <AuthProvider>
     <WishlistProvider>
       <CartProvider>
         <OrderProvider>
-    <BrowserRouter>
+    
    
       <Routes>
         <Route path="/" element={<Home />} />
@@ -39,11 +40,12 @@ function App() {
          <Route path="/cart" element={<Cart />} />
          <Route path="/logout" element={<Logout/>}/>
       </Routes>
-    </BrowserRouter>
+    
     </OrderProvider>
     </CartProvider>
     </WishlistProvider>
     </AuthProvider>
+    </BrowserRouter>
   );
 }
 

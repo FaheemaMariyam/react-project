@@ -90,10 +90,12 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const {login}=useContext(AuthContext)
+  const[error,setError]=useState({})
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+     if (!validate()) return;
     try {
       // Fetch all users from your backend (json-server)
       const res = await axios.get("http://localhost:3000/users");
@@ -123,6 +125,23 @@ function Login() {
       alert("Something went wrong. Please try again.");
     }
   };
+  const validate=()=>{
+    const newerror={};
+    if(!email.trim()){
+      newerror.email="Email is required"
+    }
+    else if(!/^[^\s@]+@[^\s@]+.[^\s@]+$/.test(email)){
+      newerror.email="Enter a valid email"
+    }
+    if(!password.trim()){
+      newerror.password="Password is required"
+    }
+    else if(password.length<6){
+      newerror.password="Password must be atleast of 6 character"
+    }
+     setError(newerror);
+    return Object.keys(newerror).length === 0;
+  }
   // const handlelogout=()=>{
   //   localStorage.removeItem("user");
     
@@ -133,7 +152,7 @@ function Login() {
         <h2 className="login-title">Welcome Back</h2>
         <p className="login-subtitle">Log in to continue</p>
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleLogin} noValidate>
           <div className="input-group">
             <label>Email</label>
             <input
@@ -141,8 +160,9 @@ function Login() {
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
+           
             />
+            {error.email && <p>{error.email}</p>}
           </div>
 
           <div className="input-group">
@@ -152,8 +172,9 @@ function Login() {
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
+             
             />
+            {error.password && <p>{error.password}</p>}
           </div>
 
           <button type="submit" className="submit-btn">

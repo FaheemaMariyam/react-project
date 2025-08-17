@@ -18,6 +18,7 @@
 //     )
 // }
 import React, { createContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const OrderContext = createContext();
 
@@ -29,7 +30,7 @@ export const OrderProvider = ({ children }) => {
     }
     return [];
   });
-
+  const navigate=useNavigate();
   // Load orders from localStorage for the current user
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -46,6 +47,7 @@ export const OrderProvider = ({ children }) => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) {
       alert("Please login first");
+      navigate("/login")
       return;
     }
 
@@ -55,7 +57,7 @@ export const OrderProvider = ({ children }) => {
     const newOrder = {
       ...product,
       quantity: product.quantity || 1,
-      date: new Date().toISOString(),
+      // date: new Date().toISOString(),
     };
 
     const updatedOrders = [...existingOrders, newOrder];
