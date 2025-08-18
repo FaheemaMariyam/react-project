@@ -1,10 +1,15 @@
 
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { FaSearch, FaHeart, FaShoppingCart, FaSignOutAlt } from "react-icons/fa";
+import {  FaHeart, FaShoppingCart, FaSignOutAlt,FaUser } from "react-icons/fa";
 import "./Navbar.css";
+import { WishlistContext } from "../context/wishlistContext";
+import { CartContext } from "../context/CartContext";
+
 
 function Navbar() {
+  const {wishlist}=useContext(WishlistContext);
+  const {cart}=useContext(CartContext);
   return (
     <nav className="navbar navbar-expand-lg navbar-light custom-navbar shadow-sm">
       <div className="container">
@@ -42,11 +47,13 @@ function Navbar() {
     <li className="nav-item">
       <NavLink className="nav-link" to="/wishlist">
         <FaHeart />
+        {wishlist.length>0 && <span className="wishlist-badge">{wishlist.length}</span>}
       </NavLink>
     </li>
     <li className="nav-item">
       <NavLink className="nav-link" to="/cart">
         <FaShoppingCart />
+        {cart.length>0 && <span className="cart-badge">{cart.length}</span>}
       </NavLink>
     </li>
     
@@ -55,6 +62,11 @@ function Navbar() {
     </li>
     <li className="nav-item">
       <NavLink className="nav-link" to="/login">Login</NavLink>
+    </li>
+    <li className="nav-item">
+      <NavLink className="nav-link" to="/profile">
+        <FaUser />
+      </NavLink>
     </li>
     <li className="nav-item">
       <NavLink className="nav-link" to="/logout">

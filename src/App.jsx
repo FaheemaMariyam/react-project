@@ -11,6 +11,7 @@ import Products from "./pages/Products";
 import WishList from "./pages/WishList";
 import Cart from "./pages/Cart";
 import Order from "./pages/Order";
+import Profile from "./pages/Profile";
 import Logout from "./pages/Logout";
 import { AuthContext, AuthProvider } from "./context/AuthContext";
 import { WishlistProvider } from "./context/wishlistContext";
@@ -38,6 +39,7 @@ function App() {
         <Route path="/orders" element={<Order/>}/>
         <Route path="/wishlist" element={<WishList />} />
          <Route path="/cart" element={<Cart />} />
+          <Route path="/profile" element={<Profile />} />
          <Route path="/logout" element={<Logout/>}/>
       </Routes>
     
