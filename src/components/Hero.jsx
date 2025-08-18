@@ -1,4 +1,4 @@
-// Hero.jsx
+
 import React, { useState, useEffect } from "react";
 import "./Hero.css";
 
@@ -32,7 +32,7 @@ const Hero = () => {
       </div>
       <div className="hero-content">
         <h1>Make Your Home Beautiful & Functional</h1>
-        {/* <button className="shop-btn">Shop Now</button> */}
+       
       </div>
     </section>
   );

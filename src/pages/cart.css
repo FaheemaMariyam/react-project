@@ -1,4 +1,4 @@
-/* ===== Cart Page Layout ===== */
+
 .cart-page {
   padding: 50px 80px;
   background: #fff;
@@ -13,7 +13,7 @@
   padding-bottom: 6px;
 }
 
-/* ===== Cart Grid & Cards ===== */
+
 .cart-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -36,7 +36,7 @@
   border-radius: 6px;
 }
 
-/* ===== Remove & Checkout Buttons ===== */
+
 .remove-btn {
   padding: 6px 12px;
   background-color: #f6ede4;
@@ -69,7 +69,7 @@
   background-color: #b56c54;
 }
 
-/* ===== Responsive ===== */
+
 @media (max-width: 768px) {
   .cart-page {
     padding: 30px 20px;

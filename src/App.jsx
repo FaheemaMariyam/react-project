@@ -3,13 +3,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Signup from "./pages/SignUp";
 import Login from "./pages/Login";
 import Products from "./pages/Products";
-import WishList from "./components/WishList";
-import Cart from "./components/Cart";
+import WishList from "./pages/WishList";
+import Cart from "./pages/Cart";
 import Order from "./pages/Order";
 import Logout from "./pages/Logout";
 import { AuthContext, AuthProvider } from "./context/AuthContext";
@@ -17,7 +17,7 @@ import { WishlistProvider } from "./context/wishlistContext";
 import { CartProvider } from "./context/CartContext";
 
 import './App.css'
-import Hero from "./components/Hero";
+// import Hero from "./components/Hero";
 import { OrderProvider } from "./context/OrderContext";
 
 

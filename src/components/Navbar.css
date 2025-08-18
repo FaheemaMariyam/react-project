@@ -1,9 +1,9 @@
 .custom-navbar {
-  position: fixed; /* makes it fixed at top */
+  position: fixed; 
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000; /* ensure it stays above content */
+  z-index: 1000; 
   background: linear-gradient(to right, #ffffff, #fff5f5, #f6ede4);
   border-bottom: 1px solid #e9dcd1;
 }
@@ -28,7 +28,7 @@
   border-color: #d3b8a1;
 }
 
-/* Search bar style */
+
 .search-bar {
   position: relative;
   width: 300px;

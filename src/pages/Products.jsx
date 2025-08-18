@@ -46,7 +46,7 @@ const Products = () => {
     }
   };
 
-  // Sort handlers
+ 
   const sortByPriceLowHigh = () => {
     setProducts((prev) => [...prev].sort((a, b) => a.price - b.price));
   };
@@ -64,11 +64,7 @@ const Products = () => {
     <div className="products-page">
       <Navbar />
 
-      {/* <h2 className="category-heading">
-        {categoryId
-          ? categories.find((cat) => cat.id === Number(categoryId))?.name || "Category"
-          : "All Products"}
-      </h2> */}
+     
 
      
       <div className="sort-search-row">
@@ -95,14 +91,7 @@ const Products = () => {
 
 
         
-        {/* <div className="sort-right">
-          <button className="sort-btn" onClick={sortByNameAZ}>
-            Name: A–Z
-          </button>
-          <button className="sort-btn" onClick={sortByNameZA}>
-            Name: Z–A
-          </button>
-        </div> */}
+       
       </div>
 
       

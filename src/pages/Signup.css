@@ -1,15 +1,15 @@
-/* Container */
+
 .signup-container {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f6d6bf, #fbd5b0); /* soft login theme bg */
+  background: linear-gradient(135deg, #f6d6bf, #fbd5b0); 
   padding: 20px;
   font-family: "Poppins", sans-serif;
 }
 
-/* Card styling */
+
 .signup-card {
   background: #fff;
   padding: 2rem;
@@ -20,23 +20,21 @@
   animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Title */
 .signup-card h2 {
   font-size: 1.8rem;
   font-weight: 600;
   text-align: center;
-  color: #be855c; /* changed to button color */
+  color: #be855c;
   margin-bottom: 0.6rem;
 }
 
-/* Subtitle */
 .signup-subtitle {
   text-align: center;
-  color: #be855c; /* changed to button color */
+  color: #be855c; 
   margin-bottom: 1.5rem;
 }
 
-/* Input groups */
+
 .input-group {
   display: flex;
   flex-direction: column;
@@ -46,16 +44,16 @@
 .input-group-label {
   font-weight: 500;
   margin-bottom: 5px;
-  color: #be855c; /* changed to button color */
+  color: #be855c;
 }
 
 .input-group input {
   padding: 0.8rem;
-  border-radius: 2px !important; /* force smaller radius */
+  border-radius: 2px !important; 
   border: 1px solid #c9a889;
   outline: none;
   font-size: 0.95rem;
-  color: #be855c; /* text color */
+  color: #be855c; 
   background: #fff;
   transition: border 0.3s ease, box-shadow 0.3s ease;
 }
@@ -65,15 +63,14 @@
   box-shadow: 0 0 6px rgba(190, 133, 92, 0.25);
 }
 
-/* Error messages */
+
 .error {
   font-size: 13px;
-  color: #be855c; /* changed to button color */
+  color: #be855c; 
   margin-top: 4px;
   font-weight: 500;
 }
 
-/* Button */
 .submit-btn {
   width: 100%;
   padding: 0.85rem;
@@ -92,7 +89,7 @@
   transform: translateY(-2px);
 }
 
-/* Animation */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -104,7 +101,7 @@
   }
 }
 
-/* Responsive */
+
 @media (max-width: 480px) {
   .signup-card {
     padding: 1.5rem;

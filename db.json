@@ -125,6 +125,24 @@
       "pin": "1234893",
       "email": "faz@gmail.com",
       "password": "333"
+    },
+    {
+      "id": "42be",
+      "username": "fayiza",
+      "phone": "1234567890",
+      "address": "Kuruniyam (h) Pottikkallu",
+      "pin": "123454",
+      "email": "muthupottikkallu@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "03a8",
+      "username": "faheema mariyam",
+      "phone": "6282422838",
+      "address": "kuruniyan",
+      "pin": "676528",
+      "email": "fah@gmail.com",
+      "password": "628242"
     }
   ],
   "categories": [

@@ -8,13 +8,13 @@ function Footer() {
     <footer className="footer">
       <div className="footer-container">
         
-        {/* Left - Brand */}
+       
         <div className="footer-brand">
           <h3>ShopEase</h3>
           <p>Making your shopping experience easy & enjoyable.</p>
         </div>
 
-        {/* Middle - Links */}
+       
         <div className="footer-links">
           <h4>Quick Links</h4>
           <ul>
@@ -25,7 +25,7 @@ function Footer() {
           </ul>
         </div>
 
-        {/* Right - Contact / Social */}
+        
         <div className="footer-contact">
           <h4>Contact Us</h4>
           <p>Email: support@shopease.com</p>

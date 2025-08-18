@@ -1,4 +1,4 @@
-/* Container to center content */
+
 .login-wrapper {
   min-height: 100vh;
   display: flex;
@@ -8,7 +8,7 @@
   padding: 20px;
 }
 
-/* Card styling */
+
 .login-card {
   background: #fff;
   padding: 2rem;
@@ -19,7 +19,7 @@
   animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Title & subtitle */
+
 .login-title {
   font-size: 1.8rem;
   font-weight: bold;
@@ -34,7 +34,7 @@
   margin-bottom: 1.5rem;
 }
 
-/* Input fields */
+
 .input-group {
   display: flex;
   flex-direction: column;
@@ -60,7 +60,7 @@
   border-color: #be855c;
 }
 
-/* Button */
+
 .submit-btn {
   width: 100%;
   padding: 0.9rem;
@@ -78,7 +78,7 @@
   background: #a06d49;
 }
 
-/* Signup text */
+
 .signup-text {
   text-align: center;
   margin-top: 1rem;
@@ -95,7 +95,7 @@
   text-decoration: underline;
 }
 
-/* Animation */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -107,7 +107,7 @@
   }
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 480px) {
   .login-card {
     padding: 1.5rem;

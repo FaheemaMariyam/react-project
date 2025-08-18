@@ -84,7 +84,7 @@ function Signup() {
       <div className="signup-card">
         <h2>Create an Account</h2>
         <form onSubmit={handleSubmit} noValidate>
-          {/* Full Name */}
+        
           <div className={`input-group ${error.username ? "error" : ""}`}>
             <label className="input-group-label">Full Name</label>
             <input
@@ -96,7 +96,7 @@ function Signup() {
             {error.username && <p className="error">{error.username}</p>}
           </div>
 
-          {/* Phone */}
+         
           <div className={`input-group ${error.phone ? "error" : ""}`}>
             <label className="input-group-label">Phone Number</label>
             <input
@@ -108,7 +108,7 @@ function Signup() {
             {error.phone && <p className="error">{error.phone}</p>}
           </div>
 
-          {/* Address */}
+      
           <div className={`input-group ${error.address ? "error" : ""}`}>
             <label className="input-group-label">Address</label>
             <input
@@ -120,7 +120,7 @@ function Signup() {
             {error.address && <p className="error">{error.address}</p>}
           </div>
 
-          {/* PIN */}
+          
           <div className={`input-group ${error.pin ? "error" : ""}`}>
             <label className="input-group-label">PIN</label>
             <input
@@ -132,7 +132,6 @@ function Signup() {
             {error.pin && <p className="error">{error.pin}</p>}
           </div>
 
-          {/* Email */}
           <div className={`input-group ${error.email ? "error" : ""}`}>
             <label className="input-group-label">Email</label>
             <input
@@ -144,7 +143,7 @@ function Signup() {
             {error.email && <p className="error">{error.email}</p>}
           </div>
 
-          {/* Password */}
+        
           <div className={`input-group ${error.password ? "error" : ""}`}>
             <label className="input-group-label">Password</label>
             <input
@@ -156,7 +155,7 @@ function Signup() {
             {error.password && <p className="error">{error.password}</p>}
           </div>
 
-          {/* Submit */}
+         
           <button type="submit" className="submit-btn">
             Sign Up
           </button>

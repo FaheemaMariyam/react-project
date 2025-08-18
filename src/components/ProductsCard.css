@@ -89,7 +89,7 @@
   background-color: #905d3a;
 }
 
-/* Responsive Tweaks */
+
 @media (max-width: 768px) {
   .categories-section {
     padding: 30px;
