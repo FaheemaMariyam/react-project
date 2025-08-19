@@ -3,6 +3,7 @@ import "./ProductsCard.css";
 import { FaHeart } from "react-icons/fa";
 import { WishlistContext } from "../context/wishlistContext";
 import { CartContext } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const ProductsCard = () => {
   const { wishlist, toggleWishlist, removeWishlist } = useContext(WishlistContext);
@@ -16,6 +17,7 @@ const ProductsCard = () => {
       .then((data) => setProducts(data.slice(0, 5)))
       .catch((err) => console.log(err));
   }, []);
+  const navigate=useNavigate();
 
   return (
     <section className="categories-section">
@@ -25,8 +27,8 @@ const ProductsCard = () => {
           const isInWishlist = wishlist.some((item) => item.id === pro.id);
           return (
             <div className="category-card" key={pro.id}>
-              <div className="image-container">
-                <img src={pro.image} alt={pro.name} />
+              <div className="image-container" >
+                <img src={pro.image} alt={pro.name} onClick={()=>navigate('/product-details',{state:{product:pro}})} />
                 <button
                   className="wishlist-btn"
                   onClick={() =>

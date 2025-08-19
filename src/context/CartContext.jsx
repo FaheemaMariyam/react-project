@@ -46,6 +46,7 @@ export const CartProvider = ({ children }) => {
     if (!cart.some((item) => item.id === product.id)) {
       setCart([...cart, { ...product, quantity: 1 }]);
     }
+    
   };
 
   const removeCart = (id) => {
@@ -78,3 +79,4 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
+

@@ -17,8 +17,8 @@ const categories = [
 
 const Products = () => {
   const{wishlist,toggleWishlist}=useContext(WishlistContext)
-  const{addCart}=useContext(CartContext)
-  
+  const{cart,addCart,increaseQuantity}=useContext(CartContext)
+ 
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const location = useLocation();
@@ -26,6 +26,7 @@ const Products = () => {
 
   const params = new URLSearchParams(location.search);
   const categoryId = params.get("category");
+
 
   useEffect(() => {
     fetch("http://localhost:3000/products")
@@ -53,13 +54,12 @@ const Products = () => {
   const sortByPriceHighLow = () => {
     setProducts((prev) => [...prev].sort((a, b) => b.price - a.price));
   };
-  // const sortByNameAZ = () => {
-  //   setProducts((prev) => [...prev].sort((a, b) => a.name.localeCompare(b.name)));
-  // };
-  // const sortByNameZA = () => {
-  //   setProducts((prev) => [...prev].sort((a, b) => b.name.localeCompare(a.name)));
-  // };
-
+  const sortByAtoZ=()=>{
+    setProducts((prev)=>[...prev].sort((a, b) => (a.name).localeCompare(b.name)))
+  }
+  const sortByZtoA=()=>{
+    setProducts((prev)=>[...prev].sort((a,b)=>(b.name).localeCompare(a.name)))
+  }
   return (
     <div className="products-page">
       <Navbar />
@@ -76,6 +76,8 @@ const Products = () => {
           <button className="sort-btn" onClick={sortByPriceHighLow}>
             Price: High–Low
           </button>
+          <button  className="sort-btn" onClick={sortByAtoZ}>A-Z</button>
+           <button className="sort-btn" onClick={sortByZtoA}>Z-A</button>
         </div>
 
        
@@ -122,12 +124,12 @@ const Products = () => {
             <button className="wishlist-btn" onClick={()=>toggleWishlist(p)}>
               <FaHeart color={isInWishlist? "#d48b6e" : "#dcc4bbff"} />
             </button>
-            <div className="product-img-wrap">
+            <div className="product-img-wrap" onClick={()=>navigate('/product-details',{state:{product:p}})}>
               <img src={p.image} alt={p.name} />
             </div>
             <h3>{p.name}</h3>
             <p>₹{p.price}</p>
-            <button className="add-to-cart-btn" onClick={()=>addCart(p)}>Add to Cart</button>
+            <button className="add-to-cart-btn" onClick={()=>!cart.some((item)=>item.id===p.id)? addCart(p) : increaseQuantity(p.id)}>Add to Cart</button>
           </div>
         )})}
         {filteredProducts.length === 0 && <p>No products found.</p>}
@@ -137,3 +139,4 @@ const Products = () => {
 };
 
 export default Products;
+

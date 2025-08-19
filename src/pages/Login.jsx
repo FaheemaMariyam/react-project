@@ -68,7 +68,7 @@ function Login() {
         <h2 className="login-title">Welcome Back</h2>
         <p className="login-subtitle">Log in to continue</p>
 
-        <form onSubmit={handleLogin} noValidate>
+        <form onSubmit={handleLogin} >
           <div className="input-group">
             <label>Email</label>
             <input
@@ -76,9 +76,9 @@ function Login() {
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-           
+             required
             />
-            {error.email && <p>{error.email}</p>}
+            {/* {error.email && <p>{error.email}</p>} */}
           </div>
 
           <div className="input-group">

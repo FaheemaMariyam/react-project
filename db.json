@@ -181,6 +181,7 @@
       "image": "/products/cleaningcg.jpg"
     }
   ],
+  
   "products": [
     {
       "id": "1",
@@ -188,7 +189,8 @@
       "price": 1200,
       "image": "/products/pan.jpg",
       "categoryId": 1,
-      "quantity": 1
+      "quantity": 1,
+      "description": "High-quality non-stick fry pan, perfect for everyday cooking."
     },
     {
       "id": "2",
@@ -196,7 +198,8 @@
       "price": 1800,
       "image": "/products/steelpot.jpg",
       "categoryId": 1,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Durable stainless steel pot for soups, stews, and more."
     },
     {
       "id": "3",
@@ -204,7 +207,8 @@
       "price": 900,
       "image": "/products/bakingdish.jpg",
       "categoryId": 1,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Elegant ceramic baking dish suitable for oven and microwave."
     },
     {
       "id": "4",
@@ -212,7 +216,8 @@
       "price": 2500,
       "image": "/products/skillet.jpg",
       "categoryId": 1,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Heavy-duty cast iron skillet for perfect searing and frying."
     },
     {
       "id": "5",
@@ -220,7 +225,8 @@
       "price": 700,
       "image": "/products/mixingbowl.jpg",
       "categoryId": 1,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Set of glass mixing bowls ideal for baking and meal prep."
     },
     {
       "id": "6",
@@ -228,7 +234,8 @@
       "price": 300,
       "image": "/products/rollingpin.jpg",
       "categoryId": 1,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Smooth rolling pin for perfect dough preparation."
     },
     {
       "id": "7",
@@ -236,7 +243,8 @@
       "price": 650,
       "image": "/products/cakepan.jpg",
       "categoryId": 1,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Non-stick springform pan, perfect for cheesecakes."
     },
     {
       "id": "8",
@@ -244,7 +252,8 @@
       "price": 450,
       "image": "/products/muffintray.jpg",
       "categoryId": 1,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Flexible silicone tray for baking muffins and cupcakes."
     },
     {
       "id": "9",
@@ -252,7 +261,8 @@
       "price": 500,
       "image": "/products/choppingboard.jpg",
       "categoryId": 1,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Durable wooden chopping board for safe food preparation."
     },
     {
       "id": "10",
@@ -260,7 +270,8 @@
       "price": 1100,
       "image": "/products/pizzastone.jpg",
       "categoryId": 1,
-      "quantity": 1
+      "quantity": 1,
+      "description": "High-quality pizza stone for evenly baked pizzas."
     },
     {
       "id": "11",
@@ -268,7 +279,8 @@
       "price": 8000,
       "image": "/products/microwave.jpg",
       "categoryId": 2,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Compact microwave oven for quick heating and cooking."
     },
     {
       "id": "12",
@@ -276,7 +288,8 @@
       "price": 2500,
       "image": "/products/blender.jpg",
       "categoryId": 2,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Powerful blender for smoothies, shakes, and sauces."
     },
     {
       "id": "13",
@@ -284,7 +297,8 @@
       "price": 1500,
       "image": "/products/kettle.jpg",
       "categoryId": 2,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Quick-boil electric kettle with safety auto-shutoff."
     },
     {
       "id": "14",
@@ -292,7 +306,8 @@
       "price": 3000,
       "image": "/products/ricecooker.jpg",
       "categoryId": 2,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Convenient rice cooker for perfect fluffy rice every time."
     },
     {
       "id": "15",
@@ -300,7 +315,8 @@
       "price": 1300,
       "image": "/products/toaster.jpg",
       "categoryId": 2,
-      "quantity": 1
+      "quantity": 1,
+      "description": "2-slice toaster with browning control for perfect toast."
     },
     {
       "id": "16",
@@ -308,7 +324,8 @@
       "price": 2800,
       "image": "/products/juicer.jpg",
       "categoryId": 2,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Efficient juicer for fresh fruit and vegetable juices."
     },
     {
       "id": "17",
@@ -316,7 +333,8 @@
       "price": 3500,
       "image": "/products/coffeemaker.jpg",
       "categoryId": 2,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Automatic coffee maker for fresh brewed coffee at home."
     },
     {
       "id": "18",
@@ -324,7 +342,8 @@
       "price": 1200,
       "image": "/products/handmixer.jpg",
       "categoryId": 2,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Compact hand mixer for baking and cooking tasks."
     },
     {
       "id": "19",
@@ -332,7 +351,8 @@
       "price": 4500,
       "image": "/products/airfryer.jpg",
       "categoryId": 2,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Healthy air fryer for frying, baking, and grilling with less oil."
     },
     {
       "id": "20",
@@ -340,7 +360,8 @@
       "price": 4000,
       "image": "/products/induction.jpg",
       "categoryId": 2,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Portable induction cooktop for fast and efficient cooking."
     },
     {
       "id": "21",
@@ -348,7 +369,8 @@
       "price": 300,
       "image": "/products/jar.jpg",
       "categoryId": 3,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Glass jar for storing dry ingredients and kitchen essentials."
     },
     {
       "id": "22",
@@ -356,7 +378,8 @@
       "price": 600,
       "image": "/products/container.jpg",
       "categoryId": 3,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Set of plastic containers for food storage and organization."
     },
     {
       "id": "23",
@@ -364,7 +387,8 @@
       "price": 2500,
       "image": "/products/shelfrack.jpg",
       "categoryId": 3,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Sturdy metal shelf rack for kitchen or storage room."
     },
     {
       "id": "24",
@@ -372,7 +396,8 @@
       "price": 450,
       "image": "/products/hangingbasket.jpg",
       "categoryId": 3,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Hanging basket for fruits, vegetables, or kitchen tools."
     },
     {
       "id": "25",
@@ -380,7 +405,8 @@
       "price": 900,
       "image": "/products/sinkorganizer.jpg",
       "categoryId": 3,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Compact organizer for storing cleaning supplies under sink."
     },
     {
       "id": "26",
@@ -388,7 +414,8 @@
       "price": 1500,
       "image": "/products/shoerack.jpg",
       "categoryId": 3,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Multi-tier shoe rack for neat and organized storage."
     },
     {
       "id": "27",
@@ -396,7 +423,8 @@
       "price": 400,
       "image": "/products/drawerdivider.jpg",
       "categoryId": 3,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Drawer dividers to keep kitchen or household items separated."
     },
     {
       "id": "28",
@@ -404,7 +432,8 @@
       "price": 350,
       "image": "/products/doorhanger.jpg",
       "categoryId": 3,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Over-door hanger for organizing coats, towels, or bags."
     },
     {
       "id": "29",
@@ -412,7 +441,8 @@
       "price": 2000,
       "image": "/products/closetorganizer.jpg",
       "categoryId": 3,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Practical closet organizer to maximize space efficiently."
     },
     {
       "id": "30",
@@ -420,7 +450,8 @@
       "price": 750,
       "image": "/products/spicerack.jpg",
       "categoryId": 3,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Compact spice rack for neatly storing spices and seasonings."
     },
     {
       "id": "31",
@@ -428,7 +459,8 @@
       "price": 1500,
       "image": "/products/painting.jpg",
       "categoryId": 4,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Beautiful wall painting to enhance your home decor."
     },
     {
       "id": "32",
@@ -436,7 +468,8 @@
       "price": 1200,
       "image": "/products/vase.jpg",
       "categoryId": 4,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Elegant decorative vase for flowers or display purposes."
     },
     {
       "id": "33",
@@ -444,7 +477,8 @@
       "price": 1800,
       "image": "/products/lamp.jpg",
       "categoryId": 4,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Stylish table lamp to brighten up your living space."
     },
     {
       "id": "34",
@@ -452,7 +486,8 @@
       "price": 800,
       "image": "/products/photoframe.jpg",
       "categoryId": 4,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Set of photo frames to showcase your favorite memories."
     },
     {
       "id": "35",
@@ -460,7 +495,8 @@
       "price": 1700,
       "image": "/products/curtains.jpg",
       "categoryId": 4,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Elegant curtains to complement your room decor."
     },
     {
       "id": "36",
@@ -468,15 +504,18 @@
       "price": 1100,
       "image": "/products/clock.jpg",
       "categoryId": 4,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Decorative wall clock to keep track of time stylishly."
     },
+    
     {
       "id": "37",
       "name": "Indoor Plant Pot",
       "price": 500,
       "image": "/products/plantpot.jpg",
       "categoryId": 4,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Stylish indoor plant pot to enhance greenery in your home."
     },
     {
       "id": "38",
@@ -484,7 +523,8 @@
       "price": 600,
       "image": "/products/cushioncover.jpg",
       "categoryId": 4,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Set of decorative cushion covers to refresh your sofa or bed."
     },
     {
       "id": "39",
@@ -492,7 +532,8 @@
       "price": 2500,
       "image": "/products/rug.jpg",
       "categoryId": 4,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Soft and durable rug to add warmth and style to your room."
     },
     {
       "id": "40",
@@ -500,7 +541,8 @@
       "price": 2000,
       "image": "/products/wallshelves.jpg",
       "categoryId": 4,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Decorative wall shelves for books, decor items, or plants."
     },
     {
       "id": "41",
@@ -508,7 +550,8 @@
       "price": 200,
       "image": "/products/broom.jpg",
       "categoryId": 5,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Durable broom for effective cleaning of floors and corners."
     },
     {
       "id": "42",
@@ -516,7 +559,8 @@
       "price": 700,
       "image": "/products/mop.jpg",
       "categoryId": 5,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Complete mop set with bucket for easy floor cleaning."
     },
     {
       "id": "43",
@@ -524,7 +568,8 @@
       "price": 6000,
       "image": "/products/vacuum.jpg",
       "categoryId": 5,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Powerful vacuum cleaner for home and office cleaning."
     },
     {
       "id": "44",
@@ -532,7 +577,8 @@
       "price": 250,
       "image": "/products/scrubbrush.jpg",
       "categoryId": 5,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Set of scrub brushes for efficient cleaning of surfaces."
     },
     {
       "id": "45",
@@ -540,7 +586,8 @@
       "price": 300,
       "image": "/products/dustpan.jpg",
       "categoryId": 5,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Handy dustpan and brush set for quick cleaning tasks."
     },
     {
       "id": "46",
@@ -548,7 +595,8 @@
       "price": 800,
       "image": "/products/laundrybasket.jpg",
       "categoryId": 5,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Spacious laundry basket for organized laundry handling."
     },
     {
       "id": "47",
@@ -556,7 +604,8 @@
       "price": 150,
       "image": "/products/gloves.jpg",
       "categoryId": 5,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Protective gloves for safe and hygienic cleaning."
     },
     {
       "id": "48",
@@ -564,7 +613,8 @@
       "price": 350,
       "image": "/products/squeegee.jpg",
       "categoryId": 5,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Efficient squeegee for streak-free window cleaning."
     },
     {
       "id": "49",
@@ -572,7 +622,8 @@
       "price": 900,
       "image": "/products/dishrack.jpg",
       "categoryId": 5,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Compact dish rack for drying plates, cups, and utensils."
     },
     {
       "id": "50",
@@ -580,7 +631,9 @@
       "price": 400,
       "image": "/products/toiletbrush.jpg",
       "categoryId": 5,
-      "quantity": 1
+      "quantity": 1,
+      "description": "Toilet brush set for hygienic and easy bathroom cleaning."
     }
   ]
 }
+

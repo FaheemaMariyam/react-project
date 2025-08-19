@@ -1,9 +1,8 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useContext } from "react";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-// import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Signup from "./pages/SignUp";
 import Login from "./pages/Login";
@@ -17,40 +16,45 @@ import { AuthContext, AuthProvider } from "./context/AuthContext";
 import { WishlistProvider } from "./context/wishlistContext";
 import { CartProvider } from "./context/CartContext";
 
-import './App.css'
-// import Hero from "./components/Hero";
-import { OrderProvider } from "./context/OrderContext";
+import "./App.css";
 
+import { OrderProvider } from "./context/OrderContext";
+import ProductDetails from "./components/ProductDetails";
+import { Navigate } from "react-router-dom";
 
 function App() {
+  const { user } = useContext(AuthContext);
+   
+  
   return (
     <BrowserRouter>
-    <AuthProvider>
-    <WishlistProvider>
-      <CartProvider>
-        <OrderProvider>
-    
-   
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/products" element={<Products/>}/>
-        <Route path="/orders" element={<Order/>}/>
-        <Route path="/wishlist" element={<WishList />} />
-         <Route path="/cart" element={<Cart />} />
-          <Route path="/profile" element={<Profile />} />
-         <Route path="/logout" element={<Logout/>}/>
-      </Routes>
-    
-    </OrderProvider>
-    </CartProvider>
-    </WishlistProvider>
-    </AuthProvider>
+      
+      
+        <WishlistProvider>
+          <CartProvider>
+            <OrderProvider>
+              <Routes>
+                <Route path="/" element={<Home />} />
+               
+                   
+                    <Route path="/signup" element={ !user ? <Signup /> : <Navigate to='/'/> } />
+                    <Route path="/login" element={!user ?<Login /> :  <Navigate to='/'/>} />
+                 
+
+                <Route path="/products" element={<Products />} />
+                <Route path="/orders" element={<Order />} />
+                <Route path="/wishlist" element={<WishList />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/logout" element={<Logout />} />
+                <Route path="/product-details" element={<ProductDetails />} />
+              </Routes>
+            </OrderProvider>
+          </CartProvider>
+        </WishlistProvider>
+      
     </BrowserRouter>
   );
 }
-
-
 
 export default App;
