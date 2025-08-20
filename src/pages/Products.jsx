@@ -1,7 +1,6 @@
-
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { FaHeart, FaSearch } from "react-icons/fa"; 
+import { FaHeart, FaSearch } from "react-icons/fa";
 import "./Products.css";
 import Navbar from "../components/Navbar";
 import { WishlistContext } from "../context/wishlistContext";
@@ -16,9 +15,9 @@ const categories = [
 ];
 
 const Products = () => {
-  const{wishlist,toggleWishlist}=useContext(WishlistContext)
-  const{cart,addCart,increaseQuantity}=useContext(CartContext)
- 
+  const { wishlist, toggleWishlist } = useContext(WishlistContext);
+  const { cart, addCart, increaseQuantity } = useContext(CartContext);
+
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const location = useLocation();
@@ -26,7 +25,6 @@ const Products = () => {
 
   const params = new URLSearchParams(location.search);
   const categoryId = params.get("category");
-
 
   useEffect(() => {
     fetch("http://localhost:3000/products")
@@ -47,28 +45,27 @@ const Products = () => {
     }
   };
 
- 
   const sortByPriceLowHigh = () => {
     setProducts((prev) => [...prev].sort((a, b) => a.price - b.price));
   };
   const sortByPriceHighLow = () => {
     setProducts((prev) => [...prev].sort((a, b) => b.price - a.price));
   };
-  const sortByAtoZ=()=>{
-    setProducts((prev)=>[...prev].sort((a, b) => (a.name).localeCompare(b.name)))
-  }
-  const sortByZtoA=()=>{
-    setProducts((prev)=>[...prev].sort((a,b)=>(b.name).localeCompare(a.name)))
-  }
+  const sortByAtoZ = () => {
+    setProducts((prev) =>
+      [...prev].sort((a, b) => a.name.localeCompare(b.name))
+    );
+  };
+  const sortByZtoA = () => {
+    setProducts((prev) =>
+      [...prev].sort((a, b) => b.name.localeCompare(a.name))
+    );
+  };
   return (
     <div className="products-page">
       <Navbar />
 
-     
-
-     
       <div className="sort-search-row">
-      
         <div className="sort-left">
           <button className="sort-btn" onClick={sortByPriceLowHigh}>
             Price: Low–High
@@ -76,27 +73,48 @@ const Products = () => {
           <button className="sort-btn" onClick={sortByPriceHighLow}>
             Price: High–Low
           </button>
-          <button  className="sort-btn" onClick={sortByAtoZ}>A-Z</button>
-           <button className="sort-btn" onClick={sortByZtoA}>Z-A</button>
+          <button className="sort-btn" onClick={sortByAtoZ}>
+            A-Z
+          </button>
+          <button className="sort-btn" onClick={sortByZtoA}>
+            Z-A
+          </button>
         </div>
 
-       
         <div className="search-container">
   <input
     type="text"
     placeholder="Search..."
     value={searchTerm}
     onChange={(e) => setSearchTerm(e.target.value)}
+    // className="search-input"
   />
   <FaSearch className="search-icon" />
+
+  {/* Dropdown results */}
+  {/* {searchTerm && ( */}
+    <div className="search-dropdown">
+      {filteredProducts.length > 0 ? (
+        filteredProducts.map((product) => (
+          <div
+            key={product.id}
+            className="search-item"
+            onClick={() =>
+              navigate("/product-details",{state: {product}})
+            }
+          >
+            <img src={product.image} alt={product.name} />
+            <span>{product.name}</span>
+          </div>
+        ))
+      ) : (
+        <p className="no-result">No products found</p>
+      )}
+    </div>
+  {/* )} */}
 </div>
 
-
-        
-       
       </div>
-
-      
       <div className="category-buttons">
         <button
           className={`category-btn ${!categoryId ? "active" : ""}`}
@@ -117,21 +135,38 @@ const Products = () => {
 
       <div className="products-grid">
         {filteredProducts.map((p) => {
-          const isInWishlist=wishlist.some((item=>item.id===p.id))
+          const isInWishlist = wishlist.some((item) => item.id === p.id);
           return (
-
-          <div key={p.id} className="product-card">
-            <button className="wishlist-btn" onClick={()=>toggleWishlist(p)}>
-              <FaHeart color={isInWishlist? "#d48b6e" : "#dcc4bbff"} />
-            </button>
-            <div className="product-img-wrap" onClick={()=>navigate('/product-details',{state:{product:p}})}>
-              <img src={p.image} alt={p.name} />
+            <div key={p.id} className="product-card">
+              <button
+                className="wishlist-btn"
+                onClick={() => toggleWishlist(p)}
+              >
+                <FaHeart color={isInWishlist ? "#d48b6e" : "#dcc4bbff"} />
+              </button>
+              <div
+                className="product-img-wrap"
+                onClick={() =>
+                  navigate("/product-details", { state: { product: p } })
+                }
+              >
+                <img src={p.image} alt={p.name} />
+              </div>
+              <h3>{p.name}</h3>
+              <p>₹{p.price}</p>
+              <button
+                className="add-to-cart-btn"
+                onClick={() =>
+                  !cart.some((item) => item.id === p.id)
+                    ? addCart(p)
+                    : increaseQuantity(p.id)
+                }
+              >
+                Add to Cart
+              </button>
             </div>
-            <h3>{p.name}</h3>
-            <p>₹{p.price}</p>
-            <button className="add-to-cart-btn" onClick={()=>!cart.some((item)=>item.id===p.id)? addCart(p) : increaseQuantity(p.id)}>Add to Cart</button>
-          </div>
-        )})}
+          );
+        })}
         {filteredProducts.length === 0 && <p>No products found.</p>}
       </div>
     </div>
@@ -139,4 +174,3 @@ const Products = () => {
 };
 
 export default Products;
-

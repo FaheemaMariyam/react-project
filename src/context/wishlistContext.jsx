@@ -44,6 +44,7 @@ export const WishlistProvider=({children})=>{
         }
 
     }
+    
     const removeWishlist=(id)=>{
   setWishlist(wishlist.filter((item)=>item.id!==id))
     }

@@ -3,6 +3,7 @@ import { CartContext } from "../context/CartContext";
 import "./cart.css";
 import { OrderContext } from "../context/OrderContext";
 import Navbar from '../components/Navbar';
+import { AuthContext } from "../context/AuthContext";
 function Cart() {
   const { cart, removeCart,increaseQuantity,decreaseQuantity } = useContext(CartContext);
   const totalPrice=cart.reduce((total,item)=>total+(Number(item.price) || 0) * (item.quantity || 0),0)
@@ -13,6 +14,7 @@ function Cart() {
     removeCart(id)
     alert(`${product.name} ordered successfully`)
   }
+  
     return (
     <div className="cart-page">
       <Navbar/>

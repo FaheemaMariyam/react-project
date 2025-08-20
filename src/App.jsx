@@ -48,6 +48,8 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/product-details" element={<ProductDetails />} />
+                {/* <Route path="/product-details/:id" element={<ProductDetails />} /> */}
+
               </Routes>
             </OrderProvider>
           </CartProvider>

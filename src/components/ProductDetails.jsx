@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Navbar from './Navbar';
 import './ProductDetails.css';
 import { WishlistContext } from '../context/wishlistContext';
@@ -9,6 +9,7 @@ import { CartContext } from '../context/CartContext';
 function ProductDetails() {
   const { state } = useLocation();
   const { product } = state || {};
+  
   const navigate = useNavigate();
   const { wishlist, toggleWishlist } = useContext(WishlistContext);
   const { addCart } = useContext(CartContext);
