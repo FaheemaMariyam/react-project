@@ -139,7 +139,7 @@
       "id": "03a8",
       "username": "faheema mariyam",
       "phone": "6282422838",
-      "address": "kuruniyan",
+      "address": "44t5h",
       "pin": "676528",
       "email": "fah@gmail.com",
       "password": "628242"
@@ -181,7 +181,6 @@
       "image": "/products/cleaningcg.jpg"
     }
   ],
-  
   "products": [
     {
       "id": "1",
@@ -507,7 +506,6 @@
       "quantity": 1,
       "description": "Decorative wall clock to keep track of time stylishly."
     },
-    
     {
       "id": "37",
       "name": "Indoor Plant Pot",
@@ -636,4 +634,3 @@
     }
   ]
 }
-

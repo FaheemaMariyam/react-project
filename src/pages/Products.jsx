@@ -87,12 +87,12 @@ const Products = () => {
     placeholder="Search..."
     value={searchTerm}
     onChange={(e) => setSearchTerm(e.target.value)}
-    // className="search-input"
+    
   />
   <FaSearch className="search-icon" />
 
-  {/* Dropdown results */}
-  {/* {searchTerm && ( */}
+  
+  {searchTerm.length>0 && (
     <div className="search-dropdown">
       {filteredProducts.length > 0 ? (
         filteredProducts.map((product) => (
@@ -111,7 +111,7 @@ const Products = () => {
         <p className="no-result">No products found</p>
       )}
     </div>
-  {/* )} */}
+  )}
 </div>
 
       </div>

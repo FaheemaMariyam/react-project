@@ -21,6 +21,12 @@ import "./App.css";
 import { OrderProvider } from "./context/OrderContext";
 import ProductDetails from "./components/ProductDetails";
 import { Navigate } from "react-router-dom";
+import Checkout from "./components/Checkout";
+import Payment from "./components/Payment";
+import CheCkoutAll from "./components/CheCkoutAll";
+import PaymentAll from "./components/PaymentAll";
+// import OrderDetails from "./components/OrderDetails";
+// import Payment from "./components/Payment";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -48,6 +54,14 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/product-details" element={<ProductDetails />} />
+                 <Route path="/checkout" element={<Checkout />} />
+                 <Route path="/payment" element={<Payment />} />
+                  <Route path="/checkout-all" element={<CheCkoutAll />} />
+                   <Route path="/payment-all" element={<PaymentAll />} />
+
+
+                {/* <Route path={`/order-details/:id`} element={<OrderDetails/>}/>
+                  <Route path={`/payment/:id`} element={<Payment/>}/> */}
                 {/* <Route path="/product-details/:id" element={<ProductDetails />} /> */}
 
               </Routes>

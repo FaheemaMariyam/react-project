@@ -81,19 +81,19 @@ function Navbar() {
               Login
             </NavLink>
           </li>
-          <li className="nav-item">
+         
+        </>
+      ): null}
+           <li className="nav-item">
             <NavLink className="nav-link" to="/profile">
               <FaUser />
             </NavLink>
           </li>
-        </>
-      ): null}
-          
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <NavLink className="nav-link" to="/logout">
                 <FaSignOutAlt />
               </NavLink>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

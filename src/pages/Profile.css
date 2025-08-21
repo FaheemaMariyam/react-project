@@ -17,7 +17,17 @@
   max-width: 520px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
+.logout-btn {
+  padding: 6px 12px;
+  background-color: #d48b6e;
+  color: #f6ede4;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 .profile-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 30px rgba(0,0,0,0.15);

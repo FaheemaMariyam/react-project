@@ -11,8 +11,10 @@ export const CartProvider = ({ children }) => {
   
   const [cart, setCart] = useState(() => {
     const savedUser = JSON.parse(localStorage.getItem("user"));
+    
     if (savedUser) {
-      return JSON.parse(localStorage.getItem(`cart_${savedUser.id}`)) || [];
+      const savedCart= JSON.parse(localStorage.getItem(`cart_${savedUser.id}`)) || [];
+      return Array.isArray(savedCart) ? savedCart : [];
     }
     return [];
   });
@@ -22,7 +24,7 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     if (user) {
       const savedCart = JSON.parse(localStorage.getItem(`cart_${user.id}`)) || [];
-      setCart(savedCart);
+      setCart(Array.isArray(savedCart) ? savedCart : []);
     } else {
       setCart([]); 
     }
@@ -52,7 +54,9 @@ export const CartProvider = ({ children }) => {
   const removeCart = (id) => {
     setCart(cart.filter((item) => item.id !== id));
   };
-
+  const clearCart=()=>{
+    setCart([])
+  }
   const increaseQuantity = (id) => {
     setCart(
       cart.map((item) =>
@@ -73,7 +77,7 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cart, addCart, removeCart, increaseQuantity, decreaseQuantity }}
+      value={{ cart, addCart, removeCart, increaseQuantity, decreaseQuantity,clearCart }}
     >
       {children}
     </CartContext.Provider>

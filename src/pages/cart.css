@@ -48,7 +48,21 @@
   margin-top: 10px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
-
+.buy-all-btn {
+  padding: 6px 12px;
+  background-color: #d48b6e;
+  color: #f6ede4;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.buy-all-btn:hover {
+  background-color: #efb9b9;
+  color: #d48b6e;
+}
 .remove-btn:hover {
   background-color: #d48b6e;
   color: #fff;

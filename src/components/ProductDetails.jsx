@@ -3,8 +3,9 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Navbar from './Navbar';
 import './ProductDetails.css';
 import { WishlistContext } from '../context/wishlistContext';
-import { FaHeart } from 'react-icons/fa';
+import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 import { CartContext } from '../context/CartContext';
+import { OrderContext } from '../context/OrderContext';
 
 function ProductDetails() {
   const { state } = useLocation();
@@ -13,6 +14,9 @@ function ProductDetails() {
   const navigate = useNavigate();
   const { wishlist, toggleWishlist } = useContext(WishlistContext);
   const { addCart } = useContext(CartContext);
+  const {addOrder}=useContext(OrderContext)
+  
+  
 
   if (!product)
     return (
@@ -29,9 +33,13 @@ function ProductDetails() {
       <div className="product-details-container">
         {/* Product Image Section */}
         <div className="product-image">
+
           <img src={product.image} alt={product.name} />
 
           {/* Wishlist Button inside image */}
+          <button className="cart-btn" onClick={() => addCart(product)}>
+            <FaShoppingCart/>
+          </button>
           <button
             className="wishlist-btn"
             onClick={() => toggleWishlist(product)}
@@ -46,12 +54,11 @@ function ProductDetails() {
           <p>Price: ₹{product.price}</p>
           {product.description && <p>{product.description}</p>}
 
-          <button className="back-btn" onClick={() => navigate(-1)}>
+          {/* <button className="back-btn" onClick={() => navigate(-1)}>
             Back
-          </button>
-          <button className="add-cart-btn" onClick={() => addCart(product)}>
-            Add to Cart
-          </button>
+          </button> */}
+          
+          <button className='back-btn' onClick={()=>navigate("/checkout",{state:{product}})}>Buy Now</button>
         </div>
       </div>
     </div>

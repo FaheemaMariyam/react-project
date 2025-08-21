@@ -2,8 +2,14 @@ import React, { useContext } from 'react'
 import { WishlistContext } from '../context/wishlistContext'
 import './wishlist.css'
 import Navbar from '../components/Navbar';
+import { AuthContext } from '../context/AuthContext';
 function WishList() {
     const{wishlist,removeWishlist}=useContext(WishlistContext)
+     const {user}=useContext(AuthContext);
+        
+        if(!user) {return <p>Please login first to countinue</p>
+          
+        }
   return (
     <div className="wishlist-page">
       <Navbar/>

@@ -38,7 +38,19 @@
   object-fit: cover;
   border-radius: 6px;
 }
-
+.cart-btn {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: transparent;
+  border: none;
+  padding: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 32px;
+  transition: transform 0.2s ease;
+  color: #a26e4c;
+}
 .wishlist-btn {
   position: absolute;
   top: 8px;

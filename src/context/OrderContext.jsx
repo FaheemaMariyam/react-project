@@ -38,7 +38,7 @@ export const OrderProvider = ({ children }) => {
       navigate("/login")
       return;
     }
-
+    
     const ordersKey = `orders_${user.id}`;
     const existingOrders = JSON.parse(localStorage.getItem(ordersKey)) || [];
 
@@ -52,9 +52,34 @@ export const OrderProvider = ({ children }) => {
     localStorage.setItem(ordersKey, JSON.stringify(updatedOrders));
     setOrders(updatedOrders);
   };
+  const buyAll=(cartItems)=>{
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      alert("Please login first");
+      navigate("/login")
+      return;
+    }
+    
+    const ordersKey = `orders_${user.id}`;
+    const existingOrders = JSON.parse(localStorage.getItem(ordersKey)) || [];
 
+    // const newOrder = {
+    //   ...cartItems,
+    //   quantity: product.quantity || 1,
+      
+    // };
+    const newOrders = cartItems.map(item => ({
+    ...item,
+    quantity: item.quantity || 1,
+  }));
+
+    const updatedOrders = [...existingOrders, ...newOrders];
+    localStorage.setItem(ordersKey, JSON.stringify(updatedOrders));
+    setOrders(updatedOrders);
+  };
+  
   return (
-    <OrderContext.Provider value={{ orders, addOrder }}>
+    <OrderContext.Provider value={{ orders, addOrder,buyAll }}>
       {children}
     </OrderContext.Provider>
   );

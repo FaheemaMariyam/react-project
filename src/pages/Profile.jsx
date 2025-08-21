@@ -3,8 +3,10 @@ import { AuthContext } from '../context/AuthContext'
 
 import './Profile.css'
 import Navbar from '../components/Navbar';
+import { useNavigate } from 'react-router-dom';
 function Profile() {
     const {user}=useContext(AuthContext);
+    const navigate=useNavigate()
     
     if(!user) {return <p>Please login first to countinue</p>
       
@@ -21,8 +23,11 @@ function Profile() {
               <p><strong>Address:</strong>{user.address}</p>
                <p><strong>PIN:</strong>{user.pin}</p>
                 <p><strong>Email:</strong>{user.email}</p>
+                  <button className='logout-btn' onClick={()=>navigate("/logout")}>Logout</button>
         </div>
+
       </div>
+    
     </div>
   )
 }
