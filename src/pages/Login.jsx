@@ -8,6 +8,7 @@ import { AuthContext } from "../context/AuthContext";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // const[role,setRole]=useState("");
   const {login}=useContext(AuthContext)
   const[error,setError]=useState({})
   const navigate = useNavigate();
@@ -22,22 +23,33 @@ function Login() {
 
       
       const user = users.find(
-        (u) => u.email === email && u.password === password
+        (u) => u.email === email && u.password === password 
       );
-
-      if (user) {
-        console.log("Login success:", user);
+    
+      if (user ) {
+        if(user.blocked===true){
+          alert("sorry you are blocked by Admin")
+        }
+        else{
+           console.log("Login success:", user);
 
         login(user)
         const storedCart = JSON.parse(localStorage.getItem(`cart_${user.id}`)) || [];
         const storedWishlist = JSON.parse(localStorage.getItem(`wishlist_${user.id}`)) || [];
         localStorage.setItem(`cart_${user.id}`, JSON.stringify(storedCart));
         localStorage.setItem(`wishlist_${user.id}`, JSON.stringify(storedWishlist));
-
+  if(user.role==="admin"){
+    navigate("/admin-dashboard")
+  }
+  else{
+     navigate("/");
+  }
+        }
+       
         
-        navigate("/");
+       
       } else {
-        alert("Email or Password is incorrect");
+        alert(`Email or Password is incorrect`);
       }
     } catch (err) {
       console.error("Error fetching users:", err);
@@ -92,6 +104,10 @@ function Login() {
             />
             {error.password && <p>{error.password}</p>}
           </div>
+          {/* <div>
+            <label >Role</label>
+            <input type="text" value={role} onChange={(e)=>setRole(e.target.value)} />
+          </div> */}
 
           <button type="submit" className="submit-btn">
             Log In

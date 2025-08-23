@@ -10,7 +10,9 @@ function Signup() {
     address: "",
     pin: "",
     email: "",
-    password: ""
+    password: "",
+    role:"user",
+    blocked:false
   });
   const [error, setError] = useState({});
   const navigate = useNavigate();

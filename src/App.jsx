@@ -25,6 +25,7 @@ import Checkout from "./components/Checkout";
 import Payment from "./components/Payment";
 import CheCkoutAll from "./components/CheCkoutAll";
 import PaymentAll from "./components/PaymentAll";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 // import OrderDetails from "./components/OrderDetails";
 // import Payment from "./components/Payment";
 
@@ -43,8 +44,8 @@ function App() {
                 <Route path="/" element={<Home />} />
                
                    
-                    <Route path="/signup" element={ !user ? <Signup /> : <Navigate to='/'/> } />
-                    <Route path="/login" element={!user ?<Login /> :  <Navigate to='/'/>} />
+                    <Route path="/signup" element={ !user ? <Signup /> : user.role==="admin"?<Navigate to="/admin-dashboard"/>: <Navigate to='/'/> } />
+                    <Route path="/login" element={!user ?<Login /> : user.role==="admin"?<Navigate to="/admin-dashboard"/>: <Navigate to='/'/>} />
                  
 
                 <Route path="/products" element={<Products />} />
@@ -58,6 +59,7 @@ function App() {
                  <Route path="/payment" element={<Payment />} />
                   <Route path="/checkout-all" element={<CheCkoutAll />} />
                    <Route path="/payment-all" element={<PaymentAll />} />
+                    <Route path="/admin-dashboard" element={user && user.role==="admin" ? <AdminDashboard /> : user?  <Navigate to="/"/>: <Navigate to="/login"/>} />
 
 
                 {/* <Route path={`/order-details/:id`} element={<OrderDetails/>}/>
