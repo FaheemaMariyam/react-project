@@ -61,7 +61,7 @@
 //             const reader=new FileReader();
 //             reader.onloadend=()=>{
 //                 setrNewProduct({...newProduct,image:reader.result})
-               
+
 //             }
 //              reader.readAsDataURL(file)
 //         }
@@ -112,25 +112,19 @@
 //             <button type='submit'>Add</button>
 //         </form>
 //     </div>
-   
-    
+
 //   )
 // }
 
 // export default AdminProducts
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-// import "./AdminProducts.css"; // optional: your styling file
+import "./AdminProducts.css";
+import { useNavigate } from "react-router-dom";
 
 function AdminProducts() {
   const [products, setProducts] = useState([]);
-  const [newProduct, setNewProduct] = useState({
-    name: "",
-    price: "",
-    image: "",
-    stock: "",
-    categoryId: 1,
-  });
+ 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
 
@@ -142,7 +136,6 @@ function AdminProducts() {
     { id: 5, name: "Cleaning & Utility" },
   ];
 
-  // Fetch all products
   useEffect(() => {
     axios
       .get("http://localhost:3000/products")
@@ -150,62 +143,48 @@ function AdminProducts() {
       .catch((err) => console.error(err));
   }, []);
 
-  // Add new product
-  const addProduct = (e) => {
-    e.preventDefault();
-    axios
-      .post("http://localhost:3000/products", newProduct)
-      .then((res) => {
-        setProducts([...products, res.data]);
-        setNewProduct({ name: "", price: "", image: "", stock: "", categoryId: 1 });
-      })
-      .catch((err) => console.error(err));
-  };
-
-  // Image handler
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setNewProduct({ ...newProduct, image: reader.result });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  // Filtered products based on search and category
+ 
+  const handleDelete=(p)=>{
+    axios.delete(`http://localhost:3000/products/${p.id}`)
+    .then(()=>setProducts(products.filter((pro)=>pro.id!==p.id)))
+    .catch(err=>console.error(err))
+  }
+  const navigate=useNavigate();
   const filteredProducts = products
-    .filter((p) => !selectedCategory || p.categoryId === Number(selectedCategory))
+    .filter(
+      (p) => !selectedCategory || p.categoryId === Number(selectedCategory)
+    )
     .filter((p) => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
-  // Sorting functions
-  const sortByPriceLowHigh = () => setProducts([...products].sort((a, b) => a.price - b.price));
-  const sortByPriceHighLow = () => setProducts([...products].sort((a, b) => b.price - a.price));
-  const sortByAtoZ = () => setProducts([...products].sort((a, b) => a.name.localeCompare(b.name)));
-  const sortByZtoA = () => setProducts([...products].sort((a, b) => b.name.localeCompare(a.name)));
+  const sortByPriceLowHigh = () =>
+    setProducts([...products].sort((a, b) => a.price - b.price));
+  const sortByPriceHighLow = () =>
+    setProducts([...products].sort((a, b) => b.price - a.price));
+  const sortByAtoZ = () =>
+    setProducts([...products].sort((a, b) => a.name.localeCompare(b.name)));
+  const sortByZtoA = () =>
+    setProducts([...products].sort((a, b) => b.name.localeCompare(a.name)));
 
   return (
     <div className="admin-products-page">
       <h2>Admin Products</h2>
 
-      {/* Search & Sort */}
       <div className="admin-controls">
-        <input
-          type="text"
-          placeholder="Search products..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
         <div className="sort-buttons">
           <button onClick={sortByPriceLowHigh}>Price: Low–High</button>
           <button onClick={sortByPriceHighLow}>Price: High–Low</button>
           <button onClick={sortByAtoZ}>A-Z</button>
           <button onClick={sortByZtoA}>Z-A</button>
         </div>
+         <button className="edit-btn" onClick={()=>navigate("/admin/add-product")}>Addproduct</button>
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
       </div>
 
-      {/* Category Filter */}
       <div className="category-buttons">
         <button
           className={!selectedCategory ? "active" : ""}
@@ -224,64 +203,28 @@ function AdminProducts() {
         ))}
       </div>
 
-      {/* Product List */}
       <div className="admin-products-grid">
         {filteredProducts.map((p) => (
           <div key={p.id} className="admin-product-card">
             <img src={p.image} alt={p.name} />
             <h4>{p.name}</h4>
+            <p>{p.description}</p>
             <p>₹{p.price}</p>
             <p>Stock: {p.stock}</p>
-            <p>Category: {categories.find((c) => c.id === p.categoryId)?.name}</p>
+            {/* <p>Category: {categories.find((c) => c.id === p.categoryId)?.name}</p> */}
+          
+               <button className="edit-btn" onClick={()=>navigate(`/admin/edit-products/${p.id}`)}>Edit</button>
+             &nbsp;&nbsp;&nbsp;
+             <button className="edit-btn" onClick={()=>handleDelete(p)}>Delete</button>
+           
+           
           </div>
         ))}
         {filteredProducts.length === 0 && <p>No products found.</p>}
       </div>
 
-      {/* Add New Product */}
-      <form className="admin-add-product-form" onSubmit={addProduct}>
-        <h3>Add New Product</h3>
-        <label>Product Name</label>
-        <input
-          type="text"
-          value={newProduct.name}
-          onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-          required
-        />
-
-        <label>Price</label>
-        <input
-          type="number"
-          value={newProduct.price}
-          onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
-          required
-        />
-
-        <label>Stock</label>
-        <input
-          type="number"
-          value={newProduct.stock}
-          onChange={(e) => setNewProduct({ ...newProduct, stock: e.target.value })}
-          required
-        />
-
-        <label>Category</label>
-        <select
-          value={newProduct.categoryId}
-          onChange={(e) => setNewProduct({ ...newProduct, categoryId: Number(e.target.value) })}
-        >
-          {categories.map((cat) => (
-            <option key={cat.id} value={cat.id}>
-              {cat.name}
-            </option>
-          ))}
-        </select>
-
-        <label>Image</label>
-        <input type="file" onChange={handleImageChange} required />
-
-        <button type="submit">Add Product</button>
-      </form>
+      
+     
     </div>
   );
 }
