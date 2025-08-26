@@ -3,13 +3,16 @@ import { WishlistContext } from '../context/wishlistContext'
 import './wishlist.css'
 import Navbar from '../components/Navbar';
 import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 function WishList() {
     const{wishlist,removeWishlist}=useContext(WishlistContext)
+    const navigate=useNavigate()
      const {user}=useContext(AuthContext);
         
-        if(!user) {return <p>Please login first to countinue</p>
+        if(!user || user.role==="admin") {return <p>Cannot access this page</p>
           
         }
+       
   return (
     <div className="wishlist-page">
       <Navbar/>

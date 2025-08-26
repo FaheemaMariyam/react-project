@@ -45,6 +45,9 @@ export const CartProvider = ({ children }) => {
       return;
       
     }
+    if(user.role==="admin"){
+      return
+    }
     if (!cart.some((item) => item.id === product.id)) {
       setCart([...cart, { ...product, quantity: 1 }]);
     }

@@ -85,9 +85,9 @@ function Cart() {
   }
    const {user}=useContext(AuthContext);
       
-      if(!user) {return <p>Please login first to countinue</p>
-        
-      }
+     if(!user || user.role==="admin") {return <p>Cannot access this page</p>
+          
+        }
   
     return (
     <div className="cart-page">

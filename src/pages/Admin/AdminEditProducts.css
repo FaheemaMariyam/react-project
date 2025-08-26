@@ -1,0 +1,69 @@
+/* AdminEditProducts.css */
+
+.edit-product-page {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.edit-product-page h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 26px;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.edit-form label {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.edit-form input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edit-form input:focus {
+  border-color: rgb(155, 116, 45);
+  box-shadow: 0 0 6px wheat;
+  outline: none;
+}
+
+/* File input styling */
+.edit-form input[type="file"] {
+  border: none;
+  padding: 6px 0;
+}
+
+/* Submit button */
+.edit-form button {
+  background: rgb(186, 138, 51);
+  color: #fff;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.edit-form button:hover {
+  background: wheat;
+}

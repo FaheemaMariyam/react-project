@@ -29,44 +29,84 @@
 // }
 
 // export default Payment
+// import React, { useContext } from 'react'
+// import { CartContext } from '../context/CartContext'
+// import { OrderContext } from '../context/OrderContext';
+// import { AuthContext } from '../context/AuthContext';
+// import { useLocation, useNavigate } from 'react-router-dom';
+// import Navbar from './Navbar';
+// import './Payment.css'; // create this file
+
+// function PaymentAll() {
+//     const { clearCart } = useContext(CartContext);
+//     const { buyAll } = useContext(OrderContext);
+//     const { user } = useContext(AuthContext);
+//     const location = useLocation();
+//     const navigate = useNavigate();
+//     const { cart, details } = location.state;
+
+//     const handlePayment = () => {
+//         buyAll(cart,details);
+//         clearCart();
+//         alert(`Payment successful. Your order for all products is confirmed.`);
+//         navigate("/orders");
+//     };
+
+//     return (
+//         <div>
+//             <Navbar />
+//             <div className="payment-container">
+//                 <h2>Online Payment</h2>
+//                 <p>Scan the QR code below to complete your payment</p>
+//                 <div className="qr-box">
+//                     <img src="qrcode.png" alt="QR Code" />
+//                 </div>
+//                 <button className="proceed-btn" onClick={handlePayment}>
+//                     Pay
+//                 </button>
+//             </div>
+//         </div>
+//     )
+// }
+
+// export default PaymentAll;
 import React, { useContext } from 'react'
 import { CartContext } from '../context/CartContext'
 import { OrderContext } from '../context/OrderContext';
-import { AuthContext } from '../context/AuthContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
-import './Payment.css'; // create this file
+import './Payment.css';
 
 function PaymentAll() {
-    const { clearCart } = useContext(CartContext);
-    const { buyAll } = useContext(OrderContext);
-    const { user } = useContext(AuthContext);
-    const location = useLocation();
-    const navigate = useNavigate();
-    const { cart, details } = location.state;
+  const { clearCart } = useContext(CartContext);
+  const { buyAll } = useContext(OrderContext);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    const handlePayment = () => {
-        buyAll(cart,details);
-        clearCart();
-        alert(`Payment successful. Your order for all products is confirmed.`);
-        navigate("/orders");
-    };
+  const { cart, details } = location.state;
 
-    return (
-        <div>
-            <Navbar />
-            <div className="payment-container">
-                <h2>Online Payment</h2>
-                <p>Scan the QR code below to complete your payment</p>
-                <div className="qr-box">
-                    <img src="qrcode.png" alt="QR Code" />
-                </div>
-                <button className="proceed-btn" onClick={handlePayment}>
-                    Pay
-                </button>
-            </div>
+  const handlePayment = () => {
+    buyAll(cart, details,"Online Payment"); // ✅ multiple products
+    clearCart(); // ✅ empty cart
+    alert("Payment successful. Your order for all products is confirmed.");
+    navigate("/orders");
+  };
+
+  return (
+    <div>
+      <Navbar />
+      <div className="payment-container">
+        <h2>Online Payment</h2>
+        <p>Scan the QR code below to complete your payment</p>
+        <div className="qr-box">
+          <img src="qrcode.png" alt="QR Code" />
         </div>
-    )
+        <button className="proceed-btn" onClick={handlePayment}>
+          Pay
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default PaymentAll;

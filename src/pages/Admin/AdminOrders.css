@@ -1,0 +1,232 @@
+.admin-orders {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-family: "Inter", sans-serif;
+}
+
+/* Heading */
+.heading {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  background: #f9fafb;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-btn:hover {
+  background: #eef2f7;
+}
+
+.tab-btn.active {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+/* Table */
+.admin-orders table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+.admin-orders th {
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  background: #f9fafb;
+}
+
+.admin-orders td {
+  padding: 14px 16px;
+  background: #fff;
+  font-size: 14px;
+  color: #374151;
+  border-top: 1px solid #f3f4f6;
+}
+
+.admin-orders tbody tr {
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.admin-orders tbody tr:hover {
+  background: #f9f9f9;
+}
+
+/* Status badge */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge.pending {
+  background: #fff4e5;
+  color: #d35400;
+}
+
+.status-badge.shipped {
+  background: #e6f3ff;
+  color: #1d4ed8;
+}
+
+.status-badge.delivered {
+  background: #e6f9f0;
+  color: #16a34a;
+}
+
+.status-badge.cancelled {
+  background: #ffe6e6;
+  color: #b91c1c;
+}
+
+/* Action buttons */
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 13px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.eye-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #2563eb;
+}
+
+/* Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+}
+
+/* Modal Box */
+.modal-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 14px;
+  position: relative;
+  width: 650px;
+  max-width: 95%;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content.wide {
+  width: 800px;
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+/* Close X */
+.close-x {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #666;
+}
+.close-x:hover {
+  color: #e11d48;
+}
+
+/* Flex Layout */
+.modal-body {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* Image */
+.modal-img img {
+  width: 260px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Info Sections */
+.modal-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.info-section {
+  background: #f9fafb;
+  padding: 14px 16px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.info-section h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #374151;
+}
+
+.info-section p {
+  font-size: 14px;
+  margin: 6px 0;
+  color: #444;
+}
+
+.info-section span {
+  font-weight: 600;
+  color: #111;
+  margin-right: 6px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}

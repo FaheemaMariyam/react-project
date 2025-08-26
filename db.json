@@ -203,7 +203,8 @@
       "image": "/products/pan.jpg",
       "categoryId": 1,
       "quantity": 1,
-      "description": "High-quality non-stick fry pan, perfect for everyday cooking."
+      "description": "High-quality non-stick fry pan, perfect for everyday cooking.",
+      "stock": null
     },
     {
       "id": "2",
@@ -648,44 +649,185 @@
     }
   ],
   "orders": [
+    {},
     {
-      "id": "20",
+      "id": "31",
       "userId": "03a8",
-      "name": "dgh",
-      "price": 4000,
-      "image": "/products/induction.jpg",
-      "categoryId": 2,
+      "name": "Wall Painting",
+      "price": 1500,
+      "image": "/products/painting.jpg",
+      "categoryId": 4,
       "quantity": 1,
-      "address": "asdf",
-      "city": "d",
-      "pin": "d",
-      "phone": "04536123456",
+      "description": "Beautiful wall painting to enhance your home decor.",
+      "status": "Cancelled",
+      "date": "25/8/2025"
+    },
+    {
+      "id": "32",
+      "userId": "03a8",
+      "name": "Decorative Vase",
+      "price": 1200,
+      "image": "/products/vase.jpg",
+      "categoryId": 4,
+      "quantity": 1,
+      "description": "Elegant decorative vase for flowers or display purposes.",
       "status": "Pending",
-      "date": "2025-08-22T04:24:58.436Z"
+      "date": "25/8/2025"
     },
     {
-      "id": "3",
+      "id": "36",
       "userId": "03a8",
-      "name": "dgh",
-      "price": 900,
-      "image": "/products/bakingdish.jpg",
-      "categoryId": 1,
+      "name": "Wall Clock",
+      "price": 1100,
+      "image": "/products/clock.jpg",
+      "categoryId": 4,
       "quantity": 1,
-      "description": "Elegant ceramic baking dish suitable for oven and microwave.",
-      "address": "asdf",
-      "city": "d",
-      "pin": "d",
-      "phone": "04536123456"
+      "description": "Decorative wall clock to keep track of time stylishly.",
+      "status": "Pending",
+      "date": "25/8/2025"
     },
     {
-      "id": "4",
+      "id": "31",
       "userId": "03a8",
-      "name": "Cast Iron Skillet",
-      "price": 2500,
-      "image": "/products/skillet.jpg",
+      "name": "Wall Painting",
+      "price": 1500,
+      "image": "/products/painting.jpg",
+      "categoryId": 4,
+      "quantity": 1,
+      "description": "Beautiful wall painting to enhance your home decor.",
+      "status": "Pending",
+      "date": "25/8/2025"
+    },
+    {
+      "id": "32",
+      "userId": "03a8",
+      "name": "Decorative Vase",
+      "price": 1200,
+      "image": "/products/vase.jpg",
+      "categoryId": 4,
+      "quantity": 1,
+      "description": "Elegant decorative vase for flowers or display purposes.",
+      "status": "Pending",
+      "date": "25/8/2025"
+    },
+    {
+      "id": "36",
+      "userId": "03a8",
+      "name": "Wall Clock",
+      "price": 1100,
+      "image": "/products/clock.jpg",
+      "categoryId": 4,
+      "quantity": 1,
+      "description": "Decorative wall clock to keep track of time stylishly.",
+      "status": "Pending",
+      "date": "25/8/2025"
+    },
+    {
+      "id": "28",
+      "userId": "03a8",
+      "name": "Over-Door Hanger",
+      "price": 350,
+      "image": "/products/doorhanger.jpg",
+      "categoryId": 3,
+      "quantity": 1,
+      "description": "Over-door hanger for organizing coats, towels, or bags.",
+      "details": {
+        "name": "jfhe",
+        "address": "fml",
+        "city": "vbdvn",
+        "pin": "123456",
+        "phone": "d"
+      },
+      "payment": "Cash on Delivery",
+      "status": "Pending",
+      "date": "25/8/2025"
+    },
+    {
+      "id": "9",
+      "userId": "03a8",
+      "name": "Wooden Chopping Board",
+      "price": 500,
+      "image": "/products/choppingboard.jpg",
       "categoryId": 1,
       "quantity": 1,
-      "description": "Heavy-duty cast iron skillet for perfect searing and frying."
+      "description": "Durable wooden chopping board for safe food preparation.",
+      "details": {
+        "name": "jfhe",
+        "address": "fml",
+        "city": "vbdvn",
+        "pin": "123456",
+        "phone": "d"
+      },
+      "payment": "Cash on Delivery",
+      "status": "Pending",
+      "date": "25/8/2025"
+    },
+    {
+      "id": "7",
+      "userId": "03a8",
+      "name": "Springform Cake Pan",
+      "price": 650,
+      "image": "/products/cakepan.jpg",
+      "categoryId": 1,
+      "quantity": 1,
+      "description": "Non-stick springform pan, perfect for cheesecakes.",
+      "details": {
+        "name": "jfhe",
+        "address": "fml",
+        "city": "vbdvn",
+        "pin": "123456",
+        "phone": "d"
+      },
+      "payment": "Cash on Delivery",
+      "username": "faheema mariyam",
+      "status": "Pending",
+      "date": "25/8/2025"
+    },
+    {
+      "id": 1756109675843,
+      "userId": "03a8",
+      "product": {
+        "id": "24",
+        "name": "Hanging Basket",
+        "price": 450,
+        "image": "/products/hangingbasket.jpg",
+        "categoryId": 3,
+        "quantity": 1,
+        "description": "Hanging basket for fruits, vegetables, or kitchen tools."
+      },
+      "details": {
+        "name": "faheema mariyam",
+        "address": "kuruniyan(h)Pottikkallu,Mattathur(po)Othukkungal",
+        "city": "6juykmukm",
+        "pin": "123456",
+        "phone": "06282422838"
+      },
+      "payment": "Online Payment",
+      "username": "faheema mariyam",
+      "quantity": 1,
+      "status": "Pending",
+      "date": "25/8/2025"
+    },
+    {
+      "id": "6",
+      "userId": "03a8",
+      "name": "Rolling Pin",
+      "price": 300,
+      "image": "/products/rollingpin.jpg",
+      "categoryId": 1,
+      "quantity": 1,
+      "description": "Smooth rolling pin for perfect dough preparation.",
+      "details": {
+        "name": "faheema mariyam",
+        "address": "kuruniyan(h)Pottikkallu,Mattathur(po)Othukkungal",
+        "city": "6juykmukm",
+        "pin": "123456",
+        "phone": "06282422838"
+      },
+      "payment": "Online Payment",
+      "username": "faheema mariyam",
+      "status": "delivered",
+      "date": "25/8/2025"
     }
   ]
 }

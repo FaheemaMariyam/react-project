@@ -154,7 +154,7 @@ function AdminProducts() {
     .filter(
       (p) => !selectedCategory || p.categoryId === Number(selectedCategory)
     )
-    .filter((p) => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    .filter((p) => `${p.name}${p.description}${p.price}`.toLowerCase().includes(searchTerm.toLowerCase()));
 
   const sortByPriceLowHigh = () =>
     setProducts([...products].sort((a, b) => a.price - b.price));

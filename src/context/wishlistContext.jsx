@@ -35,6 +35,9 @@ export const WishlistProvider=({children})=>{
             navigate("/login");
             return;
         }
+        if(user.role==="admin"){
+            return
+        }
         if(wishlist.some((item)=>item.id===product.id)){
             setWishlist(wishlist.filter((item)=>item.id!==product.id))
           
