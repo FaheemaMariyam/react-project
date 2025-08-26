@@ -1,26 +1,39 @@
 .admin-layout {
   display: flex;
   min-height: 100vh;
-  background: #f7f7f7;
+  background: #fdfdfd;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  
 }
 
+/* Sidebar */
+/* .sidebar {
+  width: 260px;
+  background: linear-gradient(180deg, #ffe6e6, #fff5f0, #fdfdfd);
+  padding: 25px 20px;
+  border-right: 1px solid #e6e6e6;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+} */
 .sidebar {
-  width: 250px;
-  background: #fff;
-  padding: 20px;
-  border-right: 1px solid #ddd;
+  width: 260px;
+  background: linear-gradient(180deg, #cad0dc, #c8cdd5, #b8c0cd);
+  padding: 25px 20px;
+  border-right: 1px solid #e6e6e6;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-.sidebar h2 {
-  font-size: 20px;
-  margin-bottom: 15px;
+.sidebar-title {
+  font-size: 22px;
+  font-weight: bold;
   color: #333;
+  margin-bottom: 10px;
 }
 
-.sidebar p {
+.sidebar-subtitle {
   font-size: 14px;
-  margin-bottom: 20px;
-  color: #777;
+  margin-bottom: 25px;
+  color: #555;
 }
 
 .sidebar nav {
@@ -29,30 +42,41 @@
   gap: 12px;
 }
 
-.sidebar nav a,
-.sidebar nav button {
+.sidebar-link {
+  display: flex;
+  align-items: center;
   text-decoration: none;
   font-size: 15px;
-  color: #333;
-  padding: 10px 12px;
-  border-radius: 6px;
-  background: transparent;
-  border: none;
-  text-align: left;
-  cursor: pointer;
+  color: #444;
+  padding: 10px 14px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
-.sidebar nav a:hover,
-.sidebar nav button:hover {
-  background: #f1f1f1;
+.sidebar-link .icon {
+  font-size: 18px;
+  margin-right: 10px;
+  color: #3b82f6; /* nice blue for icons */
 }
 
-.dark-mode-btn {
-  background: #444;
-  color: #fff;
+.sidebar-link:hover {
+  background: rgba(59, 130, 246, 0.15); /* soft blue hover */
+  transform: translateX(3px);
 }
 
+.sidebar-link.active {
+  background: #7994ce; /* solid blue */
+  color: white;
+}
+
+.sidebar-link.active .icon {
+  color: white;
+}
+
+
+/* Main Content */
 .admin-content {
   flex: 1;
   padding: 30px;
+  background: #fafafa;
 }
