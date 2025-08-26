@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 export const AuthContext=createContext();
 export const AuthProvider=({children})=>{
 const[user,setUser]=useState(()=>{
@@ -8,20 +9,29 @@ const[user,setUser]=useState(()=>{
 })
 
 const login=(userData)=>{
+    toast.success("Welcome")
 setUser(userData);
 localStorage.setItem("user",JSON.stringify(userData))
 }
 const logout=()=>{
-   const confirm= window.confirm("Do you want to logout")
-   if(confirm){
-     setUser(null);
-    localStorage.removeItem("user")
+//    const confirm= window.confirm("Do you want to logout")
+//    if(confirm){
+//      setUser(null);
+//     localStorage.removeItem("user")
    
-    return true
+//     return true
     
     
-   }
-   return false;
+//    }
+//    return false;
+ 
+  setUser(null);
+  localStorage.removeItem("user");
+   toast.success("Logout Successfully")
+//   window.alert("You have been logged out successfully!");
+  return true;
+
+
    
    
 }

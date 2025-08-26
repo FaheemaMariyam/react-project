@@ -5,15 +5,15 @@ import "./Navbar.css";
 import { WishlistContext } from "../context/wishlistContext";
 import { CartContext } from "../context/CartContext";
 import { AuthContext } from "../context/AuthContext";
+import LogoutIcon from "../pages/LogoutIcon";
 
 function Navbar() {
   const { wishlist } = useContext(WishlistContext);
   const { cart } = useContext(CartContext);
-  const { login ,user} = useContext(AuthContext);
-  console.log(user)
+  const { login, user } = useContext(AuthContext);
+  console.log(user);
   return (
     <nav className="navbar navbar-expand-lg navbar-light custom-navbar shadow-sm">
-     
       <div className="container">
         <NavLink
           className="navbar-brand fw-bold "
@@ -68,32 +68,35 @@ function Navbar() {
                 )}
               </NavLink>
             </li>
-             {!user? (
-        <>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/signup">
-              SignUp
-            </NavLink>
-          </li>
-          
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/login">
-              Login
-            </NavLink>
-          </li>
-         
-        </>
-      ): null}
-           <li className="nav-item">
-            <NavLink className="nav-link" to="/profile">
-              <FaUser />
-            </NavLink>
-          </li>
-            {/* <li className="nav-item">
-              <NavLink className="nav-link" to="/logout">
-                <FaSignOutAlt />
-              </NavLink>
-            </li> */}
+            {!user ? (
+              <>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/signup">
+                    SignUp
+                  </NavLink>
+                </li>
+
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/login">
+                    Login
+                  </NavLink>
+                </li>
+              </>
+            ) : null}
+            {user ? (
+              <>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/profile">
+                    <FaUser />
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  {/* <NavLink className="nav-link" to="/logout"> */}
+                  <LogoutIcon />
+                  {/* </NavLink> */}
+                </li>
+              </>
+            ) : null}
           </ul>
         </div>
       </div>

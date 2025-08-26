@@ -8,7 +8,7 @@ import { AuthContext } from "../context/AuthContext";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const[role,setRole]=useState("");
+ 
   const {login}=useContext(AuthContext)
   const[error,setError]=useState({})
   const navigate = useNavigate();
@@ -90,7 +90,7 @@ function Login() {
               onChange={(e) => setEmail(e.target.value)}
              required
             />
-            {/* {error.email && <p>{error.email}</p>} */}
+          
           </div>
 
           <div className="input-group">
@@ -104,10 +104,7 @@ function Login() {
             />
             {error.password && <p>{error.password}</p>}
           </div>
-          {/* <div>
-            <label >Role</label>
-            <input type="text" value={role} onChange={(e)=>setRole(e.target.value)} />
-          </div> */}
+         
 
           <button type="submit" className="submit-btn">
             Log In

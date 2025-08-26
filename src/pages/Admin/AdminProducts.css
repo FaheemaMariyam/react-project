@@ -12,7 +12,6 @@
   padding-bottom: 6px;
 }
 
-/* Controls */
 .admin-controls {
   display: flex;
   justify-content: space-between;
@@ -39,7 +38,7 @@
   box-shadow: 0 0 5px rgba(212, 139, 110, 0.4);
 }
 
-/* Sort buttons */
+
 .sort-buttons {
   display: flex;
   gap: 8px;
@@ -63,7 +62,6 @@
   border-color: #d48b6e;
 }
 
-/* Category buttons */
 .category-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -89,7 +87,6 @@
   border-color: #d48b6e;
 }
 
-/* Products grid */
 .admin-products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -132,7 +129,7 @@
   margin: 3px 0;
 }
 
-/* Add product form */
+
 .admin-add-product-form {
   background: #fef9f6;
   padding: 20px;
@@ -189,7 +186,7 @@
   background-color: #c07759;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .admin-products-page {
     padding: 30px 20px;

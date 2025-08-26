@@ -1,25 +1,3 @@
-// import React from "react";
-
-// import AdminUsers from "./AdminUsers";
-// import AdminProducts from "./AdminProducts";
-// import { Routes,Route,useNavigate } from "react-router-dom";
-
-
-// function AdminDashboard() {
-//   const navigate=useNavigate();
-//   return(<div>
-  
-// <h2>Welcome to the Admin Panel</h2>
-  
-
-//   </div>
-
-
-//   )
-
-// }
-
-// export default AdminDashboard;
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
@@ -42,23 +20,24 @@ function AdminDashboard() {
 
   useEffect(() => {
     axios.get("http://localhost:3000/users").then((res) => setUsers(res.data));
-    axios.get("http://localhost:3000/products").then((res) => setProducts(res.data));
-    axios.get("http://localhost:3000/orders").then((res) => setOrders(res.data));
+    axios
+      .get("http://localhost:3000/products")
+      .then((res) => setProducts(res.data));
+    axios
+      .get("http://localhost:3000/orders")
+      .then((res) => setOrders(res.data));
   }, []);
 
-  // --- SUMMARY VALUES ---
   const totalUsers = users.length;
   const totalProducts = products.length;
   const totalOrders = orders.length;
   const totalRevenue = orders.reduce((sum, o) => sum + (o.price || 0), 0);
 
-  // --- REVENUE TREND (Line chart) ---
   const revenueData = orders.map((o) => ({
     date: o.date,
     revenue: o.price,
   }));
 
-  // --- ORDER STATUS (Pie chart) ---
   const statusCounts = ["pending", "shipped", "delivered", "cancelled"].map(
     (status) => ({
       name: status,
@@ -72,17 +51,22 @@ function AdminDashboard() {
     <div className="dashboard-container">
       <h2 className="dashboard-title">Welcome to the Admin Panel 👋</h2>
 
-      {/* Summary Cards */}
       <div className="summary-cards">
-        <div className="card">👤 Total Users <span>{totalUsers}</span></div>
-        <div className="card">📦 Total Products <span>{totalProducts}</span></div>
-        <div className="card">🛒 Total Orders <span>{totalOrders}</span></div>
-        <div className="card">💰 Total Revenue <span>₹{totalRevenue}</span></div>
+        <div className="card">
+          👤 Total Users <span>{totalUsers}</span>
+        </div>
+        <div className="card">
+          📦 Total Products <span>{totalProducts}</span>
+        </div>
+        <div className="card">
+          🛒 Total Orders <span>{totalOrders}</span>
+        </div>
+        <div className="card">
+          💰 Total Revenue <span>₹{totalRevenue}</span>
+        </div>
       </div>
 
-      {/* Charts Section */}
       <div className="charts-section">
-        {/* Revenue Line Chart */}
         <div className="chart-box">
           <h3>Revenue Trend</h3>
           <ResponsiveContainer width="100%" height={300}>
@@ -95,7 +79,6 @@ function AdminDashboard() {
           </ResponsiveContainer>
         </div>
 
-        {/* Orders Pie Chart */}
         <div className="chart-box">
           <h3>Order Status</h3>
           <ResponsiveContainer width="100%" height={300}>
@@ -118,7 +101,6 @@ function AdminDashboard() {
         </div>
       </div>
 
-      {/* Recent Orders */}
       <div className="recent-orders">
         <h3>Recent Orders</h3>
         <table>

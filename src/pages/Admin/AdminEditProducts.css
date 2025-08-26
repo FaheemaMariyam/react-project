@@ -1,4 +1,4 @@
-/* AdminEditProducts.css */
+
 
 .edit-product-page {
   max-width: 600px;
@@ -45,13 +45,13 @@
   outline: none;
 }
 
-/* File input styling */
+
 .edit-form input[type="file"] {
   border: none;
   padding: 6px 0;
 }
 
-/* Submit button */
+
 .edit-form button {
   background: rgb(186, 138, 51);
   color: #fff;

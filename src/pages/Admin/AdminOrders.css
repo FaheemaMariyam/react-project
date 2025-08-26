@@ -6,7 +6,7 @@
   font-family: "Inter", sans-serif;
 }
 
-/* Heading */
+
 .heading {
   font-size: 22px;
   font-weight: 600;
@@ -14,7 +14,7 @@
   color: #2c3e50;
 }
 
-/* Tabs */
+
 .tabs {
   display: flex;
   gap: 12px;
@@ -41,7 +41,7 @@
   border-color: #2563eb;
 }
 
-/* Table */
+
 .admin-orders table {
   width: 100%;
   border-collapse: separate;
@@ -75,7 +75,7 @@
   background: #f9f9f9;
 }
 
-/* Status badge */
+
 .status-badge {
   padding: 6px 12px;
   border-radius: 12px;
@@ -104,7 +104,7 @@
   color: #b91c1c;
 }
 
-/* Action buttons */
+
 .action-buttons {
   display: flex;
   align-items: center;
@@ -127,7 +127,7 @@
   color: #2563eb;
 }
 
-/* Overlay */
+
 .modal-overlay {
   position: fixed;
   top: 0; left: 0;
@@ -137,7 +137,7 @@
   z-index: 1000;
 }
 
-/* Modal Box */
+
 .modal-content {
   background: #fff;
   padding: 25px;
@@ -160,7 +160,7 @@
   color: #2c3e50;
 }
 
-/* Close X */
+
 .close-x {
   position: absolute;
   top: 14px;
@@ -175,14 +175,14 @@
   color: #e11d48;
 }
 
-/* Flex Layout */
+
 .modal-body {
   display: flex;
   gap: 24px;
   align-items: flex-start;
 }
 
-/* Image */
+
 .modal-img img {
   width: 260px;
   height: auto;
@@ -191,7 +191,7 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* Info Sections */
+
 .modal-info {
   flex: 1;
   display: flex;
@@ -225,7 +225,7 @@
   margin-right: 6px;
 }
 
-/* Animation */
+
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }

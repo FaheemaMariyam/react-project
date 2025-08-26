@@ -23,7 +23,7 @@ function Profile() {
               <p><strong>Address:</strong>{user.address}</p>
                <p><strong>PIN:</strong>{user.pin}</p>
                 <p><strong>Email:</strong>{user.email}</p>
-                  <button className='logout-btn' onClick={()=>navigate("/logout")}>Logout</button>
+                  {/* <button className='logout-btn' onClick={()=>navigate("/logout")}>Logout</button> */}
         </div>
 
       </div>

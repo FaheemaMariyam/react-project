@@ -63,7 +63,7 @@
   background: #f9f9f9;
 }
 
-/* Status badge */
+
 .status-badge {
   padding: 6px 12px;
   border-radius: 12px;
@@ -82,7 +82,7 @@
   color: #b91c1c;
 }
 
-/* Action buttons */
+
 .action-buttons {
   display: flex;
   gap: 8px;
@@ -99,12 +99,12 @@
 }
 
 .btn-block.active {
-  background-color: #16a34a; /* green like active badge */
+  background-color: #16a34a; 
   color: #fff;
 }
 
 .btn-block.blocked {
-  background-color: #b91c1c; /* red like blocked badge */
+  background-color: #b91c1c;
   color: #fff;
 }
 
