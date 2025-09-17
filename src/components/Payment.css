@@ -1,25 +1,35 @@
+/* Main container for payment page */
 .payment-container {
   max-width: 500px;
-  margin: 60px auto;
-  padding: 30px;
+  margin: 50px auto;
+  padding: 30px 25px;
   text-align: center;
-  background: #fffaf8;
+  background: #fff; /* clean white for contrast */
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
 }
 
+.payment-container:hover {
+  transform: translateY(-2px);
+}
+
+/* Heading */
 .payment-container h2 {
   font-size: 26px;
-  margin-bottom: 10px;
-  color: #333;
+  margin-bottom: 12px;
+  color: #a67044; /* matches navbar */
+  font-weight: 700;
 }
 
+/* Description */
 .payment-container p {
   font-size: 16px;
-  color: #666;
+  color: #925d28; /* consistent theme color */
   margin-bottom: 25px;
 }
 
+/* QR code box */
 .qr-box {
   display: flex;
   justify-content: center;
@@ -29,22 +39,43 @@
 .qr-box img {
   width: 220px;
   height: 220px;
-  border: 6px solid #f1e0d6;
+  border: 6px solid #f4d0d0; /* subtle theme color border */
   border-radius: 12px;
   background: white;
 }
 
+/* Proceed button */
 .proceed-btn {
-  padding: 12px 28px;
+  padding: 14px 32px;
   font-size: 18px;
-  background-color: #d48b6e;
+  font-weight: 600;
+  background-color: rgb(129, 86, 38); /* ShopEase theme */
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: background 0.3s, transform 0.2s;
 }
 
 .proceed-btn:hover {
-  background-color: #b36e55;
+  background-color: rgb(107, 76, 19);
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .payment-container {
+    margin: 30px 15px;
+    padding: 25px 15px;
+  }
+
+  .qr-box img {
+    width: 180px;
+    height: 180px;
+  }
+
+  .proceed-btn {
+    width: 100%;
+    padding: 14px 0;
+  }
 }

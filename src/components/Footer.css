@@ -1,9 +1,9 @@
 .footer {
-  background: rgb(249, 243, 237); 
+  background: #f5ebe1; /* Soft vintage beige */
   padding: 2rem 1rem 1rem;
   margin-top: 2rem;
-  font-family: "Poppins", sans-serif;
-  color: #5a3924;
+  font-family: "Times New Roman", serif; /* Vintage vibe */
+  color: #4a2f1f; /* Deep vintage brown */
 }
 
 .footer-container {
@@ -15,14 +15,22 @@
 }
 
 .footer-brand h3 {
-  color: #be855c;
+  color: #8a5b3d;
   font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-brand p {
+  font-size: 0.95rem;
+  color: #5c3c27;
 }
 
 .footer-links h4,
 .footer-contact h4 {
-  color: #be855c;
-  margin-bottom: 0.5rem;
+  color: #8a5b3d;
+  margin-bottom: 0.7rem;
+  font-size: 1.1rem;
 }
 
 .footer-links ul {
@@ -35,28 +43,31 @@
 }
 
 .footer-links a {
-  color: #5a3924;
+  color: #4a2f1f;
   text-decoration: none;
+  font-size: 0.95rem;
   transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
-  color: #a06d49;
+  color: #a67044;
 }
 
 .footer-contact p {
   margin: 0.3rem 0;
+  font-size: 0.95rem;
+  color: #4a2f1f;
 }
 
 .social-icons a {
   margin-right: 0.8rem;
-  font-size: 1.2rem;
-  color: #5a3924;
+  font-size: 1.3rem;
+  color: #4a2f1f;
   transition: color 0.3s ease;
 }
 
 .social-icons a:hover {
-  color: #be855c;
+  color: #a67044;
 }
 
 .footer-bottom {
@@ -65,5 +76,5 @@
   border-top: 1px solid rgba(90, 57, 36, 0.2);
   padding-top: 1rem;
   font-size: 0.9rem;
-  color: #6a4630;
+  color: #5a3924;
 }

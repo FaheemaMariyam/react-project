@@ -132,29 +132,95 @@
 
 // export default OrderConfirm;
 
+// import React, { useContext } from "react";
+// import { useLocation, useNavigate } from "react-router-dom";
+// import { OrderContext } from "../context/OrderContext";
+// import Navbar from "./Navbar";
+// import "./Checkout.css";
+// import { CartContext } from "../context/CartContext";
+
+// function OrderConfirm() {
+//   const { addOrder } = useContext(OrderContext);
+//   const{removeCart}=useContext(CartContext);
+//   const location = useLocation();
+//   const navigate = useNavigate();
+
+//   const { product, details } = location.state || {};
+
+//   if (!product || !details) {
+//     return <p style={{ textAlign: "center", marginTop: "100px" }}>No order details found</p>;
+//   }
+
+//   const cashOnDelivery = () => {
+//     addOrder({ ...product, details, payment: "Cash on Delivery" });
+//     removeCart(product.id)
+//     alert("Order placed successfully!");
+//     navigate("/orders");
+//   };
+
+//   const onlinePayment = () => {
+//     navigate("/payment", { state: { product, details } });
+//   };
+
+//   return (
+//     <div className="main-container">
+//       <Navbar />
+//       <div className="checkout-container">
+//         <h2 className="checkout-heading">Confirm Your Order</h2>
+
+//         <h3>Product: {product.name}</h3>
+//         <p>Price: ₹{product.price}</p>
+
+//         <h4>Delivery Details:</h4>
+//         <p>{details.name}</p>
+//         <p>{details.address}, {details.city}</p>
+//         <p>Pin: {details.pin}</p>
+//         <p>Phone: {details.phone}</p>
+
+//         <div className="checkout-actions">
+//           <button className="checkout-btn" onClick={cashOnDelivery}>Cash on Delivery</button>
+//           <button className="checkout-btn outline" onClick={onlinePayment}>Online Payment</button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default OrderConfirm;
 import React, { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { OrderContext } from "../context/OrderContext";
 import Navbar from "./Navbar";
 import "./Checkout.css";
 import { CartContext } from "../context/CartContext";
+import { toast } from "react-toastify"; // ✅ import toast
 
 function OrderConfirm() {
   const { addOrder } = useContext(OrderContext);
-  const{removeCart}=useContext(CartContext);
+  const { removeCart } = useContext(CartContext);
   const location = useLocation();
   const navigate = useNavigate();
 
   const { product, details } = location.state || {};
 
   if (!product || !details) {
-    return <p style={{ textAlign: "center", marginTop: "100px" }}>No order details found</p>;
+    return (
+      <p style={{ textAlign: "center", marginTop: "100px" }}>
+        No order details found
+      </p>
+    );
   }
 
   const cashOnDelivery = () => {
     addOrder({ ...product, details, payment: "Cash on Delivery" });
-    removeCart(product.id)
-    alert("Order placed successfully!");
+    removeCart(product.id);
+
+    // ✅ Show toast instead of alert
+    toast.success("Order placed successfully! 🚚", {
+      position: "top-center",
+      autoClose: 3000,
+    });
+
     navigate("/orders");
   };
 
@@ -173,13 +239,19 @@ function OrderConfirm() {
 
         <h4>Delivery Details:</h4>
         <p>{details.name}</p>
-        <p>{details.address}, {details.city}</p>
+        <p>
+          {details.address}, {details.city}
+        </p>
         <p>Pin: {details.pin}</p>
         <p>Phone: {details.phone}</p>
 
         <div className="checkout-actions">
-          <button className="checkout-btn" onClick={cashOnDelivery}>Cash on Delivery</button>
-          <button className="checkout-btn outline" onClick={onlinePayment}>Online Payment</button>
+          <button className="checkout-btn" onClick={cashOnDelivery}>
+            Cash on Delivery
+          </button>
+          <button className="checkout-btn outline" onClick={onlinePayment}>
+            Online Payment
+          </button>
         </div>
       </div>
     </div>

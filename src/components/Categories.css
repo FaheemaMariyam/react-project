@@ -1,44 +1,54 @@
 .categories-section {
   padding: 50px 80px;
-  background-color: #f8f4ee;
+  background-color:  #f5ebe1 !important; /* force your background */
+  width: 100%;
 }
 
 .section-title {
-  font-size: 2rem;
+  font-size: 24px;
   font-weight: bold;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   text-align: left;
-  color: #333;
+  color: #88503a; /* coffee brown */
+  border-bottom: 2px solid #e9ddd4;
+  padding-bottom: 6px;
+  letter-spacing: 0.5px;
 }
+
 
 .categories-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 22px;
 }
 
 .category-card {
-  background: white;
-  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #eee; /* soft border like cart cards */
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
   text-align: center;
-  transition: transform 0.3s ease;
-  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .category-card img {
   width: 100%;
-  height: 180px;
+  height: 160px;
   object-fit: cover;
+  border-bottom: 1px solid #f6ede4;
 }
 
 .category-card h3 {
-  font-size: 1.1rem;
-  padding: 12px;
-  color: rgb(112, 76, 9);
+  font-size: 16px;
+  padding: 14px;
+  color: #875140; /* same brown as cart text */
+  font-weight: 500;
+  margin: 0;
 }
 
 .category-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+  border-color: #d48b6e;
 }

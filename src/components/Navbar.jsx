@@ -52,7 +52,7 @@ function Navbar() {
           </ul>
 
           <ul className="navbar-nav align-items-center">
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <NavLink className="nav-link" to="/wishlist">
                 <FaHeart />
                 {wishlist.length > 0 && (
@@ -67,7 +67,30 @@ function Navbar() {
                   <span className="cart-badge">{cart.length}</span>
                 )}
               </NavLink>
-            </li>
+            </li> */}
+            {/* <ul className="navbar-nav align-items-center"> */}
+            <li className="nav-item">
+  <NavLink className="nav-link icon-link" to="/wishlist">
+    <div className="icon-wrapper">
+      <FaHeart />
+      {wishlist.length > 0 && (
+        <span className="wishlist-badge">{wishlist.length}</span>
+      )}
+    </div>
+  </NavLink>
+</li>
+
+<li className="nav-item">
+  <NavLink className="nav-link icon-link" to="/cart">
+    <div className="icon-wrapper">
+      <FaShoppingCart />
+      {cart.length > 0 && (
+        <span className="cart-badge">{cart.length}</span>
+      )}
+    </div>
+  </NavLink>
+</li>
+
             {!user ? (
               <>
                 <li className="nav-item">
@@ -90,13 +113,14 @@ function Navbar() {
                     <FaUser />
                   </NavLink>
                 </li>
+               
                 <li className="nav-item">
-                  {/* <NavLink className="nav-link" to="/logout"> */}
-                  <LogoutIcon />
-                  {/* </NavLink> */}
-                </li>
+  <LogoutIcon className="logout-icon" />
+</li>
+
               </>
             ) : null}
+  {/* </ul> */}
           </ul>
         </div>
       </div>

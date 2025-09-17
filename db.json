@@ -670,61 +670,6 @@
   ],
   "orders": [
     {
-      "id": "6",
-      "userId": "03a8",
-      "name": "Rolling Pin",
-      "price": 300,
-      "image": "/products/rollingpin.jpg",
-      "categoryId": 1,
-      "quantity": 1,
-      "description": "Smooth rolling pin for perfect dough preparation.",
-      "details": {
-        "name": "faheema mariyam",
-        "address": "kuruniyan(h)Pottikkallu,Mattathur(po)Othukkungal",
-        "city": "6juykmukm",
-        "pin": "123456",
-        "phone": "06282422838"
-      },
-      "payment": "Online Payment",
-      "username": "faheema mariyam",
-      "status": "cancelled",
-      "date": "25/8/2025"
-    },
-    {
-      "id": "3",
-      "userId": "03a8",
-      "name": "Ceramic Baking Dish",
-      "price": 900,
-      "image": "/products/bakingdish.jpg",
-      "categoryId": 1,
-      "quantity": 1,
-      "description": "Elegant ceramic baking dish suitable for oven and microwave.",
-      "details": {
-        "name": "Faheema Mariyam",
-        "address": "kuruniyan(h)Pottikkallu,Mattathur(po)Othukkungal",
-        "city": "Othukkungal",
-        "pin": "676528",
-        "phone": "6282422838"
-      },
-      "payment": "Cash on Delivery",
-      "username": "faheema mariyam",
-      "status": "shipped",
-      "date": "26/8/2025"
-    },
-    {
-      "id": "5",
-      "userId": "03a8",
-      "name": "Glass Mixing Bowl Set",
-      "price": 700,
-      "image": "/products/mixingbowl.jpg",
-      "categoryId": 1,
-      "quantity": 1,
-      "description": "Set of glass mixing bowls ideal for baking and meal prep.",
-      "username": "faheema mariyam",
-      "status": "pending",
-      "date": "26/8/2025"
-    },
-    {
       "id": "28",
       "userId": "03a8",
       "name": "Over-Door Hanger",
@@ -786,6 +731,112 @@
       "username": "faheema mariyam",
       "status": "Pending",
       "date": "26/8/2025"
+    },
+    {
+      "id": "27",
+      "userId": "03a8",
+      "name": "Drawer Dividers",
+      "price": 400,
+      "image": "/products/drawerdivider.jpg",
+      "categoryId": 3,
+      "quantity": 1,
+      "description": "Drawer dividers to keep kitchen or household items separated.",
+      "details": {
+        "name": "faheema mariyam",
+        "address": "kuruniyan(h)Pottikkallu,Mattathur(po)Othukkungal",
+        "city": "6juykmukm",
+        "pin": "123456",
+        "phone": "06282422838"
+      },
+      "payment": "Online Payment",
+      "username": "faheema mariyam",
+      "status": "Pending",
+      "date": "29/8/2025"
+    },
+    {
+      "id": "22",
+      "userId": "03a8",
+      "name": "Plastic Container Set",
+      "price": 600,
+      "image": "/products/container.jpg",
+      "categoryId": 3,
+      "quantity": 1,
+      "description": "Set of plastic containers for food storage and organization.",
+      "details": {
+        "name": "Faheema Mariyam",
+        "address": "Kuruniyan(h) Othukkungal,Malappuram",
+        "city": "Othukkungal",
+        "pin": "676528",
+        "phone": "6282422838"
+      },
+      "payment": "Online Payment",
+      "username": "faheema mariyam",
+      "status": "Pending",
+      "date": "17/9/2025"
+    },
+    {
+      "id": "25",
+      "userId": "03a8",
+      "name": "Under-Sink Organizer",
+      "price": 900,
+      "image": "/products/sinkorganizer.jpg",
+      "categoryId": 3,
+      "quantity": 1,
+      "description": "Compact organizer for storing cleaning supplies under sink.",
+      "details": {
+        "name": "Faheema Mariyam",
+        "address": "Kuruniyan(h) Othukkungal,Malappuram",
+        "city": "Othukkungal",
+        "pin": "676528",
+        "phone": "6282422838"
+      },
+      "payment": "Cash on Delivery",
+      "username": "faheema mariyam",
+      "status": "Cancelled",
+      "date": "17/9/2025"
+    },
+    {
+      "id": "31",
+      "userId": "03a8",
+      "name": "Wall Painting",
+      "price": 1500,
+      "image": "/products/painting.jpg",
+      "categoryId": 4,
+      "quantity": 1,
+      "description": "Beautiful wall painting to enhance your home decor.",
+      "details": {
+        "name": "Faheema Mariyam ",
+        "address": "Kuruniyan(H)Othukkungal,Malappuram",
+        "city": "Othukkungal",
+        "pin": "676528",
+        "phone": "6282422838"
+      },
+      "payment": "Online Payment",
+      "username": "faheema mariyam",
+      "status": "Cancelled",
+      "date": "17/9/2025"
+    },
+    {
+      "id": "1",
+      "userId": "03a8",
+      "name": "Non-stick Fry Pan",
+      "price": 1200,
+      "image": "/products/pan.jpg",
+      "categoryId": 1,
+      "quantity": 1,
+      "description": "High-quality non-stick fry pan, perfect for everyday cooking.",
+      "stock": null,
+      "details": {
+        "name": "Faheema Mariyam ",
+        "address": "Kuruniyan(H)Othukkungal,Malappuram",
+        "city": "Othukkungal",
+        "pin": "676528",
+        "phone": "6282422838"
+      },
+      "payment": "Cash on Delivery",
+      "username": "faheema mariyam",
+      "status": "Pending",
+      "date": "17/9/2025"
     }
   ]
 }
