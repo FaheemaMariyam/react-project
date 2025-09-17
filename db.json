@@ -838,5 +838,79 @@
       "status": "Pending",
       "date": "17/9/2025"
     }
+  ],
+  "cart": [
+    {
+      "id": "3",
+      "name": "Ceramic Baking Dish",
+      "price": 900,
+      "image": "/products/bakingdish.jpg",
+      "categoryId": 1,
+      "quantity": 1,
+      "description": "Elegant ceramic baking dish suitable for oven and microwave.",
+      "userId": "03a8"
+    },
+    {
+      "id": "4",
+      "name": "Cast Iron Skillet",
+      "price": 2500,
+      "image": "/products/skillet.jpg",
+      "categoryId": 1,
+      "quantity": 1,
+      "description": "Heavy-duty cast iron skillet for perfect searing and frying.",
+      "userId": "03a8"
+    },
+    {
+      "id": "5",
+      "name": "Glass Mixing Bowl Set",
+      "price": 700,
+      "image": "/products/mixingbowl.jpg",
+      "categoryId": 1,
+      "quantity": 1,
+      "description": "Set of glass mixing bowls ideal for baking and meal prep.",
+      "userId": "03a8"
+    }
+  ],
+  "wishlist": [
+    {
+      "id": "3",
+      "name": "Ceramic Baking Dish",
+      "price": 900,
+      "image": "/products/bakingdish.jpg",
+      "categoryId": 1,
+      "quantity": 1,
+      "description": "Elegant ceramic baking dish suitable for oven and microwave.",
+      "userId": "03a8"
+    },
+    {
+      "id": "4",
+      "name": "Cast Iron Skillet",
+      "price": 2500,
+      "image": "/products/skillet.jpg",
+      "categoryId": 1,
+      "quantity": 1,
+      "description": "Heavy-duty cast iron skillet for perfect searing and frying.",
+      "userId": "03a8"
+    },
+    {
+      "id": "5",
+      "name": "Glass Mixing Bowl Set",
+      "price": 700,
+      "image": "/products/mixingbowl.jpg",
+      "categoryId": 1,
+      "quantity": 1,
+      "description": "Set of glass mixing bowls ideal for baking and meal prep.",
+      "userId": "03a8"
+    },
+    {
+      "id": "2",
+      "name": "Stainless Steel Pot",
+      "price": 1800,
+      "image": "/products/steelpot.jpg",
+      "categoryId": 1,
+      "quantity": 1,
+      "description": "Durable stainless steel pot for soups, stews, and more.",
+      "userId": "03a8"
+    }
   ]
 }

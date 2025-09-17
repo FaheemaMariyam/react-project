@@ -1,8 +1,8 @@
 
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { addOrderToDB, getUserOrders } from "../components/OrderApi";
-import { updateOrderStatus } from "../components/OrderApi";
+import { addOrderToDB, getUserOrders } from "../APIs/OrderApi";
+import { updateOrderStatus } from "../APIs/OrderApi";
 export const OrderContext = createContext();
 
 export const OrderProvider = ({ children }) => {
