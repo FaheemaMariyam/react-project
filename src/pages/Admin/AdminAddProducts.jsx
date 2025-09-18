@@ -18,7 +18,7 @@ function AdminAddProducts() {
     e.preventDefault();
     setError("");
     axios
-      .post("http://localhost:3000/products", newProduct)
+      .post("https://dbrender-liu7.onrender.com/products", newProduct)
       .then(() => {
         setNewProduct({
           name: "",

@@ -68,7 +68,7 @@ function Signup() {
     if (!validate()) return;
 
     try {
-      const res = await axios.post("http://localhost:3000/users", formData);
+      const res = await axios.post("https://dbrender-liu7.onrender.com/users", formData);
       if (res.status === 201 || res.status === 200) {
         alert("Signup successful, you can log in now");
         navigate("/login");

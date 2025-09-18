@@ -12,7 +12,7 @@ const ProductsCard = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/products")
+    fetch("https://dbrender-liu7.onrender.com/products")
       .then((res) => res.json())
       .then((data) => setProducts(data.slice(0, 5)))
       .catch((err) => console.log(err));

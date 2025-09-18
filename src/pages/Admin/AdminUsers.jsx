@@ -8,7 +8,7 @@ function AdminUsers() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/users")
+      .get("https://dbrender-liu7.onrender.com/users")
       .then((res) => setUsers(res.data))
       .catch((err) => console.error(err));
   }, []);
@@ -16,7 +16,7 @@ function AdminUsers() {
   const toggleBlock = (user) => {
     const updatedUser = { ...user, blocked: !user.blocked };
     axios
-      .patch(`http://localhost:3000/users/${user.id}`, updatedUser)
+      .patch(`https://dbrender-liu7.onrender.com/users/${user.id}`, updatedUser)
       .then(() =>
         setUsers(users.map((u) => (u.id === user.id ? updatedUser : u)))
       )
@@ -25,7 +25,7 @@ function AdminUsers() {
 
   const removeUser = (user) => {
     axios
-      .delete(`http://localhost:3000/users/${user.id}`)
+      .delete(`https://dbrender-liu7.onrender.com/users/${user.id}`)
       .then(() => setUsers(users.filter((u) => u.id !== user.id)))
       .catch((err) => console.error(err));
   };

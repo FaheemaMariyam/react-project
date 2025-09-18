@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:3000/cart";
+const API = "https://dbrender-liu7.onrender.com/cart";
 
 // Add item to cart
 export const addCartToDB = (item) => axios.post(API, item);

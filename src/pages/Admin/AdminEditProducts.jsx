@@ -17,7 +17,7 @@ function AdminEditProducts() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/products/${id}`)
+      .get(`https://dbrender-liu7.onrender.com/products/${id}`)
       .then((res) => setEdited(res.data))
       .catch((err) => console.error(err));
   }, [id]);
@@ -37,7 +37,7 @@ function AdminEditProducts() {
     e.preventDefault();
 
     axios
-      .put(`http://localhost:3000/products/${id}`, {
+      .put(`https://dbrender-liu7.onrender.com/products/${id}`, {
         ...edited,
         price: Number(edited.price),
         stock: Number(edited.stock),

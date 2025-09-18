@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:3000/wishlist";
+const API = "https://dbrender-liu7.onrender.com/wishlist";
 
 // Add item to wishlist
 export const addWishlistToDB = (item) => axios.post(API, item);

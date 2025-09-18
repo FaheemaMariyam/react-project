@@ -19,12 +19,12 @@ function AdminDashboard() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/users").then((res) => setUsers(res.data));
+    axios.get("https://dbrender-liu7.onrender.com/users").then((res) => setUsers(res.data));
     axios
-      .get("http://localhost:3000/products")
+      .get("https://dbrender-liu7.onrender.com/products")
       .then((res) => setProducts(res.data));
     axios
-      .get("http://localhost:3000/orders")
+      .get("https://dbrender-liu7.onrender.com/orders")
       .then((res) => setOrders(res.data));
   }, []);
 

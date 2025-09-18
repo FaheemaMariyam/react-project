@@ -19,14 +19,14 @@ function AdminProducts() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/products")
+      .get("https://dbrender-liu7.onrender.com/products")
       .then((res) => setProducts(res.data))
       .catch((err) => console.error(err));
   }, []);
 
   const handleDelete = (p) => {
     axios
-      .delete(`http://localhost:3000/products/${p.id}`)
+      .delete(`https://dbrender-liu7.onrender.com/products/${p.id}`)
       .then(() => setProducts(products.filter((pro) => pro.id !== p.id)))
       .catch((err) => console.error(err));
   };

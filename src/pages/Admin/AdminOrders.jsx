@@ -10,7 +10,7 @@ function AdminOrders() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/orders`)
+      .get(`https://dbrender-liu7.onrender.com/orders`)
       .then((res) => setOrders(res.data))
       .catch((err) => console.error(err));
   }, []);
@@ -19,7 +19,7 @@ function AdminOrders() {
     setOrders((prev) =>
       prev.map((ord) => (ord.id === id ? { ...ord, status: newStatus } : ord))
     );
-    axios.patch(`http://localhost:3000/orders/${id}`, { status: newStatus });
+    axios.patch(`https://dbrender-liu7.onrender.com/orders/${id}`, { status: newStatus });
   };
 
   const filteredOrders =

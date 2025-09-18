@@ -1,6 +1,6 @@
 
 import axios from "axios";
-const API = "http://localhost:3000/orders";
+const API = "https://dbrender-liu7.onrender.com/orders";
 
 export const addOrderToDB = (order) => axios.post(API, order);
 export const getOrdersFromDB = () => axios.get(API);

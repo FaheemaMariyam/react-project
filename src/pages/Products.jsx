@@ -222,7 +222,7 @@ const Products = () => {
   const categoryId = params.get("category");
 
   useEffect(() => {
-    fetch("http://localhost:3000/products")
+    fetch("https://dbrender-liu7.onrender.com/products")
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.log(err));

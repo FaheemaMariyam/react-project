@@ -10,7 +10,7 @@ const Categories = () => {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const res = await axios.get("http://localhost:3000/categories");
+      const res = await axios.get("https://dbrender-liu7.onrender.com/categories");
       setCategories(res.data);
     };
     fetchCategories();

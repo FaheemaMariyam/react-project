@@ -18,7 +18,7 @@ function Login() {
      if (!validate()) return;
     try {
       
-      const res = await axios.get("http://localhost:3000/users");
+      const res = await axios.get("https://dbrender-liu7.onrender.com/users");
       const users = res.data;
 
       
