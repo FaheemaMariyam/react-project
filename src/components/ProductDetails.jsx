@@ -25,7 +25,7 @@ function ProductDetails() {
       </p>
     );
 
-  const isInWishlist = wishlist.some((item) => item.id === product.id);
+  const isInWishlist = wishlist.some((item) => item.product.id === product.id);
 
   return (
     <div>

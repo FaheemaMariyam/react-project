@@ -1,44 +1,55 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axiosInstance from "../../APIs/axiosInstance";
 import "./AdminUsers.css";
 
 function AdminUsers() {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
 
-  useEffect(() => {
-    axios
-      .get("https://dbrender-liu7.onrender.com/users")
-      .then((res) => setUsers(res.data))
+  const fetchUsers = () => {
+    axiosInstance
+      .get(`/admin/users/?search=${debouncedSearch}`)
+      .then((res) => setUsers(res.data.results))
       .catch((err) => console.error(err));
+  };
+
+  // Initial fetch
+  useEffect(() => {
+    fetchUsers();
   }, []);
 
+  // Debounce search input
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(searchTerm);
+    }, 400); // delay same as product page
+
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
+
+  // Fetch when debouncedSearch updates
+  useEffect(() => {
+    fetchUsers();
+  }, [debouncedSearch]);
+
   const toggleBlock = (user) => {
-    const updatedUser = { ...user, blocked: !user.blocked };
-    axios
-      .patch(`https://dbrender-liu7.onrender.com/users/${user.id}`, updatedUser)
-      .then(() =>
-        setUsers(users.map((u) => (u.id === user.id ? updatedUser : u)))
-      )
-      .catch((err) => console.error(err));
+    axiosInstance
+      .patch(`/admin/users/${user.id}/`, { blocked: !user.blocked })
+      .then(fetchUsers)
+      .catch(console.error);
   };
 
   const removeUser = (user) => {
-    axios
-      .delete(`https://dbrender-liu7.onrender.com/users/${user.id}`)
-      .then(() => setUsers(users.filter((u) => u.id !== user.id)))
-      .catch((err) => console.error(err));
+    axiosInstance
+      .delete(`/admin/users/${user.id}/`)
+      .then(fetchUsers)
+      .catch(console.error);
   };
 
-  const filteredUsers =users.filter((user)=>user.role!=="admin")
-   .filter((user) =>
-    `${user.username}${user.phone}${user.address}${user.pin}`
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase())
-  );
+  const filteredUsers = users.filter((u) => u.role !== "admin");
 
   return (
-    
     <div className="admin-users">
       <h2 className="heading">User Management</h2>
 
@@ -64,17 +75,19 @@ function AdminUsers() {
             <th>Actions</th>
           </tr>
         </thead>
+
         <tbody>
           {filteredUsers.length > 0 ? (
             filteredUsers.map((user, index) => (
               <tr key={user.id}>
                 <td>{index + 1}</td>
                 <td>{user.id}</td>
-                <td>{user.username}</td>
+                <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>{user.phone}</td>
                 <td>{user.address}</td>
                 <td>{user.pin}</td>
+
                 <td>
                   <span
                     className={`status-badge ${
@@ -84,6 +97,7 @@ function AdminUsers() {
                     {user.blocked ? "Blocked" : "Active"}
                   </span>
                 </td>
+
                 <td className="action-buttons">
                   <button
                     className={`btn btn-block ${
@@ -93,6 +107,7 @@ function AdminUsers() {
                   >
                     {user.blocked ? "Unblock" : "Block"}
                   </button>
+
                   <button
                     className="btn btn-remove"
                     onClick={() => removeUser(user)}
@@ -104,7 +119,7 @@ function AdminUsers() {
             ))
           ) : (
             <tr>
-              <td colSpan="8" style={{ textAlign: "center", padding: "15px" }}>
+              <td colSpan="9" style={{ textAlign: "center", padding: "15px" }}>
                 No users found
               </td>
             </tr>

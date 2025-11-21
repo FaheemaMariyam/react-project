@@ -190,20 +190,24 @@
 import React, { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { OrderContext } from "../context/OrderContext";
+import { AuthContext } from "../context/AuthContext";
+import { CartContext } from "../context/CartContext";
+import { toast } from "react-toastify";
+import axiosInstance from "../APIs/axiosInstance";
 import Navbar from "./Navbar";
 import "./Checkout.css";
-import { CartContext } from "../context/CartContext";
-import { toast } from "react-toastify"; // ✅ import toast
 
 function OrderConfirm() {
   const { addOrder } = useContext(OrderContext);
   const { removeCart } = useContext(CartContext);
+  const { user } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { product, details } = location.state || {};
+  // Destructure product and details
+  const { product: p, details } = location.state || {};
 
-  if (!product || !details) {
+  if (!p || !details) {
     return (
       <p style={{ textAlign: "center", marginTop: "100px" }}>
         No order details found
@@ -211,21 +215,93 @@ function OrderConfirm() {
     );
   }
 
-  const cashOnDelivery = () => {
-    addOrder({ ...product, details, payment: "Cash on Delivery" });
-    removeCart(product.id);
+  // Use actual product object for cleaner access
+  const actualProduct = p.product;
 
-    // ✅ Show toast instead of alert
-    toast.success("Order placed successfully! 🚚", {
-      position: "top-center",
-      autoClose: 3000,
-    });
+  console.log("OrderConfirm location.state:", location.state);
 
-    navigate("/orders");
+  // Cash on Delivery
+  const cashOnDelivery = async () => {
+    try {
+      await addOrder({
+  items: [{ product_id: actualProduct.id, quantity: 1 }],
+  name: details.name,
+  address: details.address,
+  city: details.city,
+  pin: details.pin,
+  phone: details.phone,
+  payment_method: "COD",
+});
+
+
+      removeCart(actualProduct.id);
+
+      toast.success("Order placed successfully! 🚚", {
+        position: "top-center",
+        autoClose: 3000,
+      });
+
+      navigate("/orders");
+    } catch (err) {
+      toast.error("Failed to place order. Try again.");
+      console.error(err);
+    }
   };
 
-  const onlinePayment = () => {
-    navigate("/payment", { state: { product, details } });
+  // Online Payment with Razorpay
+  const onlinePayment = async () => {
+    const amount = parseFloat(actualProduct.price); // convert string to number
+    console.log("Creating Razorpay order for amount:", amount, typeof amount);
+
+    if (isNaN(amount) || amount <= 0) {
+      toast.error("Invalid product price. Cannot proceed with payment.");
+      return;
+    }
+
+    try {
+      // Create Razorpay order on backend
+      const res = await axiosInstance.post("/orders/razorpay/create-order/", { amount });
+
+      const { order_id, key_id, amount: rAmount, currency } = res.data;
+
+      const options = {
+        key: key_id,
+        amount: rAmount,
+        currency: currency,
+        name: "ShopEase",
+        description: actualProduct.name,
+        order_id: order_id,
+        handler: async function (response) {
+  await axiosInstance.post("/orders/razorpay/verify-payment/", {
+    razorpay_order_id: response.razorpay_order_id,
+    razorpay_payment_id: response.razorpay_payment_id,
+    razorpay_signature: response.razorpay_signature,
+    items: [{ product_id: actualProduct.id, quantity: 1 }],
+    shippingDetails: details,
+    payment_method: "RAZORPAY",
+  });
+
+  await refreshOrders();   // <--- FIXED
+
+  toast.success("Payment successful! ✅");
+  removeCart(actualProduct.id);
+  navigate("/orders");
+}
+,
+        prefill: {
+          name: details.name,
+          email: user.email,
+          contact: details.phone,
+        },
+        theme: { color: "#d48b6e" },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (err) {
+      console.error("Razorpay error:", err);
+      toast.error("Payment failed, please try again.");
+    }
   };
 
   return (
@@ -234,8 +310,8 @@ function OrderConfirm() {
       <div className="checkout-container">
         <h2 className="checkout-heading">Confirm Your Order</h2>
 
-        <h3>Product: {product.name}</h3>
-        <p>Price: ₹{product.price}</p>
+        <h3>Product: {actualProduct.name}</h3>
+        <p>Price: ₹{actualProduct.price}</p>
 
         <h4>Delivery Details:</h4>
         <p>{details.name}</p>

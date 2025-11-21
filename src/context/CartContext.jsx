@@ -103,24 +103,29 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const { user } = useContext(AuthContext);
   const [cart, setCart] = useState([]);
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
-  // Load cart from DB on user login
   useEffect(() => {
     const fetchCart = async () => {
-      if (user) {
-        const res = await getUserCart(user.id);
-        setCart(res.data);
-      } else {
+      if (!user) {
         setCart([]);
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const res = await getUserCart();
+        setCart(res.data);
+      } catch (err) {
+        console.log("Cart fetch error:", err.response?.data || err);
       }
       setLoading(false);
     };
+
     fetchCart();
   }, [user]);
 
-  // Add item to cart
   const addCart = async (product) => {
     if (!user) {
       alert("Please login first to add items to cart");
@@ -129,49 +134,54 @@ export const CartProvider = ({ children }) => {
     }
     if (user.role === "admin") return;
 
-    const existing = cart.find((item) => item.id === product.id);
-    if (existing) return;
+    try {
+      const res = await addCartToDB(product);
+      const existing = cart.find((item) => item.id === res.data.id);
 
-    const newItem = { ...product, quantity: 1, userId: user.id };
-    const res = await addCartToDB(newItem);
-    setCart((prev) => [...prev, res.data]);
-  };
-
-  // Remove from cart
-  const removeCart = async (id) => {
-    await removeCartFromDB(id);
-    setCart((prev) => prev.filter((item) => item.id !== id));
-  };
-
-  // Clear entire cart
-  const clearCart = async () => {
-    if (user) {
-      await clearCartFromDB(user.id);
-      setCart([]);
+      if (!existing) setCart((prev) => [...prev, res.data]);
+      else setCart((prev) =>
+        prev.map((item) => (item.id === res.data.id ? res.data : item))
+      );
+    } catch (err) {
+      console.log("Add cart error:", err.response?.data || err);
     }
   };
 
-  // Increase quantity
-  const increaseQuantity = async (id) => {
-    const updatedCart = cart.map((item) =>
-      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-    );
-    setCart(updatedCart);
-    const item = updatedCart.find((i) => i.id === id);
-    await updateCartItem(id, item);
+  const removeCart = async (id) => {
+    try {
+      await removeCartFromDB(id);
+      setCart((prev) => prev.filter((item) => item.id !== id));
+    } catch (err) {
+      console.log(err.response?.data || err);
+    }
   };
 
-  // Decrease quantity
-  const decreaseQuantity = async (id) => {
-    const updatedCart = cart.map((item) =>
-      item.id === id && item.quantity > 1
-        ? { ...item, quantity: item.quantity - 1 }
-        : item
-    );
-    setCart(updatedCart);
-    const item = updatedCart.find((i) => i.id === id);
-    await updateCartItem(id, item);
+  const clearCart = async () => {
+    try {
+      await clearCartFromDB();
+      setCart([]);
+    } catch (err) {
+      console.log(err.response?.data || err);
+    }
   };
+
+  const increaseQuantity = async (id) => {
+  try {
+    const res = await updateCartItem(id, 1);
+    setCart((prev) => prev.map((i) => (i.id === id ? res.data : i)));
+  } catch (err) {
+    console.log(err.response?.data || err);
+  }
+};
+
+const decreaseQuantity = async (id) => {
+  try {
+    const res = await updateCartItem(id, -1);
+    setCart((prev) => prev.map((i) => (i.id === id ? res.data : i)));
+  } catch (err) {
+    console.log(err.response?.data || err);
+  }
+};
 
   return (
     <CartContext.Provider
@@ -179,9 +189,9 @@ export const CartProvider = ({ children }) => {
         cart,
         addCart,
         removeCart,
+        clearCart,
         increaseQuantity,
         decreaseQuantity,
-        clearCart,
         loading,
       }}
     >

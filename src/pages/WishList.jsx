@@ -61,7 +61,11 @@ function WishList() {
   }
 
   if (wishlist.length === 0) {
-    return <p style={{ textAlign: "center", marginTop: "50px" }}>Your wishlist is empty.</p>;
+    return <>
+    
+    <Navbar/>
+    <p style={{ textAlign: "center", marginTop: "50px" }}>Your wishlist is empty.</p>
+    </>;
   }
 
   return (
@@ -72,9 +76,9 @@ function WishList() {
       <div className="wishlist-grid">
         {wishlist.map((item) => (
           <div className="wishlist-card" key={item.id}>
-            <img src={item.image} alt={item.name} />
-            <h4>{item.name}</h4>
-            <p>₹{item.price}</p>
+            <img src={item.product.image} alt={item.product.name} />
+<h4>{item.product.name}</h4>
+<p>₹{item.product.price}</p>
             <button className="remove-btn" onClick={() => removeWishlist(item.id)}>
               Remove
             </button>

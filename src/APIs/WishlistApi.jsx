@@ -1,18 +1,16 @@
-import axios from "axios";
+import axiosInstance from "./axiosInstance";  // use your JWT-enabled instance
 
-const API = "https://dbrender-liu7.onrender.com/wishlist";
+const API = "/wishlist/";
 
 // Add item to wishlist
-export const addWishlistToDB = (item) => axios.post(API, item);
+export const addWishlistToDB = (product) =>
+  axiosInstance.post(API, { product_id: product.id });
 
-// Get wishlist items for a user
-export const getUserWishlist = (userId) => axios.get(`${API}?userId=${userId}`);
+// Get wishlist items for the logged-in user
+export const getUserWishlist = () => axiosInstance.get(API);
 
-// Remove item from wishlist
-export const removeWishlistFromDB = (id) => axios.delete(`${API}/${id}`);
+// Remove single wishlist item
+export const removeWishlistFromDB = (id) => axiosInstance.delete(`${API}${id}/`);
 
-// Clear wishlist for a user
-export const clearWishlistFromDB = async (userId) => {
-  const res = await axios.get(`${API}?userId=${userId}`);
-  await Promise.all(res.data.map((item) => axios.delete(`${API}/${item.id}`)));
-};
+// Clear entire wishlist
+export const clearWishlistFromDB = () => axiosInstance.delete(API);

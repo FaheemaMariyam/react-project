@@ -204,8 +204,23 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
+.summary-actions {
+  display: flex;
+  gap: 10px; /* space between buttons */
+}
 
-.buy-all-btn:hover {
+.buy-all-btn, .clear-cart-btn {
+  flex: 1; /* make them equal width */
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  background: rgb(150, 101, 45);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.buy-all-btn,.clear-cart-btn:hover {
   background: rgb(107, 76, 19);
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);

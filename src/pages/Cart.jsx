@@ -137,20 +137,22 @@ function Cart() {
   const navigate = useNavigate();
 
   const totalPrice = cart.reduce(
-    (total, item) => total + Number(item.price || 0) * (item.quantity || 0),
+    (total, item) => total + Number(item.product.price || 0) * (item.quantity || 0),
     0
   );
 
-  if (!user || user.role === "admin") {
-    return <p>Cannot access this page</p>;
-  }
+  if (user === null) return <p>Loading...</p>;
+  if (user.role === "admin") return <p>Cannot access this page</p>;
 
   if (loading) {
     return <p style={{ textAlign: "center", marginTop: "50px" }}>Loading cart...</p>;
   }
 
   if (cart.length === 0) {
-    return <p className="empty-msg">Your cart is empty.</p>;
+    return <>
+    <Navbar/>
+    <p className="empty-msg">Your cart is empty.</p>
+    </>;
   }
 
   const handleBuyNow = (product) => navigate("/checkout", { state: { product } });
@@ -166,9 +168,9 @@ function Cart() {
         <div className="cart-grid">
           {cart.map((p) => (
             <div className="cart-card" key={p.id}>
-              <img src={p.image} alt={p.name} />
-              <h3>{p.name}</h3>
-              <p>₹{p.price}</p>
+              <img src={p.product.image} alt={p.product.name} />
+              <h3>{p.product.name}</h3>
+              <p>₹{p.product.price}</p>
 
               <div className="quantity-container">
                 <button onClick={() => increaseQuantity(p.id)}>+</button>
@@ -193,9 +195,14 @@ function Cart() {
           <h3>Order Summary</h3>
           <p>Total Items: {cart.length}</p>
           <p>Total Price: <strong>₹{totalPrice}</strong></p>
-          <button className="buy-all-btn" onClick={handleBuyAll}>
-            Proceed to Checkout
-          </button>
+          <div className="summary-actions">
+    <button className="buy-all-btn" onClick={handleBuyAll}>
+      Proceed to Checkout
+    </button>
+    <button className="clear-cart-btn" onClick={clearCart}>
+      Clear Cart
+    </button>
+  </div>
         </div>
       </div>
     </div>

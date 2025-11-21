@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import axiosInstance from "../../APIs/axiosInstance";
 import "./AdminAddProducts.css";
 function AdminAddProducts() {
   const [newProduct, setNewProduct] = useState({
@@ -17,24 +18,37 @@ function AdminAddProducts() {
   const addProduct = (e) => {
     e.preventDefault();
     setError("");
-    axios
-      .post("https://dbrender-liu7.onrender.com/products", newProduct)
-      .then(() => {
-        setNewProduct({
-          name: "",
-          price: "",
-          description: "",
-          image: "",
-          stock: "",
-          categoryId: 1,
-        });
-        navigate("/admin/products");
-      })
-      .catch((err) => {
-        console.error(err);
-        setError("Failed to add product. Please try again");
+    const formData = new FormData();
+  formData.append("name", newProduct.name);
+  formData.append("description", newProduct.description);
+  formData.append("price", newProduct.price);
+  formData.append("stock", newProduct.stock);
+  formData.append("category", newProduct.categoryId);
+
+  if (newProduct.imageFile) {
+    formData.append("image", newProduct.imageFile);
+  }
+    axiosInstance
+    .post("/admin/products/", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+    .then(() => {
+      setNewProduct({
+        name: "",
+        description: "",
+        price: "",
+        stock: "",
+        categoryId: 1,
+        image: "",
+        imageFile: null,
       });
-  };
+      navigate("/admin/products");
+    })
+    .catch((err) => {
+      console.error(err);
+      setError("Failed to add product. Please try again");
+    });
+};
   const categories = [
     { id: 1, name: "Cookware & Bakeware" },
     { id: 2, name: "Kitchen Appliances" },
@@ -44,15 +58,18 @@ function AdminAddProducts() {
   ];
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setNewProduct({ ...newProduct, image: reader.result });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+  const file = e.target.files[0];
+  if (file) {
+    setNewProduct({ ...newProduct, imageFile: file });
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setNewProduct((prev) => ({ ...prev, image: reader.result }));
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
   return (
     <div>
       <div className="admin-add-product-page">
@@ -115,7 +132,19 @@ function AdminAddProducts() {
           </select>
 
           <label>Image</label>
-          <input type="file" onChange={handleImageChange} required />
+<input type="file" onChange={handleImageChange} required />
+
+{/* Image preview */}
+{newProduct.image && (
+  <div style={{ margin: "10px 0" }}>
+    <img
+      src={newProduct.image}
+      alt="Preview"
+      style={{ width: "100px", borderRadius: "5px" }}
+    />
+  </div>
+)}
+
 
           <button type="submit">Add Product</button>
         </form>

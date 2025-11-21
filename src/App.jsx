@@ -24,9 +24,9 @@ import { OrderProvider } from "./context/OrderContext";
 import ProductDetails from "./components/ProductDetails";
 import { Navigate } from "react-router-dom";
 import Checkout from "./components/Checkout";
-import Payment from "./components/Payment";
+// import Payment from "./components/Payment";
 import CheCkoutAll from "./components/CheCkoutAll";
-import PaymentAll from "./components/PaymentAll";
+// import PaymentAll from "./components/PaymentAll";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import AdminUsers from "./pages/Admin/AdminUsers";
 import AdminProducts from "./pages/Admin/AdminProducts";
@@ -93,9 +93,9 @@ function App() {
               <Route path="/logout" element={<Logout />} />
               <Route path="/product-details" element={<ProductDetails />} />
               <Route path="/checkout" element={<Checkout />} />
-              <Route path="/payment" element={<Payment />} />
+              {/* <Route path="/payment" element={<Payment />} /> */}
               <Route path="/checkout-all" element={<CheCkoutAll />} />
-              <Route path="/payment-all" element={<PaymentAll />} />
+              {/* <Route path="/payment-all" element={<PaymentAll />} /> */}
               <Route path="/order-confirm" element={<OrderConfirm />} />
               <Route path="/order-confirm-all" element={<OrderConfirmAll />} />
 

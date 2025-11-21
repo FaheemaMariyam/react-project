@@ -79,7 +79,8 @@ export const WishlistProvider = ({ children }) => {
   useEffect(() => {
     const fetchWishlist = async () => {
       if (user) {
-        const res = await getUserWishlist(user.id);
+        const res = await getUserWishlist();
+
         setWishlist(res.data);
       } else {
         setWishlist([]);
@@ -98,17 +99,15 @@ export const WishlistProvider = ({ children }) => {
     }
     if (user.role === "admin") return;
 
-    const existing = wishlist.find((item) => item.id === product.id);
-    if (existing) {
-      // Remove if exists
-      await removeWishlistFromDB(existing.id);
-      setWishlist(wishlist.filter((item) => item.id !== product.id));
-    } else {
-      // Add if not exists
-      const newItem = { ...product, userId: user.id };
-      const res = await addWishlistToDB(newItem);
-      setWishlist([...wishlist, res.data]);
-    }
+    const existing = wishlist.find((item) => item.product.id === product.id);
+if (existing) {
+  await removeWishlistFromDB(existing.id); // use wishlist record id
+  setWishlist(wishlist.filter((item) => item.product.id !== product.id));
+} else {
+  const res = await addWishlistToDB(product);
+  setWishlist([...wishlist, res.data]);
+}
+
   };
 
   // Remove single item
@@ -120,7 +119,7 @@ export const WishlistProvider = ({ children }) => {
   // Clear entire wishlist
   const clearWishlist = async () => {
     if (user) {
-      await clearWishlistFromDB(user.id);
+      await clearWishlistFromDB();
       setWishlist([]);
     }
   };

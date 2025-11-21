@@ -116,3 +116,32 @@
 .btn:hover {
   opacity: 0.9;
 }
+.search-wrapper {
+  position: relative;
+  width: 300px;
+}
+
+.suggestion-box {
+  position: absolute;
+  top: 38px;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 20;
+  padding: 0;
+  margin: 0;
+}
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+  list-style: none;
+  transition: 0.2s;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}

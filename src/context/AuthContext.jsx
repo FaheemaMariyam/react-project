@@ -1,43 +1,60 @@
 import React, { createContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-export const AuthContext=createContext();
-export const AuthProvider=({children})=>{
-const[user,setUser]=useState(()=>{
-    const savedUser=localStorage.getItem("user")
-    return savedUser? JSON.parse(savedUser): null;
-})
 
-const login=(userData)=>{
-    toast.success("Welcome")
-setUser(userData);
-localStorage.setItem("user",JSON.stringify(userData))
-}
-const logout=()=>{
-//    const confirm= window.confirm("Do you want to logout")
-//    if(confirm){
-//      setUser(null);
-//     localStorage.removeItem("user")
-   
-//     return true
-    
-    
-//    }
-//    return false;
- 
-  setUser(null);
-  localStorage.removeItem("user");
-   toast.success("Logout Successfully")
-//   window.alert("You have been logged out successfully!");
-  return true;
+export const AuthContext = createContext();
 
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem("user");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
 
-   
-   
-}
-return(
-    <AuthContext.Provider value={{user,setUser,login,logout}}>
-        {children}
+  const [accessToken, setAccessToken] = useState(() =>
+    localStorage.getItem("access_token") || null
+  );
+
+  const [refreshToken, setRefreshToken] = useState(() =>
+    localStorage.getItem("refresh_token") || null
+  );
+
+  const login = (userData, tokens) => {
+    toast.success("Welcome");
+
+    setUser(userData);
+    setAccessToken(tokens.access);
+    setRefreshToken(tokens.refresh);
+
+    localStorage.setItem("user", JSON.stringify(userData));
+    localStorage.setItem("access_token", tokens.access);
+    localStorage.setItem("refresh_token", tokens.refresh);
+  };
+
+  const logout = () => {
+    setUser(null);
+    setAccessToken(null);
+    setRefreshToken(null);
+
+    localStorage.removeItem("user");
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+
+    toast.success("Logout Successfully");
+    return true;
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        accessToken,
+        refreshToken,
+        login,
+        logout,
+        setUser,
+        setAccessToken,
+      }}
+    >
+      {children}
     </AuthContext.Provider>
-)
-}
+  );
+};

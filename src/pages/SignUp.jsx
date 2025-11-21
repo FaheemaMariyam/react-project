@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import "./Signup.css";
-import axios from "axios";
+import axiosInstance from "../APIs/axiosInstance";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const [formData, setFormData] = useState({
-    username: "",
+    name: "",
     phone: "",
     address: "",
     pin: "",
     email: "",
-    password: "",
-    role:"user",
-    blocked:false
+    password1: "",
+    password2: "",
+    role: "user",
   });
+
   const [error, setError] = useState({});
   const navigate = useNavigate();
 
@@ -25,16 +26,16 @@ function Signup() {
   const validate = () => {
     let newerror = {};
 
-    if (!formData.username.trim()) {
-      newerror.username = "Name is required";
-    } else if (formData.username.length < 3) {
-      newerror.username = "Name at least of 3 Letters";
+    if (!formData.name.trim()) {
+      newerror.name = "Name is required";
+    } else if (formData.name.length < 3) {
+      newerror.name = "Name must be at least 3 letters";
     }
 
     if (!formData.phone) {
       newerror.phone = "Phone number is required";
     } else if (!/^[0-9]{10}$/.test(formData.phone)) {
-      newerror.phone = "Enter a valid Phone number";
+      newerror.phone = "Enter a valid phone number";
     }
 
     if (!formData.address.trim()) {
@@ -42,9 +43,9 @@ function Signup() {
     }
 
     if (!formData.pin) {
-      newerror.pin = "Pin number is required";
+      newerror.pin = "PIN is required";
     } else if (!/^[0-9]{6}$/.test(formData.pin)) {
-      newerror.pin = "Enter a valid pin number";
+      newerror.pin = "Enter a valid PIN";
     }
 
     if (!formData.email.trim()) {
@@ -53,10 +54,14 @@ function Signup() {
       newerror.email = "Enter a valid email";
     }
 
-    if (!formData.password.trim()) {
-      newerror.password = "Password is required";
-    } else if (formData.password.length < 6) {
-      newerror.password = "Password must be at least of 6 characters";
+    if (!formData.password1.trim()) {
+      newerror.password1 = "Password is required";
+    } else if (formData.password1.length < 6) {
+      newerror.password1 = "Password must be at least 6 characters";
+    }
+
+    if (formData.password1 !== formData.password2) {
+      newerror.password2 = "Passwords do not match";
     }
 
     setError(newerror);
@@ -64,41 +69,57 @@ function Signup() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!validate()) return;
+  e.preventDefault();
+  if (!validate()) return;
 
-    try {
-      const res = await axios.post("https://dbrender-liu7.onrender.com/users", formData);
-      if (res.status === 201 || res.status === 200) {
-        alert("Signup successful, you can log in now");
-        navigate("/login");
-      } else {
-        alert("Signup failed, please try again.");
-      }
-    } catch (err) {
-      console.error("Error:", err);
-      alert("Something went wrong, please try again later");
+  try {
+    const res = await axiosInstance.post("/users/signup/", {
+  name: formData.name,
+  email: formData.email,
+  password1: formData.password1,  
+  password2: formData.password2,  
+  phone: formData.phone,
+  address: formData.address,
+  pin: formData.pin,
+  role: "user",
+});
+
+
+
+    if (res.status === 201 || res.status === 200) {
+      alert("Signup successful! You can log in now.");
+      navigate("/login");
     }
-  };
+
+  } catch (err) {
+  if (err.response) {
+    console.log("Signup Backend Error:", err.response.data);
+  } else {
+    console.log("Signup Error:", err);
+  }
+  alert("Signup failed. Please try again.");
+}
+
+};
+
 
   return (
     <div className="signup-container">
       <div className="signup-card">
         <h2>Create an Account</h2>
         <form onSubmit={handleSubmit} noValidate>
-        
-          <div className={`input-group ${error.username ? "error" : ""}`}>
+
+          <div className={`input-group ${error.name ? "error" : ""}`}>
             <label className="input-group-label">Full Name</label>
             <input
               type="text"
-              name="username"
-              value={formData.username}
+              name="name"
+              value={formData.name}
               onChange={handleInput}
             />
-            {error.username && <p className="error">{error.username}</p>}
+            {error.name && <p className="error">{error.name}</p>}
           </div>
 
-         
           <div className={`input-group ${error.phone ? "error" : ""}`}>
             <label className="input-group-label">Phone Number</label>
             <input
@@ -110,7 +131,6 @@ function Signup() {
             {error.phone && <p className="error">{error.phone}</p>}
           </div>
 
-      
           <div className={`input-group ${error.address ? "error" : ""}`}>
             <label className="input-group-label">Address</label>
             <input
@@ -122,7 +142,6 @@ function Signup() {
             {error.address && <p className="error">{error.address}</p>}
           </div>
 
-          
           <div className={`input-group ${error.pin ? "error" : ""}`}>
             <label className="input-group-label">PIN</label>
             <input
@@ -145,22 +164,28 @@ function Signup() {
             {error.email && <p className="error">{error.email}</p>}
           </div>
 
-        
-          <div className={`input-group ${error.password ? "error" : ""}`}>
+          <div className={`input-group ${error.password1 ? "error" : ""}`}>
             <label className="input-group-label">Password</label>
             <input
               type="password"
-              name="password"
-              value={formData.password}
+              name="password1"
+              value={formData.password1}
               onChange={handleInput}
             />
-            {error.password && <p className="error">{error.password}</p>}
           </div>
 
-         
-          <button type="submit" className="submit-btn">
-            Sign Up
-          </button>
+          <div className={`input-group ${error.password2 ? "error" : ""}`}>
+            <label className="input-group-label">Confirm Password</label>
+            <input
+              type="password"
+              name="password2"
+              value={formData.password2}
+              onChange={handleInput}
+            />
+            {error.password2 && <p className="error">{error.password2}</p>}
+          </div>
+
+          <button type="submit" className="submit-btn">Sign Up</button>
         </form>
       </div>
     </div>

@@ -18,7 +18,7 @@ function Profile() {
        
             <h2>My Profile</h2>
             <div className='profile-details'>
-            <p><strong>Full Name:</strong>{user.username}</p>
+            <p><strong>Full Name:</strong>{user.name}</p>
              <p><strong>Phone:</strong>{user.phone}</p>
               <p><strong>Address:</strong>{user.address}</p>
                <p><strong>PIN:</strong>{user.pin}</p>

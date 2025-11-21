@@ -200,6 +200,7 @@ import "./Products.css";
 import Navbar from "../components/Navbar";
 import { WishlistContext } from "../context/wishlistContext";
 import { CartContext } from "../context/CartContext";
+import axiosInstance from "../APIs/axiosInstance";
 
 const categories = [
   { id: 1, name: "Cookware & Bakeware" },
@@ -215,81 +216,98 @@ const Products = () => {
 
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearch,setDebouncedSearch]=useState("")
   const location = useLocation();
   const navigate = useNavigate();
 
   const params = new URLSearchParams(location.search);
   const categoryId = params.get("category");
 
+  const [pageNumber, setPageNumber] = useState(1);
+  const [sortValue, setSortValue] = useState("");
+  const [totalPages, setTotalPages] = useState(1);
+
   useEffect(() => {
-    fetch("https://dbrender-liu7.onrender.com/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((err) => console.log(err));
-  }, []);
+    const fetchProducts = async () => {
+      try {
+        const res = await axiosInstance.get("/products/", {
+          params: {
+            page: pageNumber,
+            search: debouncedSearch || "",
+            ordering: sortValue || "",
+            category: categoryId || "",
+          },
+        });
 
-  const filteredProducts = products
-    .filter((p) => !categoryId || p.categoryId === Number(categoryId))
-    .filter((p) => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
+        setProducts(res.data.results);
+        setTotalPages(res.data.total_pages);
+      } catch (err) {
+        console.log("Error fetching products:", err);
+      }
+    };
 
+    fetchProducts();
+  }, [debouncedSearch, sortValue, categoryId, pageNumber]);
+  useEffect(() => {
+  const timer = setTimeout(() => {
+    setDebouncedSearch(searchTerm);
+    setPageNumber(1);
+  }, 400);
+
+  return () => clearTimeout(timer);
+}, [searchTerm]);
+
+  // DIRECT BACKEND SORTING
+  const handleSort = (value) => {
+    setSortValue(value);
+    setPageNumber(1);
+  };
+
+  // CATEGORY NAVIGATION
   const handleCategoryClick = (id) => {
-    if (id === "all") {
-      navigate("/products");
-    } else {
-      navigate(`/products?category=${id}`);
-    }
-  };
-
-  const sortByPriceLowHigh = () => {
-    setProducts((prev) => [...prev].sort((a, b) => a.price - b.price));
-  };
-  const sortByPriceHighLow = () => {
-    setProducts((prev) => [...prev].sort((a, b) => b.price - a.price));
-  };
-  const sortByAtoZ = () => {
-    setProducts((prev) =>
-      [...prev].sort((a, b) => a.name.localeCompare(b.name))
-    );
-  };
-  const sortByZtoA = () => {
-    setProducts((prev) =>
-      [...prev].sort((a, b) => b.name.localeCompare(a.name))
-    );
+    setPageNumber(1);
+    if (id === "all") navigate("/products");
+    else navigate(`/products?category=${id}`);
   };
 
   return (
     <div className="products-page">
       <Navbar />
 
+      {/* SORT + SEARCH */}
       <div className="sort-search-row">
         <div className="sort-left">
-          <button className="sort-btn" onClick={sortByPriceLowHigh}>
+          <button className="sort-btn" onClick={() => handleSort("price")}>
             Low–High
           </button>
-          <button className="sort-btn" onClick={sortByPriceHighLow}>
+          <button className="sort-btn" onClick={() => handleSort("-price")}>
             High–Low
           </button>
-          <button className="sort-btn" onClick={sortByAtoZ}>
+          <button className="sort-btn" onClick={() => handleSort("name")}>
             A-Z
           </button>
-          <button className="sort-btn" onClick={sortByZtoA}>
+          <button className="sort-btn" onClick={() => handleSort("-name")}>
             Z-A
           </button>
         </div>
 
+        {/* SEARCH */}
         <div className="search-container">
           <input
             type="text"
             placeholder="Search..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setPageNumber(1);
+            }}
           />
           <FaSearch className="search-icon" />
 
           {searchTerm.length > 0 && (
             <div className="search-dropdown">
-              {filteredProducts.length > 0 ? (
-                filteredProducts.map((product) => (
+              {products.length > 0 ? (
+                products.map((product) => (
                   <div
                     key={product.id}
                     className="search-item"
@@ -309,6 +327,7 @@ const Products = () => {
         </div>
       </div>
 
+      {/* CATEGORY BUTTONS */}
       <div className="category-buttons">
         <button
           className={`category-btn ${!categoryId ? "active" : ""}`}
@@ -316,6 +335,7 @@ const Products = () => {
         >
           All
         </button>
+
         {categories.map((cat) => (
           <button
             key={cat.id}
@@ -327,9 +347,10 @@ const Products = () => {
         ))}
       </div>
 
+      {/* PRODUCT GRID */}
       <div className="products-grid">
-        {filteredProducts.map((p) => {
-          const isInWishlist = wishlist.some((item) => item.id === p.id);
+        {products.map((p) => {
+          const isInWishlist = wishlist.some((item) => item.product.id === p.id);
           return (
             <div key={p.id} className="product-card">
               <div
@@ -365,7 +386,27 @@ const Products = () => {
             </div>
           );
         })}
-        {filteredProducts.length === 0 && <p>No products found.</p>}
+
+        {products.length === 0 && <p>No products found.</p>}
+      </div>
+
+      {/* PAGINATION BUTTONS */}
+      <div className="pagination">
+        <button className="add-to-cart-btn"
+          disabled={pageNumber === 1}
+          onClick={() => setPageNumber(pageNumber - 1)}
+        >
+          Previous
+        </button>
+        <span>
+          Page {pageNumber} of {totalPages}
+        </span>
+        <button className="add-to-cart-btn"
+          disabled={pageNumber === totalPages}
+          onClick={() => setPageNumber(pageNumber + 1)}
+        >
+          Next
+        </button>
       </div>
     </div>
   );

@@ -3,18 +3,29 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Categories.css";
-
+import axiosInstance from "../APIs/axiosInstance";
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      const res = await axios.get("https://dbrender-liu7.onrender.com/categories");
-      setCategories(res.data);
-    };
-    fetchCategories();
-  }, []);
+  const fetchCategories = async () => {
+    try {
+      const res = await axiosInstance.get("/categories/");
+      const data = res.data;
+
+      // If paginated → use results, else use full array
+      setCategories(data.results || data);
+    } catch (err) {
+      console.log("Error fetching categories:", err);
+      setCategories([]); // prevent map crash
+    }
+  };
+
+  fetchCategories();
+}, []);
+
+
 
   const handleClick = (id) => navigate(`/products?category=${id}`);
 

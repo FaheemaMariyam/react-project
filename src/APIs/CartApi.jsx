@@ -1,21 +1,21 @@
-import axios from "axios";
+import axiosInstance from "./axiosInstance";
 
-const API = "https://dbrender-liu7.onrender.com/cart";
+const API = "/cart/";
 
-// Add item to cart
-export const addCartToDB = (item) => axios.post(API, item);
+// get all cart items for the logged-in user
+export const getUserCart = () => axiosInstance.get(API);
 
-// Get cart items for a user
-export const getUserCart = (userId) => axios.get(`${API}?userId=${userId}`);
+// add item to cart (or increment quantity if exists)
+export const addCartToDB = (product) =>
+  axiosInstance.post(API, { product_id: product.id, quantity: 1 });
 
-// Update cart item (e.g., quantity)
-export const updateCartItem = (id, item) => axios.patch(`${API}/${id}`, item);
+// update cart item quantity
+export const updateCartItem = (productId, delta) =>
+  axiosInstance.patch(`${API}${productId}/`, { delta });
 
-// Remove item from cart
-export const removeCartFromDB = (id) => axios.delete(`${API}/${id}`);
 
-// Clear cart for a user
-export const clearCartFromDB = async (userId) => {
-  const res = await axios.get(`${API}?userId=${userId}`);
-  await Promise.all(res.data.map((item) => axios.delete(`${API}/${item.id}`)));
-};
+// remove single cart item
+export const removeCartFromDB = (id) => axiosInstance.delete(`${API}${id}/`);
+
+// clear entire cart
+export const clearCartFromDB = () => axiosInstance.delete(API);

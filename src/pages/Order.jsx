@@ -127,7 +127,10 @@ function Order() {
   }
 
   if (!orders || orders.length === 0) {
-    return <p style={{ textAlign: "center", marginTop: "50px" }}>You have no orders yet.</p>;
+    return <>
+    <Navbar/>
+     <p style={{ textAlign: "center", marginTop: "50px" }}>You have no orders yet.</p>
+     </>;
   }
 
   const handleCancel = (id) => {
@@ -141,22 +144,24 @@ function Order() {
       <h3 className="order-heading">My Orders</h3>
 
       <div className="order-grid">
-        {orders.map((ord, index) => (
-          <div className="order-card" key={`${ord.id}-${index}`}>
-            <img src={ord.image} alt={ord.name} />
-            <h3 className="order-details-head">{ord.name}</h3>
-            <p className="order-details-text">₹{ord.price}</p>
-            <p className="order-details-text">Quantity: {ord.quantity}</p>
-            <p className="order-details-text">Status: {ord.status || "Pending"}</p>
-            <p className="order-details-text">Ordered on: {ord.date || "NA"}</p>
+        {orders.map((ord) => (
+  <div key={ord.id} className="order-card">
+    {ord.items.map((item) => (
+      <div key={item.id}>
+        <img src={item.product.image} alt={item.product.name} />
+        <h3>{item.product.name}</h3>
+        <p>₹{item.price}</p>
+        <p>Quantity: {item.quantity}</p>
+      </div>
+    ))}
+    <p>Status: {ord.status}</p>
+    <p>Ordered on: {new Date(ord.ordered_at).toLocaleDateString()}</p>
+    {["Pending", "Processing", "Shipped"].includes(ord.status) && (
+      <button onClick={() => cancelOrder(ord.id)}>Cancel Order</button>
+    )}
+  </div>
+))}
 
-            {["Pending", "shipped", "processing"].includes(ord.status) && (
-              <button className="cancel-btn" onClick={() => handleCancel(ord.id)}>
-                Cancel Order
-              </button>
-            )}
-          </div>
-        ))}
       </div>
     </div>
   );

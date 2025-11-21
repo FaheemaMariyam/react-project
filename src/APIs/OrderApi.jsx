@@ -1,10 +1,14 @@
+import axiosInstance from "./axiosInstance";
 
-import axios from "axios";
-const API = "https://dbrender-liu7.onrender.com/orders";
+const API = "/orders/";
 
-export const addOrderToDB = (order) => axios.post(API, order);
-export const getOrdersFromDB = () => axios.get(API);
-export const getUserOrders = (userId,username) => axios.get(`${API}?userId=${userId}&username=${username}`);
+// Get user orders
+export const getUserOrders = () => axiosInstance.get(API);
 
+
+// Add a new order
+export const addOrderToDB = (order) => axiosInstance.post(API, order);
+
+// Update order status
 export const updateOrderStatus = (orderId, status) =>
-  axios.patch(`${API}/${orderId}`, { status });
+  axiosInstance.patch(`${API}${orderId}/status/`, { status });
