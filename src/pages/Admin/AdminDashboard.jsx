@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axiosInstance from "../../APIs/axiosInstance";
 import {
   LineChart,
   Line,
@@ -14,36 +14,45 @@ import {
 import "./AdminDashboard.css";
 
 function AdminDashboard() {
-  const [users, setUsers] = useState([]);
-  const [products, setProducts] = useState([]);
-  const [orders, setOrders] = useState([]);
+  const [totalUsers, setTotalUsers] = useState(0);
+  const [totalProducts, setTotalProducts] = useState(0);
+  const [totalOrders, setTotalOrders] = useState(0);
+  const [totalRevenue, setTotalRevenue] = useState(0);
+
+  const [revenueData, setRevenueData] = useState([]);
+  const [statusCounts, setStatusCounts] = useState([]);
+  const [recentOrders, setRecentOrders] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get("https://dbrender-liu7.onrender.com/users").then((res) => setUsers(res.data));
-    axios
-      .get("https://dbrender-liu7.onrender.com/products")
-      .then((res) => setProducts(res.data));
-    axios
-      .get("https://dbrender-liu7.onrender.com/orders")
-      .then((res) => setOrders(res.data));
+    setLoading(true);
+    setError(null);
+
+    axiosInstance
+      .get("/admin/dashboard/")
+      .then((res) => {
+        const d = res.data;
+
+        // Map DRF keys → State
+        setTotalUsers(d.total_users ?? 0);
+        setTotalProducts(d.total_products ?? 0);
+        setTotalOrders(d.total_orders ?? 0);
+        setTotalRevenue(d.total_revenue ?? 0);
+
+        setRevenueData(d.revenue_trend ?? []);
+
+        setStatusCounts(d.status_counts ?? []);
+
+        setRecentOrders(d.recent_orders ?? []);
+      })
+      .catch((err) => {
+        console.error("Dashboard load error:", err);
+        setError("Failed to load dashboard");
+      })
+      .finally(() => setLoading(false));
   }, []);
-
-  const totalUsers = users.length;
-  const totalProducts = products.length;
-  const totalOrders = orders.length;
-  const totalRevenue = orders.reduce((sum, o) => sum + (o.price || 0), 0);
-
-  const revenueData = orders.map((o) => ({
-    date: o.date,
-    revenue: o.price,
-  }));
-
-  const statusCounts = ["pending", "shipped", "delivered", "cancelled"].map(
-    (status) => ({
-      name: status,
-      value: orders.filter((o) => o.status?.toLowerCase() === status).length,
-    })
-  );
 
   const colors = ["#FFB6C1", "#FFDAB9", "#90EE90", "#87CEFA"];
 
@@ -115,21 +124,22 @@ function AdminDashboard() {
             </tr>
           </thead>
           <tbody>
-            {orders.slice(-5).map((ord) => (
-              <tr key={ord.id}>
-                <td>{ord.id}</td>
-                <td>{ord.username}</td>
-                <td>{ord.name}</td>
-                <td>₹{ord.price}</td>
-                <td>
-                  <span className={`status-badge ${ord.status?.toLowerCase()}`}>
-                    {ord.status}
-                  </span>
-                </td>
-                <td>{ord.date}</td>
-              </tr>
-            ))}
-          </tbody>
+  {recentOrders.map((ord) => (
+    <tr key={ord.id}>
+      <td>{ord.id}</td>
+      <td>{ord.user?.name}</td>
+      <td>{ord.items?.[0]?.product?.name}</td>
+      <td>₹{ord.total_price}</td>
+      <td>
+        <span className={`status-badge ${ord.status?.toLowerCase()}`}>
+          {ord.status}
+        </span>
+      </td>
+      <td>{ord.ordered_at}</td>
+    </tr>
+  ))}
+</tbody>
+
         </table>
       </div>
     </div>

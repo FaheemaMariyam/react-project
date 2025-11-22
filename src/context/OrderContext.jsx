@@ -163,23 +163,36 @@ export const OrderProvider = ({ children }) => {
 
   // Add single order (Buy Now)
   const addOrder = async ({ items, shippingDetails, payment_method }) => {
-    try {
-      const payload = { items, ...shippingDetails, payment_method };
-      const res = await addOrderToDB(payload);
+  try {
+    // Backend expects shipping fields at top level, not nested
+    const payload = {
+      items,
+      name: shippingDetails.name,
+      address: shippingDetails.address,
+      city: shippingDetails.city,
+      pin: shippingDetails.pin,
+      phone: shippingDetails.phone,
+      payment_method,
+    };
 
-      const updated = await getUserOrders();
-      setOrders(normalizeOrders(updated.data));
+    const res = await addOrderToDB(payload);
 
-      return res.data;
-    } catch (err) {
-      console.error(err);
-    }
-  };
+    const updated = await getUserOrders();
+    setOrders(normalizeOrders(updated.data));
+
+    return res.data;
+  } catch (err) {
+    console.error("Add Order error:", err);
+    throw err;
+  }
+};
+
+  
 
   // Buy All Order (Bulk)
   const buyAll = async (cartItems, shippingDetails, payment_method) => {
   try {
-    const items = cartItems.map((item) => ({
+    const items = cartItems.map(item => ({
       product_id: item.product.id,
       quantity: item.quantity,
     }));
@@ -205,6 +218,7 @@ export const OrderProvider = ({ children }) => {
     throw err;
   }
 };
+
 
 
   // Cancel order

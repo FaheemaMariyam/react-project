@@ -265,6 +265,11 @@ function Login() {
             Sign up
           </span>
         </p>
+        <p className="home-text" onClick={() => navigate("/")}>
+  ⌂ Home
+</p>
+
+
       </div>
     </div>
   );

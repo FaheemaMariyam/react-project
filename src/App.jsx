@@ -90,7 +90,7 @@ function App() {
               <Route path="/wishlist" element={<WishList />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/profile" element={<Profile />} />
-              <Route path="/logout" element={<Logout />} />
+              
               <Route path="/product-details" element={<ProductDetails />} />
               <Route path="/checkout" element={<Checkout />} />
               {/* <Route path="/payment" element={<Payment />} /> */}

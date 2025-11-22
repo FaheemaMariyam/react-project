@@ -64,7 +64,7 @@ function AdminOrders() {
 
       {/* Tabs */}
       <div className="tabs">
-        {["all", "pending", "shipped", "delivered", "cancelled"].map((tab) => (
+        {["all", "pending","processing", "shipped", "delivered", "cancelled"].map((tab) => (
           <button
             key={tab}
             onClick={() => setFilter(tab)}

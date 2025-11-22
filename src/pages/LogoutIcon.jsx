@@ -34,18 +34,14 @@ function LogoutIcon({ className }) {
   const handleLogout = () => {
     logout();
     navigate("/");
-  }
+  };
 
   return (
-    <span 
-      className={className} 
-      onClick={handleLogout} 
-      style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center' }}
-      title="Logout"
-    >
+    <span className={className} onClick={handleLogout} style={{ cursor: 'pointer' }}>
       <FaSignOutAlt />
     </span>
   );
 }
+
 
 export default LogoutIcon;

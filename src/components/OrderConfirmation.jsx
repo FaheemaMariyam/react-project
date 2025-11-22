@@ -216,7 +216,8 @@ function OrderConfirm() {
   }
 
   // Use actual product object for cleaner access
-  const actualProduct = p.product;
+  const actualProduct = p.product || p;
+
 
   console.log("OrderConfirm location.state:", location.state);
 
@@ -225,13 +226,10 @@ function OrderConfirm() {
     try {
       await addOrder({
   items: [{ product_id: actualProduct.id, quantity: 1 }],
-  name: details.name,
-  address: details.address,
-  city: details.city,
-  pin: details.pin,
-  phone: details.phone,
+  shippingDetails: details,
   payment_method: "COD",
 });
+
 
 
       removeCart(actualProduct.id);
