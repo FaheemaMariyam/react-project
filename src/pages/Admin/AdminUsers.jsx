@@ -6,32 +6,37 @@ function AdminUsers() {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
+  // Fetch users with pagination and optional search
   const fetchUsers = () => {
+    let url = `/admin/users/?page=${page}`;
+    if (debouncedSearch) url += `&search=${debouncedSearch}`;
+
     axiosInstance
-      .get(`/admin/users/?search=${debouncedSearch}`)
-      .then((res) => setUsers(res.data.results))
+      .get(url)
+      .then((res) => {
+        setUsers(res.data.results);
+        setTotalPages(res.data.total_pages);
+      })
       .catch((err) => console.error(err));
   };
-
-  // Initial fetch
-  useEffect(() => {
-    fetchUsers();
-  }, []);
 
   // Debounce search input
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearch(searchTerm);
-    }, 400); // delay same as product page
+      setPage(1); // Reset to first page on new search
+    }, 400);
 
     return () => clearTimeout(timer);
   }, [searchTerm]);
 
-  // Fetch when debouncedSearch updates
+  // Refetch whenever page or search changes
   useEffect(() => {
     fetchUsers();
-  }, [debouncedSearch]);
+  }, [page, debouncedSearch]);
 
   const toggleBlock = (user) => {
     axiosInstance
@@ -46,8 +51,6 @@ function AdminUsers() {
       .then(fetchUsers)
       .catch(console.error);
   };
-
-  const filteredUsers = users.filter((u) => u.role !== "admin");
 
   return (
     <div className="admin-users">
@@ -66,7 +69,7 @@ function AdminUsers() {
           <tr>
             <th></th>
             <th>User ID</th>
-            <th>Username</th>
+            <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
             <th>Address</th>
@@ -77,10 +80,10 @@ function AdminUsers() {
         </thead>
 
         <tbody>
-          {filteredUsers.length > 0 ? (
-            filteredUsers.map((user, index) => (
+          {users.length > 0 ? (
+            users.map((user, index) => (
               <tr key={user.id}>
-                <td>{index + 1}</td>
+                <td>{index + 1 + (page - 1) * 10}</td>
                 <td>{user.id}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
@@ -126,6 +129,31 @@ function AdminUsers() {
           )}
         </tbody>
       </table>
+
+      {/* Pagination */}
+      <div className="pagination">
+        <button
+          className="pagination-btn"
+          disabled={page <= 1}
+          onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+        >
+          Previous
+        </button>
+
+        <span>
+          Page {page} of {totalPages}
+        </span>
+
+        <button
+          className="pagination-btn"
+          disabled={page >= totalPages}
+          onClick={() =>
+            setPage((prev) => Math.min(prev + 1, totalPages))
+          }
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }

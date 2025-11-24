@@ -145,3 +145,15 @@
 .suggestion-item:hover {
   background-color: #f0f0f0;
 }
+.pagination-btn {
+  padding: 3px 8px;
+  background-color: #32616d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: fit-content;
+  margin-top: 10px;
+}

@@ -155,7 +155,14 @@ function Cart() {
     </>;
   }
 
-  const handleBuyNow = (product) => navigate("/checkout", { state: { product } });
+  const handleBuyNow = (cartItem) =>
+  navigate("/checkout", {
+    state: {
+  product: cartItem,   // send full cart item
+}
+
+  });
+
   const handleBuyAll = () => navigate("/checkout-all", { state: { cart } });
 
   return (
@@ -182,9 +189,13 @@ function Cart() {
                 <button className="remove-btn" onClick={() => removeCart(p.id)}>
                   Remove
                 </button>
-                <button className="buy-now-btn" onClick={() => handleBuyNow(p)}>
+                {/* <button className="buy-now-btn" onClick={() => handleBuyNow(p)}>
                   Buy Now
-                </button>
+                </button> */}
+                <button className="buy-now-btn" onClick={() => handleBuyNow(p)}>
+  Buy Now
+</button>
+
               </div>
             </div>
           ))}

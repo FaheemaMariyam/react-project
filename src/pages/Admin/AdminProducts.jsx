@@ -7,6 +7,7 @@ function AdminProducts() {
   const [products, setProducts] = useState([]);
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [sortValue, setSortValue] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
@@ -27,7 +28,7 @@ function AdminProducts() {
     axiosInstance
       .get("/admin/products/", {
         params: {
-          search: searchTerm || "",
+          search: debouncedSearch || "",
           ordering: sortValue || "",
           page: pageNumber,
           category: selectedCategory || "",
@@ -35,14 +36,22 @@ function AdminProducts() {
       })
       .then((res) => {
         setProducts(res.data.results);
-        setTotalPages(res.data.total_pages);
+        setTotalPages(Math.ceil(res.data.count / 10));
       })
       .catch((err) => console.error(err));
   };
 
   useEffect(() => {
     fetchProducts();
-  }, [searchTerm, sortValue, selectedCategory, pageNumber]);
+  }, [debouncedSearch, sortValue, selectedCategory, pageNumber]);
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setDebouncedSearch(searchTerm);
+    setPageNumber(1);
+  }, 400);
+
+  return () => clearTimeout(timer);
+}, [searchTerm]);
 
   const handleDelete = (p) => {
     axiosInstance
@@ -77,10 +86,8 @@ function AdminProducts() {
           type="text"
           placeholder="Search products..."
           value={searchTerm}
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-            setPageNumber(1);
-          }}
+          onChange={(e) => setSearchTerm(e.target.value)}
+
         />
       </div>
 
@@ -141,7 +148,7 @@ function AdminProducts() {
       {/* PAGINATION */}
       <div className="pagination">
         <button
-          className="edit-btn"
+          className="pagination-btn"
           disabled={pageNumber === 1}
           onClick={() => setPageNumber(pageNumber - 1)}
         >
@@ -153,7 +160,7 @@ function AdminProducts() {
         </span>
 
         <button
-          className="edit-btn"
+          className="pagination-btn"
           disabled={pageNumber === totalPages}
           onClick={() => setPageNumber(pageNumber + 1)}
         >

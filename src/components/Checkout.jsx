@@ -318,7 +318,14 @@ function Checkout() {
   }
 
   const goToConfirm = () => {
-    navigate("/order-confirm", { state: { product, details } });
+    navigate("/order-confirm", { 
+  state: { 
+    product,
+    quantity: product.quantity,   // IMPORTANT
+    details 
+  } 
+});
+
   };
 
   return (

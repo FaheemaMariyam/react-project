@@ -128,7 +128,20 @@ function AdminDashboard() {
     <tr key={ord.id}>
       <td>{ord.id}</td>
       <td>{ord.user?.name}</td>
-      <td>{ord.items?.[0]?.product?.name}</td>
+      {/* <td>{ord.items?.[0]?.product?.name}</td> */}
+      <td>
+  {(() => {
+    const count = ord.items?.length || 0;
+    if (count === 0) return "—";
+
+    const firstName = ord.items[0]?.product?.name || "Unknown";
+
+    return count === 1
+      ? firstName
+      : `${firstName} & ${count - 1} more`;
+  })()}
+</td>
+
       <td>₹{ord.total_price}</td>
       <td>
         <span className={`status-badge ${ord.status?.toLowerCase()}`}>

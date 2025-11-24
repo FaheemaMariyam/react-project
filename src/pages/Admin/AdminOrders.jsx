@@ -7,6 +7,7 @@ function AdminOrders() {
   const [orders, setOrders] = useState([]);
   const [filter, setFilter] = useState("all");
   const [selectedOrder, setSelectedOrder] = useState(null);
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -14,7 +15,8 @@ function AdminOrders() {
   // Fetch orders from backend with pagination & search
   const fetchOrders = () => {
     let url = `/admin/orders/?page=${page}`;
-    if (search) url += `&search=${search}`;
+    if (debouncedSearch) url += `&search=${debouncedSearch}`;
+
     axiosInstance
       .get(url)
       .then((res) => {
@@ -24,9 +26,18 @@ function AdminOrders() {
       .catch((err) => console.error(err));
   };
 
-  useEffect(() => {
-    fetchOrders();
-  }, [page, search]);
+ useEffect(() => {
+  const timer = setTimeout(() => {
+    setDebouncedSearch(search);
+    setPage(1);
+  }, 400);
+
+  return () => clearTimeout(timer);
+}, [search]);
+
+useEffect(() => {
+  fetchOrders();
+}, [page, debouncedSearch]);
 
   // Update order status
   const updateStatus = (id, newStatus) => {
@@ -55,11 +66,12 @@ function AdminOrders() {
       <div className="search-bar">
         <input
           type="text"
+          className="search-input"
           placeholder="Search by user or product..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button onClick={() => { setPage(1); fetchOrders(); }}>Search</button>
+        {/* <button onClick={() => { setPage(1); fetchOrders(); }}>Search</button> */}
       </div>
 
       {/* Tabs */}
@@ -135,6 +147,7 @@ function AdminOrders() {
       {/* Pagination buttons */}
       <div className="pagination">
         <button
+        className="pagination-btn"
           disabled={page <= 1}
           onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
         >
@@ -144,6 +157,7 @@ function AdminOrders() {
           Page {page} of {totalPages}
         </span>
         <button
+        className="pagination-btn"
           disabled={page >= totalPages}
           onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
         >

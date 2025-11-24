@@ -224,8 +224,33 @@
   color: #111;
   margin-right: 6px;
 }
+.search-input {
+  width: 300px;
+  padding: 10px 14px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
 
-
+.search-input:focus {
+  border-color: #4a3aff;
+  box-shadow: 0 0 6px rgba(74, 58, 255, 0.3);
+}
+.pagination-btn {
+  padding: 3px 8px;
+  background-color: #32616d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: fit-content;
+  margin-top: 10px;
+}
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }

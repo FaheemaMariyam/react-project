@@ -90,6 +90,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 import {
   addCartToDB,
   getUserCart,
@@ -126,26 +128,49 @@ export const CartProvider = ({ children }) => {
     fetchCart();
   }, [user]);
 
+  // const addCart = async (product) => {
+  //   if (!user) {
+  //     alert("Please login first to add items to cart");
+  //     navigate("/login");
+  //     return;
+  //   }
+  //   if (user.role === "admin") return;
+
+  //   try {
+  //     const res = await addCartToDB(product);
+  //     const existing = cart.find((item) => item.id === res.data.id);
+
+  //     if (!existing) setCart((prev) => [...prev, res.data]);
+  //     else setCart((prev) =>
+  //       prev.map((item) => (item.id === res.data.id ? res.data : item))
+  //     );
+  //   } catch (err) {
+  //     console.log("Add cart error:", err.response?.data || err);
+  //   }
+  // };
   const addCart = async (product) => {
-    if (!user) {
-      alert("Please login first to add items to cart");
-      navigate("/login");
-      return;
-    }
-    if (user.role === "admin") return;
+  if (!user) {
+    toast.error("Please login first to add items to cart");
+    navigate("/login");
+    return;
+  }
+  if (user.role === "admin") return;
 
-    try {
-      const res = await addCartToDB(product);
-      const existing = cart.find((item) => item.id === res.data.id);
+  try {
+    const res = await addCartToDB(product);
+    const existing = cart.find((item) => item.id === res.data.id);
 
-      if (!existing) setCart((prev) => [...prev, res.data]);
-      else setCart((prev) =>
-        prev.map((item) => (item.id === res.data.id ? res.data : item))
-      );
-    } catch (err) {
-      console.log("Add cart error:", err.response?.data || err);
-    }
-  };
+    if (!existing) setCart((prev) => [...prev, res.data]);
+    else setCart((prev) =>
+      prev.map((item) => (item.id === res.data.id ? res.data : item))
+    );
+  } catch (err) {
+    const msg = err.response?.data?.error || "Failed to add item";
+    toast.error(msg);  // <-- show toast
+    console.log("Add cart error:", err.response?.data || err);
+  }
+};
+
 
   const removeCart = async (id) => {
     try {
@@ -165,15 +190,24 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const increaseQuantity = async (id) => {
+//   const increaseQuantity = async (id) => {
+//   try {
+//     const res = await updateCartItem(id, 1);
+//     setCart((prev) => prev.map((i) => (i.id === id ? res.data : i)));
+//   } catch (err) {
+//     console.log(err.response?.data || err);
+//   }
+// };
+const increaseQuantity = async (id) => {
   try {
     const res = await updateCartItem(id, 1);
     setCart((prev) => prev.map((i) => (i.id === id ? res.data : i)));
   } catch (err) {
+    const msg = err.response?.data?.error || "Cannot increase quantity";
+    toast.error(msg);  // <-- show toast
     console.log(err.response?.data || err);
   }
 };
-
 const decreaseQuantity = async (id) => {
   try {
     const res = await updateCartItem(id, -1);

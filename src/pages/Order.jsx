@@ -157,7 +157,7 @@ function Order() {
     <p>Status: {ord.status}</p>
     <p>Ordered on: {new Date(ord.ordered_at).toLocaleDateString()}</p>
     {["Pending", "Processing", "Shipped"].includes(ord.status) && (
-      <button onClick={() => cancelOrder(ord.id)}>Cancel Order</button>
+      <button className="cancel-btn" onClick={() => cancelOrder(ord.id)}>Cancel Order</button>
     )}
   </div>
 ))}

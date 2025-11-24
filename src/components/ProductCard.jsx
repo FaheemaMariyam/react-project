@@ -27,7 +27,7 @@ const ProductsCard = () => {
       <div className="categories-grid">
         {products.map((pro) => {
           // FIXED: Compare directly with pro.id
-          const isInWishlist = wishlist.some((item) => item.id === pro.id);
+          // const isInWishlist = wishlist.some((item) => item.id === pro.id);
 
           return (
             <div className="category-card" key={pro.id}>
@@ -40,23 +40,23 @@ const ProductsCard = () => {
                 />
 
                 {/* Wishlist button */}
-                <button
+                {/* <button
                   className="wishlist-btn"
                   onClick={() =>
                     isInWishlist ? removeWishlist(pro.id) : toggleWishlist(pro)
                   }
                 >
                   <FaHeart color={isInWishlist ? "#d48b6e" : "#dcc4bbff"} />
-                </button>
+                </button> */}
               </div>
 
               <div className="card-info">
                 <h3>{pro.name}</h3>
                 <p className="price">₹{pro.price}</p>
 
-                <button className="add-to-cart-btn" onClick={() => addCart(pro)}>
+                {/* <button className="add-to-cart-btn" onClick={() => addCart(pro)}>
                   Add to Cart
-                </button>
+                </button> */}
               </div>
             </div>
           );

@@ -225,3 +225,15 @@
   width: fit-content;
   margin-top: 20px;
 }
+.pagination-btn {
+  padding: 3px 8px;
+  background-color: #d48b6e;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: fit-content;
+  margin-top: 10px;
+}

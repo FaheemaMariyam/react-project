@@ -165,15 +165,27 @@ export const OrderProvider = ({ children }) => {
   const addOrder = async ({ items, shippingDetails, payment_method }) => {
   try {
     // Backend expects shipping fields at top level, not nested
+    // const payload = {
+    //   items,
+    //   name: shippingDetails.name,
+    //   address: shippingDetails.address,
+    //   city: shippingDetails.city,
+    //   pin: shippingDetails.pin,
+    //   phone: shippingDetails.phone,
+    //   payment_method,
+    // };
     const payload = {
-      items,
-      name: shippingDetails.name,
-      address: shippingDetails.address,
-      city: shippingDetails.city,
-      pin: shippingDetails.pin,
-      phone: shippingDetails.phone,
-      payment_method,
-    };
+  items,
+  shippingDetails: {
+    name: shippingDetails.name,
+    address: shippingDetails.address,
+    city: shippingDetails.city,
+    pin: shippingDetails.pin,
+    phone: shippingDetails.phone,
+  },
+  payment_method,
+};
+
 
     const res = await addOrderToDB(payload);
 
@@ -197,15 +209,27 @@ export const OrderProvider = ({ children }) => {
       quantity: item.quantity,
     }));
 
+    // const payload = {
+    //   items,
+    //   name: shippingDetails.name,
+    //   address: shippingDetails.address,
+    //   city: shippingDetails.city,
+    //   pin: shippingDetails.pin,
+    //   phone: shippingDetails.phone,
+    //   payment_method,
+    // };
     const payload = {
-      items,
-      name: shippingDetails.name,
-      address: shippingDetails.address,
-      city: shippingDetails.city,
-      pin: shippingDetails.pin,
-      phone: shippingDetails.phone,
-      payment_method,
-    };
+  items,
+  shippingDetails: {
+    name: shippingDetails.name,
+    address: shippingDetails.address,
+    city: shippingDetails.city,
+    pin: shippingDetails.pin,
+    phone: shippingDetails.phone,
+  },
+  payment_method,
+};
+
 
     const res = await addOrderToDB(payload);
 
