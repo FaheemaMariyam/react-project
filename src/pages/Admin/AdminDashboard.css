@@ -78,6 +78,9 @@
 .status-badge.shipped {
   background: #5bc0de;
 }
+.status-badge.processing {
+  background: #e3e55b;
+}
 .status-badge.delivered {
   background: #5cb85c;
 }

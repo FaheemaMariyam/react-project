@@ -54,7 +54,7 @@ function AdminDashboard() {
       .finally(() => setLoading(false));
   }, []);
 
-  const colors = ["#FFB6C1", "#FFDAB9", "#90EE90", "#87CEFA"];
+  const colors = ["#FFB6C1","#e3e55b", "#FFDAB9", "#90EE90", "#87CEFA"];
 
   return (
     <div className="dashboard-container">
