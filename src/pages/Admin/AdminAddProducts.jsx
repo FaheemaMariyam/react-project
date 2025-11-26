@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import axiosInstance from "../../APIs/axiosInstance";
 import "./AdminAddProducts.css";
+import { toast } from "react-toastify";
 function AdminAddProducts() {
   const [newProduct, setNewProduct] = useState({
     name: "",
@@ -42,6 +43,7 @@ function AdminAddProducts() {
         image: "",
         imageFile: null,
       });
+      toast.success("Product added successfully")
       navigate("/admin/products");
     })
     .catch((err) => {

@@ -108,7 +108,7 @@ function ProductDetails() {
   const isInCart = cart.some((item) => item.product.id === product.id);
   const isInWishlist = wishlist.some((item) => item.product.id === product.id);
 
-  // ✅ Stock validation
+  //  Stock validation
   const validateStock = (quantity) => {
     if (quantity > product.stock) {
       toast.error(`Only ${product.stock} left for ${product.name}`);

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Signup.css";
 import axiosInstance from "../APIs/axiosInstance";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -87,7 +88,7 @@ function Signup() {
 
 
     if (res.status === 201 || res.status === 200) {
-      alert("Signup successful! You can log in now.");
+      toast.success("Signup successful! You can log in now.");
       navigate("/login");
     }
 
@@ -97,7 +98,7 @@ function Signup() {
   } else {
     console.log("Signup Error:", err);
   }
-  alert("Signup failed. Please try again.");
+  toast.error("Signup failed. Please try again.");
 }
 
 };

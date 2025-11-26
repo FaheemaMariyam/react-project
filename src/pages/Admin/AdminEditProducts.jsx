@@ -2,7 +2,7 @@ import axiosInstance from "../../APIs/axiosInstance";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./AdminEditProducts.css";
-
+import { toast } from "react-toastify";
 function AdminEditProducts() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -78,7 +78,7 @@ function AdminEditProducts() {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then(() => {
-        alert("Product updated successfully!");
+        toast.success("Product updated successfully!");
         navigate("/admin/products");
       })
       .catch((err) => console.log(err));

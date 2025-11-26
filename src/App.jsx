@@ -36,6 +36,7 @@ import AdminEditProducts from "./pages/Admin/AdminEditProducts";
 import OrderConfirm from "./components/OrderConfirmation";
 import OrderConfirmAll from "./components/OrderConfirmationAll";
 import AdminOrders from "./pages/Admin/AdminOrders";
+import AdminUserDetail from "./pages/Admin/AdminUserDetail";
 
 
 function App() {
@@ -113,6 +114,8 @@ function App() {
               >
                 <Route index element={<AdminDashboard />} />
                 <Route path="users" element={<AdminUsers />} />
+                <Route path="/admin/users/:id/details/" element={<AdminUserDetail />} />
+
                 <Route path="products" element={<AdminProducts />} />
                 <Route path="add-product" element={<AdminAddProducts />} />
                 <Route

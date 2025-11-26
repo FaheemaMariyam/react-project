@@ -66,6 +66,7 @@ import {
   removeWishlistFromDB,
   clearWishlistFromDB
 } from "../APIs/WishlistApi";
+import { toast } from 'react-toastify';
 
 export const WishlistContext = createContext();
 
@@ -93,7 +94,7 @@ export const WishlistProvider = ({ children }) => {
   // Add or toggle wishlist item
   const toggleWishlist = async (product) => {
     if (!user) {
-      alert("Please login first to add wishlist items");
+      toast.error("Please login first to add wishlist items");
       navigate("/login");
       return;
     }

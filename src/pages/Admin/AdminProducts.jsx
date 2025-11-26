@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 function AdminProducts() {
   const [products, setProducts] = useState([]);
-
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -21,9 +20,8 @@ function AdminProducts() {
     { id: 5, name: "Cleaning & Utility" },
   ];
 
-  // ----------------------------
-  // Fetch Products (Admin API)
-  // ----------------------------
+  const navigate = useNavigate();
+
   const fetchProducts = () => {
     axiosInstance
       .get("/admin/products/", {
@@ -42,16 +40,16 @@ function AdminProducts() {
   };
 
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(searchTerm);
+      setPageNumber(1);
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
+
+  useEffect(() => {
     fetchProducts();
   }, [debouncedSearch, sortValue, selectedCategory, pageNumber]);
-useEffect(() => {
-  const timer = setTimeout(() => {
-    setDebouncedSearch(searchTerm);
-    setPageNumber(1);
-  }, 400);
-
-  return () => clearTimeout(timer);
-}, [searchTerm]);
 
   const handleDelete = (p) => {
     axiosInstance
@@ -59,8 +57,6 @@ useEffect(() => {
       .then(() => fetchProducts())
       .catch((err) => console.error(err));
   };
-
-  const navigate = useNavigate();
 
   return (
     <div className="admin-products-page">
@@ -79,7 +75,7 @@ useEffect(() => {
           className="edit-btn"
           onClick={() => navigate("/admin/add-product")}
         >
-          Addproduct
+          Add Product
         </button>
 
         <input
@@ -87,63 +83,72 @@ useEffect(() => {
           placeholder="Search products..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-
         />
       </div>
 
       {/* CATEGORY FILTER */}
-      <div className="category-buttons">
-        <button
-          className={!selectedCategory ? "active" : ""}
-          onClick={() => {
-            setSelectedCategory(null);
-            setPageNumber(1);
-          }}
-        >
-          All
-        </button>
+      <div className="admin-category-buttons">
+  <button className={!selectedCategory ? "active" : ""}>All</button>
+  {categories.map((cat) => (
+    <button
+      key={cat.id}
+      className={selectedCategory === cat.id ? "active" : ""}
+    >
+      {cat.name}
+    </button>
+  ))}
+</div>
 
-        {categories.map((cat) => (
-          <button
-            key={cat.id}
-            className={selectedCategory === cat.id ? "active" : ""}
-            onClick={() => {
-              setSelectedCategory(cat.id);
-              setPageNumber(1);
-            }}
-          >
-            {cat.name}
-          </button>
-        ))}
-      </div>
 
-      {/* PRODUCT GRID */}
-      <div className="admin-products-grid">
-        {products.map((p) => (
-          <div key={p.id} className="admin-product-card">
-            <img src={p.image} alt={p.name} />
-            <h4>{p.name}</h4>
-            <p>{p.description}</p>
-            <p>₹{p.price}</p>
-            <p>Stock: {p.stock}</p>
-
-            <button
-              className="edit-btn"
-              onClick={() => navigate(`/admin/edit-products/${p.id}`)}
-            >
-              Edit
-            </button>
-
-            &nbsp;&nbsp;&nbsp;
-
-            <button className="edit-btn" onClick={() => handleDelete(p)}>
-              Delete
-            </button>
-          </div>
-        ))}
-
-        {products.length === 0 && <p>No products found.</p>}
-      </div>
+      {/* PRODUCT TABLE */}
+      <table className="product-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name & Description</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.length > 0 ? (
+            products.map((p) => (
+              <tr key={p.id}>
+                <td>
+                  <img src={p.image} alt={p.name} className="product-img" />
+                </td>
+                <td>
+                  <strong>{p.name}</strong>
+                  <p>{p.description}</p>
+                </td>
+                <td>₹{p.price}</td>
+                <td>{p.stock}</td>
+                <td>
+                  <button
+                    className="edit-btn"
+                    onClick={() => navigate(`/admin/edit-products/${p.id}`)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="delete-btn"
+                    onClick={() => handleDelete(p)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="5" style={{ textAlign: "center" }}>
+                No products found.
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
 
       {/* PAGINATION */}
       <div className="pagination">

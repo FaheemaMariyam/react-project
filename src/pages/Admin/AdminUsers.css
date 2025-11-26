@@ -7,14 +7,14 @@
   min-height: 100vh;
 }
 
-.heading {
+.admin-users .heading {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 20px;
   color: #2c3e50;
 }
 
-.search-input {
+.admin-users .search-input {
   width: 300px;
   padding: 10px 14px;
   margin-bottom: 20px;
@@ -25,7 +25,7 @@
   transition: all 0.2s ease-in-out;
 }
 
-.search-input:focus {
+.admin-users .search-input:focus {
   border-color: #4a3aff;
   box-shadow: 0 0 6px rgba(74, 58, 255, 0.3);
 }
@@ -63,8 +63,7 @@
   background: #f9f9f9;
 }
 
-
-.status-badge {
+.admin-users .status-badge {
   padding: 6px 12px;
   border-radius: 12px;
   font-size: 12px;
@@ -72,23 +71,22 @@
   text-transform: capitalize;
 }
 
-.status-badge.active {
+.admin-users .status-badge.active {
   background: #e6f9f0;
   color: #16a34a;
 }
 
-.status-badge.blocked {
+.admin-users .status-badge.blocked {
   background: #ffe6e6;
   color: #b91c1c;
 }
 
-
-.action-buttons {
+.admin-users .action-buttons {
   display: flex;
   gap: 8px;
 }
 
-.btn {
+.admin-users .btn {
   padding: 6px 12px;
   border-radius: 8px;
   font-weight: 600;
@@ -98,30 +96,31 @@
   transition: 0.2s;
 }
 
-.btn-block.active {
+.admin-users .btn-block.active {
   background-color: #16a34a; 
   color: #fff;
 }
 
-.btn-block.blocked {
+.admin-users .btn-block.blocked {
   background-color: #b91c1c;
   color: #fff;
 }
 
-.btn-remove {
+.admin-users .btn-remove {
   background-color: #f3f4f6;
   color: #374151;
 }
 
-.btn:hover {
+.admin-users .btn:hover {
   opacity: 0.9;
 }
-.search-wrapper {
+
+.admin-users .search-wrapper {
   position: relative;
   width: 300px;
 }
 
-.suggestion-box {
+.admin-users .suggestion-box {
   position: absolute;
   top: 38px;
   width: 100%;
@@ -135,17 +134,18 @@
   margin: 0;
 }
 
-.suggestion-item {
+.admin-users .suggestion-item {
   padding: 10px;
   cursor: pointer;
   list-style: none;
   transition: 0.2s;
 }
 
-.suggestion-item:hover {
+.admin-users .suggestion-item:hover {
   background-color: #f0f0f0;
 }
-.pagination-btn {
+
+.admin-users .pagination-btn {
   padding: 3px 8px;
   background-color: #32616d;
   color: #fff;
@@ -156,4 +156,10 @@
   transition: all 0.3s ease;
   width: fit-content;
   margin-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .admin-users .search-input {
+    width: 100%;
+  }
 }

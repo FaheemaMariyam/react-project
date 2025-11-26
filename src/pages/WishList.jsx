@@ -48,6 +48,7 @@ import { AuthContext } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
 import './wishlist.css';
 
+
 function WishList() {
   const { wishlist, removeWishlist, loading } = useContext(WishlistContext);
   const { user } = useContext(AuthContext);

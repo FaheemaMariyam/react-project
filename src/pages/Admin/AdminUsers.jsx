@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axiosInstance from "../../APIs/axiosInstance";
 import "./AdminUsers.css";
+import { useNavigate } from "react-router-dom";
 
 function AdminUsers() {
   const [users, setUsers] = useState([]);
@@ -8,7 +9,7 @@ function AdminUsers() {
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-
+const navigate = useNavigate();
   // Fetch users with pagination and optional search
   const fetchUsers = () => {
     let url = `/admin/users/?page=${page}`;
@@ -84,7 +85,25 @@ function AdminUsers() {
             users.map((user, index) => (
               <tr key={user.id}>
                 <td>{index + 1 + (page - 1) * 10}</td>
-                <td>{user.id}</td>
+                {/* <td>{user.id}</td> */}
+                {/* <td
+  className="clickable-id"
+  onClick={() => navigate(`/admin/user/${user.id}`)}
+  style={{ cursor: "pointer", color: "#4a3aff", fontWeight: "600" }}
+>
+  {user.id}
+</td> */}
+ <td>
+            <button
+              className="btn btn-primary btn-sm"
+              onClick={() => navigate(`/admin/users/${user.id}/details`)}
+            >
+              {user.id}
+            </button>
+
+          </td>
+
+
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>{user.phone}</td>

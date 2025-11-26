@@ -4,6 +4,7 @@ import { FaHeart } from "react-icons/fa";
 import { WishlistContext } from "../context/wishlistContext";
 import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../APIs/axiosInstance"; 
 
 const ProductsCard = () => {
   const { wishlist, toggleWishlist, removeWishlist } = useContext(WishlistContext);
@@ -14,12 +15,13 @@ const ProductsCard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/products/")
-      .then((res) => res.json())
-      .then((data) => setProducts(data.results.slice(0, 5)))
-      .catch((err) => console.log(err));
+    axiosInstance
+      .get("/products/")      
+      .then((res) => {
+        setProducts(res.data.results.slice(0, 5));
+      })
+      .catch((err) => console.log("Error fetching products:", err));
   }, []);
-
   return (
     <section className="categories-section">
       <h2 className="section-title">Featured Products</h2>
