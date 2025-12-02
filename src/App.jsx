@@ -118,7 +118,9 @@ function App() {
                 <Route path="/admin/users/:id/details/" element={<AdminUserDetail />} />
 
                 <Route path="products" element={<AdminProducts />} />
-                <Route path="/admin/categories" element={<AdminCategories />} />
+                {/* <Route path="/admin/categories" element={<AdminCategories />} /> */}
+                <Route path="categories" element={<AdminCategories />} />
+
 
                 <Route path="add-product" element={<AdminAddProducts />} />
                 <Route
