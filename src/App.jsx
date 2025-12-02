@@ -31,6 +31,7 @@ import AdminDashboard from "./pages/Admin/AdminDashboard";
 import AdminUsers from "./pages/Admin/AdminUsers";
 import AdminProducts from "./pages/Admin/AdminProducts";
 import AdminAddProducts from "./pages/Admin/AdminAddProducts";
+import AdminCategories from "./pages/Admin/AdminCategories";
 import AdminLayout from "./pages/Admin/AdminLayout";
 import AdminEditProducts from "./pages/Admin/AdminEditProducts";
 import OrderConfirm from "./components/OrderConfirmation";
@@ -117,6 +118,8 @@ function App() {
                 <Route path="/admin/users/:id/details/" element={<AdminUserDetail />} />
 
                 <Route path="products" element={<AdminProducts />} />
+                <Route path="/admin/categories" element={<AdminCategories />} />
+
                 <Route path="add-product" element={<AdminAddProducts />} />
                 <Route
                   path="edit-products/:id"

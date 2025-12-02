@@ -275,6 +275,12 @@ function AdminProducts() {
         >
           Add Product
         </button>
+      <button
+  className="edit-btn"
+  onClick={() => navigate("/admin/categories")}
+>
+  Manage Categories
+</button>
 
         <input
           type="text"
