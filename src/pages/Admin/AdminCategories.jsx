@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../../APIs/axiosInstance";
+import imageCompression from "browser-image-compression";
 // import "./AdminCategories.css";
 
 function AdminCategories() {
@@ -27,14 +28,27 @@ function AdminCategories() {
     }));
   };
 
-  const handleImageChange = (event, id) => {
+  // Handle image change with compression
+  const handleImageChange = async (event, id) => {
     const file = event.target.files[0];
     if (!file) return;
 
-    setUpdatedCategories((prev) => ({
-      ...prev,
-      [id]: { ...prev[id], image: file },
-    }));
+    try {
+      const options = {
+        maxSizeMB: 2,          // target max size after compression
+        maxWidthOrHeight: 1024, // resize if larger
+        useWebWorker: true,
+      };
+      const compressedFile = await imageCompression(file, options);
+
+      setUpdatedCategories((prev) => ({
+        ...prev,
+        [id]: { ...prev[id], image: compressedFile },
+      }));
+    } catch (error) {
+      console.error("Image compression error:", error);
+      alert("Failed to compress image. Try a smaller file.");
+    }
   };
 
   // Submit all changes at once
