@@ -87,12 +87,29 @@ function AdminProducts() {
       </div>
 
       {/* CATEGORY FILTER */}
-      <div className="admin-category-buttons">
+      {/* <div className="admin-category-buttons">
   <button className={!selectedCategory ? "active" : ""}>All</button>
   {categories.map((cat) => (
     <button
       key={cat.id}
       className={selectedCategory === cat.id ? "active" : ""}
+    >
+      {cat.name}
+    </button>
+  ))}
+</div> */}
+<div className="admin-category-buttons">
+  <button
+    className={!selectedCategory ? "active" : ""}
+    onClick={() => setSelectedCategory(null)} // 'All' resets category
+  >
+    All
+  </button>
+  {categories.map((cat) => (
+    <button
+      key={cat.id}
+      className={selectedCategory === cat.id ? "active" : ""}
+      onClick={() => setSelectedCategory(cat.id)} // set selected category
     >
       {cat.name}
     </button>
