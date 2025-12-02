@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../../APIs/axiosInstance";
 import imageCompression from "browser-image-compression";
-// import "./AdminCategories.css";
 
 function AdminCategories() {
   const [categories, setCategories] = useState([]);
-  const [updatedCategories, setUpdatedCategories] = useState({}); // stores changes temporarily
+  const [updatedCategories, setUpdatedCategories] = useState({}); // temporary changes
 
   useEffect(() => {
     fetchCategories();
   }, []);
 
+  // Fetch categories from backend
   const fetchCategories = () => {
     axiosInstance
       .get("/categories/")
       .then((res) => {
         setCategories(res.data.results || res.data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error("Fetch categories error:", err));
   };
 
-  // Handle input change locally
+  // Handle name change
   const handleNameChange = (id, newName) => {
     setUpdatedCategories((prev) => ({
       ...prev,
@@ -28,18 +28,24 @@ function AdminCategories() {
     }));
   };
 
-  // Handle image change with compression
+  // Handle image selection & compression
   const handleImageChange = async (event, id) => {
     const file = event.target.files[0];
     if (!file) return;
 
     try {
       const options = {
-        maxSizeMB: 2,          // target max size after compression
+        maxSizeMB: 2,           // max 2MB after compression
         maxWidthOrHeight: 1024, // resize if larger
         useWebWorker: true,
       };
+
       const compressedFile = await imageCompression(file, options);
+
+      if (compressedFile.size / 1024 / 1024 > 2) {
+        alert("Image too large after compression. Choose a smaller image.");
+        return;
+      }
 
       setUpdatedCategories((prev) => ({
         ...prev,
@@ -51,7 +57,7 @@ function AdminCategories() {
     }
   };
 
-  // Submit all changes at once
+  // Submit changes
   const handleSubmit = () => {
     const updatePromises = Object.keys(updatedCategories).map((id) => {
       const data = updatedCategories[id];
@@ -67,18 +73,21 @@ function AdminCategories() {
 
     Promise.all(updatePromises)
       .then(() => {
-        alert("All updates submitted!");
+        alert("All updates submitted successfully!");
         setUpdatedCategories({});
-        fetchCategories(); // refresh categories
+        fetchCategories();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error("Update error:", err);
+        alert("Failed to submit some updates. Check console.");
+      });
   };
 
   return (
     <div className="admin-categories-page">
       <h2>Admin Categories</h2>
 
-      <table className="category-table">
+      <table className="category-table" style={{ width: "100%", borderCollapse: "collapse" }}>
         <thead>
           <tr>
             <th>Image</th>
@@ -89,9 +98,18 @@ function AdminCategories() {
 
         <tbody>
           {categories.map((cat) => (
-            <tr key={cat.id}>
+            <tr key={cat.id} style={{ borderBottom: "1px solid #ccc" }}>
               <td>
-                <img src={cat.image} alt={cat.name} className="cat-img" />
+                <img
+                  src={
+                    updatedCategories[cat.id]?.image
+                      ? URL.createObjectURL(updatedCategories[cat.id].image)
+                      : cat.image
+                  }
+                  alt={cat.name}
+                  className="cat-img"
+                  style={{ width: "100px", height: "100px", objectFit: "cover" }}
+                />
               </td>
 
               <td>
@@ -99,6 +117,7 @@ function AdminCategories() {
                   type="text"
                   defaultValue={cat.name}
                   onChange={(e) => handleNameChange(cat.id, e.target.value)}
+                  style={{ padding: "5px", width: "200px" }}
                 />
               </td>
 
@@ -114,8 +133,18 @@ function AdminCategories() {
         </tbody>
       </table>
 
-      {/* Submit button */}
-      <button onClick={handleSubmit} style={{ marginTop: "20px" }}>
+      <button
+        onClick={handleSubmit}
+        style={{
+          marginTop: "20px",
+          padding: "10px 20px",
+          backgroundColor: "#4caf50",
+          color: "#fff",
+          border: "none",
+          cursor: "pointer",
+          borderRadius: "5px",
+        }}
+      >
         Submit Changes
       </button>
     </div>
