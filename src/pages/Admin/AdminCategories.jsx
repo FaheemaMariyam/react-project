@@ -4,6 +4,7 @@ import axiosInstance from "../../APIs/axiosInstance";
 
 function AdminCategories() {
   const [categories, setCategories] = useState([]);
+  const [updatedCategories, setUpdatedCategories] = useState({}); // stores changes temporarily
 
   useEffect(() => {
     fetchCategories();
@@ -18,30 +19,43 @@ function AdminCategories() {
       .catch((err) => console.error(err));
   };
 
+  // Handle input change locally
+  const handleNameChange = (id, newName) => {
+    setUpdatedCategories((prev) => ({
+      ...prev,
+      [id]: { ...prev[id], name: newName },
+    }));
+  };
+
   const handleImageChange = (event, id) => {
     const file = event.target.files[0];
     if (!file) return;
 
-    const formData = new FormData();
-    formData.append("image", file);
-
-    axiosInstance
-      .patch(`/admin/categories/${id}/`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then(() => {
-        alert("Image updated");
-        fetchCategories();
-      })
-      .catch((err) => console.error(err));
+    setUpdatedCategories((prev) => ({
+      ...prev,
+      [id]: { ...prev[id], image: file },
+    }));
   };
 
-  const handleNameChange = (id, newName) => {
-    axiosInstance
-      .patch(`/admin/categories/${id}/`, { name: newName })
+  // Submit all changes at once
+  const handleSubmit = () => {
+    const updatePromises = Object.keys(updatedCategories).map((id) => {
+      const data = updatedCategories[id];
+      const formData = new FormData();
+
+      if (data.name) formData.append("name", data.name);
+      if (data.image) formData.append("image", data.image);
+
+      return axiosInstance.patch(`/admin/categories/${id}/`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+    });
+
+    Promise.all(updatePromises)
       .then(() => {
-        alert("Category name updated");
-        fetchCategories();
+        alert("All updates submitted!");
+        setUpdatedCategories({});
+        fetchCategories(); // refresh categories
       })
       .catch((err) => console.error(err));
   };
@@ -70,7 +84,7 @@ function AdminCategories() {
                 <input
                   type="text"
                   defaultValue={cat.name}
-                  onBlur={(e) => handleNameChange(cat.id, e.target.value)}
+                  onChange={(e) => handleNameChange(cat.id, e.target.value)}
                 />
               </td>
 
@@ -85,6 +99,11 @@ function AdminCategories() {
           ))}
         </tbody>
       </table>
+
+      {/* Submit button */}
+      <button onClick={handleSubmit} style={{ marginTop: "20px" }}>
+        Submit Changes
+      </button>
     </div>
   );
 }
