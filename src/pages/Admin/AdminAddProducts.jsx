@@ -241,12 +241,26 @@ function AdminAddProducts() {
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState("");
 
-  // Fetch categories from backend
+  // Fetch categories safely
   useEffect(() => {
     axiosInstance
       .get("/categories/")
-      .then((res) => setCategories(res.data))
-      .catch(() => console.log("Error fetching categories"));
+      .then((res) => {
+        // Check if res.data is an array or has results
+        const cats = Array.isArray(res.data)
+          ? res.data
+          : res.data.results || [];
+        setCategories(cats);
+
+        // Set default categoryId if not already set
+        if (cats.length > 0 && !newProduct.categoryId) {
+          setNewProduct((prev) => ({ ...prev, categoryId: cats[0].id }));
+        }
+      })
+      .catch(() => {
+        console.log("Error fetching categories");
+        setCategories([]); // fallback
+      });
   }, []);
 
   // Handle image selection and preview
@@ -255,7 +269,7 @@ function AdminAddProducts() {
     if (file) {
       setNewProduct({ ...newProduct, imageFile: file });
 
-      // preview image
+      // Preview image
       const reader = new FileReader();
       reader.onloadend = () => {
         setNewProduct((prev) => ({ ...prev, image: reader.result }));
@@ -279,8 +293,8 @@ function AdminAddProducts() {
     formData.append("description", newProduct.description);
     formData.append("price", newProduct.price);
     formData.append("stock", newProduct.stock);
-    formData.append("category", newProduct.categoryId); // send integer ID
-    formData.append("image", newProduct.imageFile);      // file
+    formData.append("category", newProduct.categoryId);
+    formData.append("image", newProduct.imageFile);
 
     axiosInstance
       .post("/admin/products/", formData, {
@@ -364,11 +378,12 @@ function AdminAddProducts() {
             })
           }
         >
-          {categories.map((cat) => (
-            <option key={cat.id} value={cat.id}>
-              {cat.name}
-            </option>
-          ))}
+          {Array.isArray(categories) &&
+            categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.name}
+              </option>
+            ))}
         </select>
 
         <label>Image</label>
