@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../../APIs/axiosInstance";
-import "./AdminCategories.css";
+// import "./AdminCategories.css";
 
 function AdminCategories() {
   const [categories, setCategories] = useState([]);
